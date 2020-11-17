@@ -46,6 +46,11 @@
 						<a lang="en" href="${contextPath}/reqView.jsp"> Security </a>
 					</h2>
 				</li>
+				<li>
+					<h2>
+						<a lang="en" href="${contextPath}/alertView.jsp"> Alarm </a>
+					</h2>
+				</li>
 				<li class="memberBtn">
 					<c:choose>
 						<c:when test="${STF_ID != null }">
@@ -80,6 +85,11 @@
 				<li>
 					<h2>
 						<a lang="en" href="${contextPath}/reqView.jsp"> Security </a>
+					</h2>
+				</li>
+				<li>
+					<h2>
+						<a lang="en" href="${contextPath}/alertView.jsp"> Alarm </a>
 					</h2>
 				</li>
 			</ul>
