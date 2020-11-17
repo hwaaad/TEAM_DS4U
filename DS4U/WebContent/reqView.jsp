@@ -158,11 +158,26 @@
 						        }
 					%>
 					</td>
-					<td><%= req.getAPV_DATE() %></td>
+					<td>
 					<a href="reqShow.jsp?REQ_SQ=<%= req.getREQ_SQ() %>">
-					<%= req.getREQ_DATE() %></a>
-					<td><%= req.getREQ_REC_DATE() %></td>
-					<td><%= req.getREQ_SUB_DATE() %></td>					
+					<%= req.getREQ_DATE() %></a></td>
+					<td><%= req.getREQ_REC_DATE() %>
+					<% 
+					if (req.getREQ_REC_DATE().equals("")) {
+						session.setAttribute("REQ_SQ", req.getREQ_SQ());
+					%>
+					<a href="reqReciveWrite.jsp" id = "writeBtn" onclick = "window.open(this.href, '_blank', 'width=500, height=500, toolbars=no, scrollbars=yes'); return false;">등록</a>
+					<% 
+					} else {
+					%> 
+						<%= req.getREQ_REC_DATE() %>	
+					<% 
+					}
+					%>
+					</td>
+					<td><%= req.getREQ_SUB_DATE() %>
+					<button onclick="location=windows.open('reqSubmitWrite.jsp')">등록</button>
+					</td>					
 				</tr>
 			<%
 				}
