@@ -3,10 +3,18 @@
 <%@ page import="req.ReqDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ include file="head.jsp" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
 <!DOCTYPE html>
 <html>
 <%
 	String STF_ID = null;
+	String STF_DEP = null;
+	String STF_NM = null;
 	if (session.getAttribute("STF_ID") != null) {
 		STF_ID = (String) session.getAttribute("STF_ID");
 	}
@@ -55,9 +63,8 @@
 					<li id="listHead">
 						<div>No.</div>
 						<div>사업명</div>
-						<div>추진 목적</div>
-						<div>사업 내용</div>
-						<div>사업 기간</div>
+						<div>부서명</div>
+						<div>담당자</div>
 						<div>검토 요청일</div>
 						<div>회신일</div>
 						<div>보안점검표 제출일</div>
@@ -72,9 +79,85 @@
 					<td><%= req.getREQ_SQ() %></td>
 						<td style="text-align: center;">
 					<a href="apvShow.jsp?APV_SQ=<%= req.getAPV_SQ() %>">
-					<%= req.getAPV_NM() %></a>
-					<td><%= req.getAPV_OBJ() %></td>
-					<td><%= req.getAPV_CONT() %></td>
+					<%= req.getAPV_NM() %></a></td>
+					<td>
+					<% 
+								
+								Connection conn = null;
+						    	PreparedStatement pstmt = null;
+						    	ResultSet rs = null;
+						    	DataSource dataSource;
+						    	InitialContext initContext = new InitialContext();
+								Context envContext = (Context) initContext.lookup("java:/comp/env");
+								dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
+						    	try{
+						    		
+						    		conn = dataSource.getConnection();
+						    		String SQL = "SELECT STF_DEP FROM STF WHERE STF_ID = ?";
+					           		pstmt = conn.prepareStatement(SQL);
+					           		pstmt.setString(1, req.getSTF_ID());
+					           		rs = pstmt.executeQuery();
+					           		
+					           	 	while (rs.next()) {
+						            	
+					           	 		STF_DEP = rs.getString("STF_DEP").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+						            	
+						            	
+						            	%>
+						           <%= STF_DEP %>
+						            	<%
+						            } 									
+						    	}catch (Exception e) {
+						            e.printStackTrace();
+						        } finally {
+						        	try {
+						        		if (rs != null) rs.close();
+						        		if (pstmt != null) pstmt.close();
+						        		if (conn != null) conn.close();
+						        	} catch (Exception e) {
+						        		e.printStackTrace();
+						        	}       	
+					            
+						        }
+						 %>
+						
+					</td>
+					<td>
+					<%
+								try{
+						    		
+						    		conn = dataSource.getConnection();
+						    		String SQL = "SELECT STF_NM FROM STF WHERE STF_ID = ?";
+					           		pstmt = conn.prepareStatement(SQL);
+					           		pstmt.setString(1, req.getSTF_ID());
+					           		rs = pstmt.executeQuery();
+									
+					           		
+									while (rs.next()) {
+						            	
+					           	 		STF_NM = rs.getString("STF_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+						            	
+						            	
+						            	%>
+						           <%=STF_NM%>
+						            	<%
+						            }
+					            	
+					           											
+						    	}catch (Exception e) {
+						            e.printStackTrace();
+						        } finally {
+						        	try {
+						        		if (rs != null) rs.close();
+						        		if (pstmt != null) pstmt.close();
+						        		if (conn != null) conn.close();
+						        	} catch (Exception e) {
+						        		e.printStackTrace();
+						        	}       	
+					            
+						        }
+					%>
+					</td>
 					<td><%= req.getAPV_DATE() %></td>
 					<a href="reqShow.jsp?REQ_SQ=<%= req.getREQ_SQ() %>">
 					<%= req.getREQ_DATE() %></a>
