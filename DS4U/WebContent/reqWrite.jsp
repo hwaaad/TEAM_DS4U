@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="stf.StfDTO" %>
 <%@ page import="stf.StfDAO" %>
+<%@ page import="apv.ApvDAO" %>
+<%@ page import="apv.ApvDTO" %>
+<%@page import="req.ReqDTO"%>
+<%@page import="req.ReqDAO"%>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
+
 <%@ include file="head.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -28,6 +39,16 @@
 	<link rel="stylesheet" type="text/css" href="${contextPath}/css/modal.css"/>
 	<title>서울교통공사</title>
 	<script src="js/bootstrap.js"></script>
+	
+	 <script>
+    function getSelectValue(frm)
+   	 {
+    	frm.APV_NM.value = frm.selectBox.options[frm.selectBox.selectedIndex].text;
+    	frm.APV_SQ.value = frm.selectBox.options[frm.selectBox.selectedIndex].value;
+   	 } <!-- selectBox에서 정보화사업 클릭시 해당 APV_SQ와 APV_NM을 가져옴-->
+    </script>
+    
+    
 </head>
 <body>
 	<%@ include file="/headerWs.jsp" %>
@@ -47,7 +68,56 @@
 				<tbody>
 					<tr>
 						<td style="width: 130px; text-align: left;"><h5>1. 사업명</h5></td>
-						<td><textarea class="form-control" cols="100" name="APV_NM" id="APV_NM" maxlength="30" placeholder="사업명을 입력하세요."></textarea></td>						
+							<td> <select name="selectBox" onChange="getSelectValue(this.form);">	
+								<option value="" selected>===선택해주세요===</option>
+								<% 
+
+								Connection conn = null;
+						    	PreparedStatement pstmt = null;
+						    	ResultSet rs = null;
+						    	DataSource dataSource;
+						    	InitialContext initContext = new InitialContext();
+								Context envContext = (Context) initContext.lookup("java:/comp/env");
+								dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
+					    		
+						    	
+						    	try{
+						    		
+						    		conn = dataSource.getConnection();
+						       
+					           		String SQL = "SELECT APV_SQ, APV_NM FROM APV";
+
+					           		pstmt = conn.prepareStatement(SQL);
+					          		rs = pstmt.executeQuery();
+					           
+					            while (rs.next()) {
+					            	
+					          		int APV_SQ = rs.getInt("APV_SQ");
+					            	String APV_NM = rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+		    
+					            	%>
+					            		<option value=<%=APV_SQ%>><%=APV_NM%></option>
+					            	<%
+					            	
+					            	}
+					            
+						    	} catch (Exception e) {
+						            e.printStackTrace();
+						        } finally {
+						        	try {
+						        		if (rs != null) rs.close();
+						        		if (pstmt != null) pstmt.close();
+						        		if (conn != null) conn.close();
+						        	} catch (Exception e) {
+						        		e.printStackTrace();
+						        	}       	
+						        }
+
+						    	%>
+					
+					
+						</select>
+						<input type="hidden"  name="APV_NM" ><input type="hidden"  name="APV_SQ" ></td>	
 					</tr>
 					<tr>
 						<td style="width: 130px; text-align: left;"><h5>2. 추진 목적</h5></td>

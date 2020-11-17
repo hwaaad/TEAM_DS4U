@@ -70,14 +70,14 @@
 			%>
 				<tr>
 					<td><%= req.getREQ_SQ() %></td>
-					<td style="text-align: left;">
-					<a href="reqShow.jsp?REQ_SQ=<%= req.getREQ_SQ() %>">
-					<%= req.getAPV_NM() %>
-					</a>
+						<td style="text-align: center;">
+					<a href="apvShow.jsp?APV_SQ=<%= req.getAPV_SQ() %>">
+					<%= req.getAPV_NM() %></a>
 					<td><%= req.getAPV_OBJ() %></td>
 					<td><%= req.getAPV_CONT() %></td>
 					<td><%= req.getAPV_DATE() %></td>
-					<td><%= req.getREQ_DATE() %></td>
+					<a href="reqShow.jsp?REQ_SQ=<%= req.getREQ_SQ() %>">
+					<%= req.getREQ_DATE() %></a>
 					<td><%= req.getREQ_REC_DATE() %></td>
 					<td><%= req.getREQ_SUB_DATE() %></td>					
 				</tr>
