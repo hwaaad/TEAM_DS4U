@@ -1,0 +1,86 @@
+package stf;
+
+public class StfDTO {
+	
+	String STF_ID;
+	String STF_PW;
+	String STF_NM;
+	String STF_PH;
+	String STF_EML;
+	String STF_DEP;
+	String STF_PF;
+	String STF_EMLHASH;
+	boolean STF_EMLCK;
+	public String getSTF_ID() {
+		return STF_ID;
+	}
+	public void setSTF_ID(String sTF_ID) {
+		STF_ID = sTF_ID;
+	}
+	public String getSTF_PW() {
+		return STF_PW;
+	}
+	public void setSTF_PW(String sTF_PW) {
+		STF_PW = sTF_PW;
+	}
+	public String getSTF_NM() {
+		return STF_NM;
+	}
+	public void setSTF_NM(String sTF_NM) {
+		STF_NM = sTF_NM;
+	}
+	public String getSTF_PH() {
+		return STF_PH;
+	}
+	public void setSTF_PH(String sTF_PH) {
+		STF_PH = sTF_PH;
+	}
+	public String getSTF_EML() {
+		return STF_EML;
+	}
+	public void setSTF_EML(String sTF_EML) {
+		STF_EML = sTF_EML;
+	}
+	public String getSTF_DEP() {
+		return STF_DEP;
+	}
+	public void setSTF_DEP(String sTF_DEP) {
+		STF_DEP = sTF_DEP;
+	}
+	public String getSTF_PF() {
+		return STF_PF;
+	}
+	public void setSTF_PF(String sTF_PF) {
+		STF_PF = sTF_PF;
+	}
+	public String getSTF_EMLHASH() {
+		return STF_EMLHASH;
+	}
+	public void setSTF_EMLHASH(String sTF_EMLHASH) {
+		STF_EMLHASH = sTF_EMLHASH;
+	}
+	public boolean isSTF_EMLCK() {
+		return STF_EMLCK;
+	}
+	public void setSTF_EMLCK(boolean sTF_EMLCK) {
+		STF_EMLCK = sTF_EMLCK;
+	}
+	public StfDTO() {	
+	}
+	public StfDTO(String sTF_ID, String sTF_PW, String sTF_NM, String sTF_PH, String sTF_EML, String sTF_DEP,
+			String sTF_PF, String sTF_EMLHASH, boolean sTF_EMLCK) {
+		STF_ID = sTF_ID;
+		STF_PW = sTF_PW;
+		STF_NM = sTF_NM;
+		STF_PH = sTF_PH;
+		STF_EML = sTF_EML;
+		STF_DEP = sTF_DEP;
+		STF_PF = sTF_PF;
+		STF_EMLHASH = sTF_EMLHASH;
+		STF_EMLCK = sTF_EMLCK;
+	}	
+
+	
+	
+	
+}
