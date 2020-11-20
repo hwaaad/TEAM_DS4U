@@ -69,16 +69,7 @@
 		
 		session.setAttribute("messageType", "오류 메세지");
 		session.setAttribute("messageContent", "권한이 없습니다.");
-		%><script type="text/javascript">
-
-
-		window.opener.location.reload();    //부모창 reload
-
-
-		window.close();    //현재 팝업창 Close
-
-
-		</script><% 
+		response.sendRedirect("reqView.jsp");
 		return;
 		
 	}

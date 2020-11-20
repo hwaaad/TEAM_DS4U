@@ -22,7 +22,7 @@
     		return;	
     	}
     	String root = request.getSession().getServletContext().getRealPath("/");
-    	String savePath = root + "upload2";
+    	String savePath = root + "upload4";
     	String fileName = "";
     	String realFile = "";
     	ReqRecDAO reqrecDAO = new ReqRecDAO();

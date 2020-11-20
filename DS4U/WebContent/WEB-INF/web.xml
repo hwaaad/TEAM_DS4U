@@ -152,5 +152,12 @@
   <servlet-mapping>
   	<servlet-name>ReqfileWriteServlet</servlet-name>
   	<url-pattern>/reqfileWrite</url-pattern>
+  </servlet-mapping>                           <servlet>
+  	<servlet-name>adminUpdateServlet</servlet-name>
+  	<servlet-class>stf.adminUpdateServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+  	<servlet-name>adminUpdateServlet</servlet-name>
+  	<url-pattern>/adminUpdate</url-pattern>
   </servlet-mapping>                       
 </web-app>

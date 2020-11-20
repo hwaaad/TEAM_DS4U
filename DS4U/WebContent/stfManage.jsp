@@ -24,6 +24,12 @@
 		response.sendRedirect("index.jsp");
 		return;	
 	}
+	if (!STF_ID.equals("admin")) {
+		session.setAttribute("messageType", "오류 메시지");
+		session.setAttribute("messageContent", "접근 권한이 없습니다.");
+		response.sendRedirect("index.jsp");
+		return;	
+	}
 	String pageNumber = "1";
 	if (request.getParameter("pageNumber") != null) {
 		pageNumber = request.getParameter("pageNumber");
@@ -37,13 +43,14 @@
 		return;			
 	}
 	ArrayList<StfDTO> reqList = new StfDAO().getList();
+	
 %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<link rel="stylesheet" type="text/css" href="${contextPath}/css/headerWs.css"/>
 	<link rel="stylesheet" type="text/css" href="${contextPath}/css/navWs.css"/>
-	<link rel="stylesheet" type="text/css" href="${contextPath}/css/req.css"/>
+	<link rel="stylesheet" type="text/css" href="${contextPath}/css/manage.css"/>
 	<link rel="stylesheet" type="text/css" href="${contextPath}/css/modal.css"/>
 	<title>서울교통공사</title>
 	<script src="js/bootstrap.js"></script>
@@ -62,12 +69,12 @@
 				<ul id="boardList">
 					<li id="listHead">
 						<div>ID</div>
-						<div>PASSWORD</div>
 						<div>이름</div>
 						<div>전화번호</div>
 						<div>이메일</div>
 						<div>부서</div>
 						<div>프로필</div>
+						<div>관리자 여부</div>
 					</li>			
 			<table class="table" style="text-align: center; border: 1px solid #dddddd">
 			<tbody>
@@ -76,15 +83,30 @@
 					StfDTO req = reqList.get(i);					
 			%>
 				<tr>
-					
-					<td><%= req.getSTF_ID() %></td>
-					<td><%= req.getSTF_PW() %></td>
-					<td><%= req.getSTF_NM() %></td>
-					<td><%= req.getSTF_PH() %></td>		
-					<td><%= req.getSTF_EML() %></td>
-					<td><%= req.getSTF_DEP() %></td>
-					<td><%= req.getSTF_PF() %></td>
-								
+					<form method="post" action="./adminUpdate">
+						<td><%= req.getSTF_ID() %><input type="hidden" name="STF_ID" value="<%= req.getSTF_ID() %>"></td>
+						<td><%= req.getSTF_NM() %></td>
+						<td><%= req.getSTF_PH() %></td>		
+						<td><%= req.getSTF_EML() %></td>
+						<td><%= req.getSTF_DEP() %></td>
+						<td><%= req.getSTF_PF() %></td>
+						<td>
+						<% if (req.getSTF_DEP().equals("부서4")){ %>
+							<input type="radio" name="STF_ADM" autocomplete="off" value="관리자" checked>관리자
+							<input type="radio" name="STF_ADM" autocomplete="off" value="사원">사원
+							<%
+							}else{
+							%>
+							<input type="radio" name="STF_ADM" autocomplete="off" value="관리자">관리자
+							<input type="radio" name="STF_ADM" autocomplete="off" value="사원" checked>사원
+							<%
+							}
+							%>
+						</td>
+						<td>
+						<button class="btn" type="submit">수정</button>
+						</td>
+					</form>
 				</tr>
 			<%
 				}
