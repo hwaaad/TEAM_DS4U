@@ -9,7 +9,7 @@ create table stf(
     STF_DEP varchar(20),
     STF_PF varchar(50),
     STF_EMLHASH varchar(64),
-    STF_EMLCK tinyint(1),
+    STF_EMLCK tinyint,
     primary key(STF_ID));
 
 [TABLE] BOARD - 게시판
