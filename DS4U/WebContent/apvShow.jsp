@@ -16,6 +16,13 @@
 		response.sendRedirect("index.jsp");
 		return;	
 	}
+	boolean emailChecked = new StfDAO().getUserEmailChecked(STF_ID);
+	if (emailChecked == false) {
+		session.setAttribute("messageType", "오류 메시지");
+		session.setAttribute("messageContent", "이메일 인증이 필요합니다.");
+		response.sendRedirect("emailSendConfirm.jsp");
+		return;
+	}
 	String APV_SQ = null;
 	if (request.getParameter("APV_SQ") != null) {
 		APV_SQ = (String) request.getParameter("APV_SQ");
