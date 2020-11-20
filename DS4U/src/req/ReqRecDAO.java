@@ -98,14 +98,14 @@ public class ReqRecDAO {
 	    	Connection conn = null;
 	    	PreparedStatement pstmt = null;
 	    	ResultSet rs = null;
-	        String SQL = "SELECT REQ_FILE FROM REQ_REC WHERE REQ_SQ = ?";
+	        String SQL = "SELECT REQ_REC_FILE FROM REQ_REC WHERE REQ_SQ = ?";
 	        try {
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setString(1, REQ_SQ);
 	            rs = pstmt.executeQuery(); // 실행 결과를 넣음
 	            if (rs.next()) {
-	            	return rs.getString("REQ_FILE");
+	            	return rs.getString("REQ_REC_FILE");
 	        	}
 	            return "";
 	        } catch (Exception e) {
@@ -126,14 +126,14 @@ public class ReqRecDAO {
 	    	Connection conn = null;
 	    	PreparedStatement pstmt = null;
 	    	ResultSet rs = null;
-	        String SQL = "SELECT REQ_RFILE FROM REQ_REC WHERE REQ_SQ = ?";
+	        String SQL = "SELECT REQ_REC_RFILE FROM REQ_REC WHERE REQ_SQ = ?";
 	        try {
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setString(1, REQ_SQ);
 	            rs = pstmt.executeQuery(); // 실행 결과를 넣음
 	            if (rs.next()) {
-	            	return rs.getString("REQ_RFILE");
+	            	return rs.getString("REQ_REC_RFILE");
 	        	}
 	            return "";
 	        } catch (Exception e) {

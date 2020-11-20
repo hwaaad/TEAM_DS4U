@@ -197,7 +197,7 @@ import req.ReqDTO;
 	            pstmt.setString(1, REQ_SQ);
 	            rs = pstmt.executeQuery(); // 실행 결과를 넣음
 	            if (rs.next()) {
-	            	return rs.getString("APV_FILE");
+	            	return rs.getString("REQF_FILE");
 	        	}
 	            return "";
 	        } catch (Exception e) {
@@ -225,7 +225,7 @@ import req.ReqDTO;
 	            pstmt.setString(1, REQ_SQ);
 	            rs = pstmt.executeQuery(); // 실행 결과를 넣음
 	            if (rs.next()) {
-	            	return rs.getString("APV_RFILE");
+	            	return rs.getString("REQF_RFILE");
 	        	}
 	            return "";
 	        } catch (Exception e) {
