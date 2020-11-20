@@ -136,5 +136,21 @@
   <servlet-mapping>
   	<servlet-name>UserProfileServlet</servlet-name>
   	<url-pattern>/userProfile</url-pattern>
-  </servlet-mapping>                          
+  </servlet-mapping>      
+  <servlet>
+  	<servlet-name>ReqRecWriteServlet</servlet-name>
+  	<servlet-class>req.ReqRecWriteServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+  	<servlet-name>ReqRecWriteServlet</servlet-name>
+  	<url-pattern>/reqRecWrite</url-pattern>
+  </servlet-mapping>                     
+    <servlet>
+  	<servlet-name>ReqfileWriteServlet</servlet-name>
+  	<servlet-class>req.ReqfileWriteServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+  	<servlet-name>ReqfileWriteServlet</servlet-name>
+  	<url-pattern>/reqfileWrite</url-pattern>
+  </servlet-mapping>                       
 </web-app>
