@@ -9,6 +9,7 @@ public class StfDTO {
 	String STF_EML;
 	String STF_DEP;
 	String STF_PF;
+
 	
 	public String getSTF_ID() {
 		return STF_ID;
@@ -52,6 +53,6 @@ public class StfDTO {
 	public void setSTF_PF(String sTF_PF) {
 		STF_PF = sTF_PF;
 	}
-	
+
 	
 }

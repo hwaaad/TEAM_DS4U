@@ -72,6 +72,11 @@
 			<a href="${contextPath}/alertView.jsp">보안성검토알림</a>
 			</h3>
 		</div>
+		<div id="boardDiv" class="navListDiv" style="text-align: center;">
+			<h3>
+			<a href="${contextPath}/stfManage.jsp">회원관리</a>
+			</h3>
+		</div>
 
 		<div id="mainDiv">
 			<h3>

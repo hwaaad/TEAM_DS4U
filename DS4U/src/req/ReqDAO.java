@@ -140,6 +140,7 @@ public class ReqDAO {
             	req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setREQ_GROUP(rs.getInt("REQ_GROUP"));
             	req.setREQ_SEQUENCE(rs.getInt("REQ_SEQUENCE"));
+            	
             	reqList.add(req);
         	}
         } catch (Exception e) {
