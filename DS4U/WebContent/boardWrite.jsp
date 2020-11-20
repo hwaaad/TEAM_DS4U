@@ -15,6 +15,13 @@
 		response.sendRedirect("index.jsp");
 		return;		
 	}
+	boolean emailChecked = new StfDAO().getUserEmailChecked(STF_ID);
+	if (emailChecked == false) {
+		session.setAttribute("messageType", "오류 메시지");
+		session.setAttribute("messageContent", "이메일 인증이 필요합니다.");
+		response.sendRedirect("emailSendConfirm.jsp");
+		return;
+	}
 	StfDTO stf = new StfDAO().getUser(STF_ID);
 %>
 
@@ -53,9 +60,9 @@
 						<tr>
 							<td style="width: 110px;"><h5>글 종류</h5></td>
 							<td>
-								<select id="boardType" name="boardType">
-									<option value="default">일반</option>
-									<option value="notice">공지</option>
+								<select id="boardType" name="BOARD_TYPE">
+									<option value="일반">일반</option>
+									<option value="공지">공지</option>
 								</select>
 							</td>
 						</tr>								

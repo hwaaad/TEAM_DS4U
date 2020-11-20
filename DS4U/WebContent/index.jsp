@@ -3,27 +3,6 @@
 <!DOCTYPE html>
 <html>
 <%	
-	request.setCharacterEncoding("UTF-8");
-	String BOARD_DIVIDE = "게시판";
-	String searchType = "최신순";
-	String search = "";
-	int pageNumber = 0;
-	if (request.getParameter("BOARD_DIVIDE") != null) {
-		BOARD_DIVIDE = request.getParameter("BOARD_DIVIDE");
-	}
-	if (request.getParameter("searchType") != null) {
-		searchType = request.getParameter("searchType");
-	}
-	if (request.getParameter("search") != null) {
-		search = request.getParameter("search");
-	}
-	if (request.getParameter("pageNumber") != null) {
-		try {
-			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-		} catch (Exception e) {
-			System.out.println("검색 페이지 번호 오류");
-		}		
-	}
 	String STF_ID = null;
 	if (session.getAttribute("STF_ID") != null) {
 		STF_ID = (String) session.getAttribute("STF_ID");

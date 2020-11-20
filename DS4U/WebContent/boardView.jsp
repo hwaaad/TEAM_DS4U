@@ -2,6 +2,7 @@
 <%@ page import="board.BoardDAO" %>
 <%@ page import="board.BoardDTO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.net.URLEncoder" %>
 <%@ include file="head.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -16,6 +17,13 @@
 		response.sendRedirect("index.jsp");
 		return;	
 	}
+	boolean emailChecked = new StfDAO().getUserEmailChecked(STF_ID);
+	if (emailChecked == false) {
+		session.setAttribute("messageType", "오류 메시지");
+		session.setAttribute("messageContent", "이메일 인증이 필요합니다.");
+		response.sendRedirect("emailSendConfirm.jsp");
+		return;
+	}
 	String pageNumber = "1";
 	if (request.getParameter("pageNumber") != null) {
 		pageNumber = request.getParameter("pageNumber");
@@ -29,6 +37,28 @@
 		return;			
 	}
 	ArrayList<BoardDTO> boardList = new BoardDAO().getList(pageNumber);
+	
+	request.setCharacterEncoding("UTF-8");
+	String BOARD_TYPE = "전체";
+	String searchType = "최신순";
+	String search = "";
+	int PageNumber = 1;
+	if (request.getParameter("BOARD_TYPE") != null) {
+		BOARD_TYPE = request.getParameter("BOARD_TYPE");
+	}
+	if (request.getParameter("searchType") != null) {
+		searchType = request.getParameter("searchType");
+	}
+	if (request.getParameter("search") != null) {
+		search = request.getParameter("search");
+	}
+	if (request.getParameter("PageNumber") != null) {
+		try {
+			PageNumber = Integer.parseInt(request.getParameter("PageNumber"));
+		} catch (Exception e) {
+			System.out.println("검색 페이지 번호 오류");
+		}		
+	}
 %>
 
 <head>
@@ -52,6 +82,7 @@
 		<div id="wsBodyContainer">
 			<h3>자유게시판</h3>
 			<div id="boardInner">
+				<div id="inputWrap">
 				<ul id="boardList">
 					<li id="listHead">
 						<div>No.</div>
@@ -99,6 +130,33 @@
 				<tr>
 					<td colspan="5">
 						<a href="${contextPath}/boardWrite.jsp" id="writeBtn">글쓰기</a>
+						<div id="searchWrap">
+							<form action="boardView.jsp" id="boardSearchForm">							
+								<select name="BOARD_TYPE" id="BOARD_TYPE">
+									<option value="전체">전체</option>
+									<option value="일반" <% if (BOARD_TYPE.equals("일반")) out.println("selected"); %>>일반</option>
+									<option value="공지" <% if (BOARD_TYPE.equals("공지")) out.println("selected"); %>>공지</option>
+								</select>
+								<select name="searchType" id="searchType">
+									<option value="최신순">최신순</option>
+									<option value="조회순" <% if (searchType.equals("조회순")) out.println("selected"); %>>조회순</option>
+								</select>
+								<input type="text" name="search"><button>검색</button>
+							</form>
+						</div>					
+					</td>
+				</tr>
+			<%
+				ArrayList<BoardDTO> searchList = new ArrayList<BoardDTO>();
+				searchList = new BoardDAO().getSearch(BOARD_TYPE, searchType, search, PageNumber);
+				if (searchList != null) 
+					for (int i=0; i<searchList.size(); i++) {
+						if (i == 5) break;
+						BoardDTO board = searchList.get(i);
+					}
+			%>
+				
+					<td colspan="5">
 					<ul id=pagination>
 					<% 
 						int startPage = (Integer.parseInt(pageNumber) / 10) * 10 + 1;
@@ -137,13 +195,14 @@
 						<li><i class="fas fa-angle-right"></i></li>
 					<%
 						}
-					%>	
-						
-					</ul>					
+					%>							
+					</ul>
 					</td>
 				</tr>							
 			</tbody>
-			</table>			
+			</table>
+			</ul>		
+			</div>
 			</div>
 		</div>
 	</div>

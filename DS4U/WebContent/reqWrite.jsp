@@ -26,6 +26,13 @@
 		response.sendRedirect("index.jsp");
 		return;		
 	}
+	boolean emailChecked = new StfDAO().getUserEmailChecked(STF_ID);
+	if (emailChecked == false) {
+		session.setAttribute("messageType", "오류 메시지");
+		session.setAttribute("messageContent", "이메일 인증이 필요합니다.");
+		response.sendRedirect("emailSendConfirm.jsp");
+		return;
+	}
 	StfDTO stf = new StfDAO().getUser(STF_ID);
 %>
 <head>

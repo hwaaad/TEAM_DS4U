@@ -67,9 +67,19 @@
 			<a href="${contextPath}/reqView.jsp">보안성검토</a>
 			</h3>
 		</div>
+		<div id="boardDiv" class="navListDiv">
+			<h3>
+			<a></a>
+			</h3>
+		</div>		
 		<div id="boardDiv" class="navListDiv" style="text-align: center;">
 			<h3>
 			<a href="${contextPath}/alertView.jsp">보안성검토알림</a>
+			</h3>
+		</div>
+		<div id="boardDiv" class="navListDiv">
+			<h3>
+			<a></a>
 			</h3>
 		</div>
 		<div id="boardDiv" class="navListDiv" style="text-align: center;">

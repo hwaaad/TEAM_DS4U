@@ -14,6 +14,13 @@
 		response.sendRedirect("index.jsp");
 		return;		
 	}
+	boolean emailChecked = new StfDAO().getUserEmailChecked(STF_ID);
+	if (emailChecked == false) {
+		session.setAttribute("messageType", "오류 메시지");
+		session.setAttribute("messageContent", "이메일 인증이 필요합니다.");
+		response.sendRedirect("emailSendConfirm.jsp");
+		return;
+	}
 	StfDTO stf = new StfDAO().getUser(STF_ID);
 	String BOARD_SQ = null;
 	if (request.getParameter("BOARD_SQ") != null) {
@@ -67,8 +74,7 @@
             <ul class="nav navbar-nav">       <!-- navbar-nav : 네비게이션 바 메뉴 -->
                 <li><a href="index.jsp">메인</a></li>
                 <li class="active"><a href="boardView.jsp">게시판</a></li>
-                <li><a href="apvView.jsp">정보화 사업</a></li>
-                <li><a href="reqView.jsp">보안성 검토</a></li>
+            	<li><a href="apvView.jsp">정보화사업</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
