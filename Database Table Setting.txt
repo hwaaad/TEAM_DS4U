@@ -8,6 +8,8 @@ create table stf(
     STF_EML varchar(30),
     STF_DEP varchar(20),
     STF_PF varchar(50),
+    STF_EMLHASH varchar(64),
+    STF_EMLCK tinyint(1),
     primary key(STF_ID));
 
 [TABLE] BOARD - 게시판
@@ -15,6 +17,7 @@ create table stf(
 create table board(
     STF_ID varchar(10),
     BOARD_SQ int,
+    BOARD_TYPE varchar(10),
     BOARD_NM varchar(64),
     BOARD_TXT varchar(255),
     BOARD_DT datetime,
