@@ -72,7 +72,72 @@ public class ReqDAO {
    
     
     
+    public int update_req_rec_date(String REQ_SQ) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+        String SQL = "UPDATE REQ SET REQ_REC_DATE=NOW() WHERE REQ_SQ = ?";
     
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+        
+            pstmt.setString(1, REQ_SQ);
+        	return pstmt.executeUpdate();
+        
+        }  catch (Exception e) {
+        
+            e.printStackTrace();
+        }
+        
+       
+        finally {
+        	try {
+        	
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}      
+        
+        	
+        }
+        
+        
+        return -1;      // DB 오류       
+	}
+    public int update_req_sub_date(int REQ_SQ) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+        String SQL = "UPDATE REQ SET REQ_SUB_DATE=NOW() WHERE REQ_SQ = ?";
+    
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+        
+            pstmt.setInt(1, REQ_SQ);
+        	return pstmt.executeUpdate();
+        
+        }  catch (Exception e) {
+        
+            e.printStackTrace();
+        }
+        
+       
+        finally {
+        	try {
+        	
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}      
+        
+        	
+        }
+        
+        
+        return -1;      // DB 오류       
+	}
      
     public ReqDTO getReq(String REQ_SQ) {
     	ReqDTO req = new ReqDTO();
@@ -94,9 +159,16 @@ public class ReqDAO {
             	req.setAPV_CONT(rs.getString("APV_CONT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setAPV_DATE(rs.getString("APV_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11) + rs.getString("REQ_DATE").substring(11, 13) + "시" + rs.getString("REQ_DATE").substring(14, 16) + "분");
-            	req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	req.setREQ_GROUP(rs.getInt("REQ_GROUP"));
+            	if(rs.getString("REQ_REC_DATE").equals("")) {
+            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
+            	}else {
+            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11) + rs.getString("REQ_REC_DATE").substring(11, 13) + "시" + rs.getString("REQ_REC_DATE").substring(14, 16) + "분");
+            	}
+            	if(rs.getString("REQ_SUB_DATE").equals("")) {
+            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
+            	}else {
+            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11) + rs.getString("REQ_SUB_DATE").substring(11, 13) + "시" + rs.getString("REQ_SUB_DATE").substring(14, 16) + "분");
+            	}req.setREQ_GROUP(rs.getInt("REQ_GROUP"));
             	req.setREQ_SEQUENCE(rs.getInt("REQ_SEQUENCE"));
             }
         } catch (Exception e) {
@@ -136,11 +208,17 @@ public class ReqDAO {
             	req.setAPV_CONT(rs.getString("APV_CONT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setAPV_DATE(rs.getString("APV_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11) + rs.getString("REQ_DATE").substring(11, 13) + "시" + rs.getString("REQ_DATE").substring(14, 16) + "분");
-            	req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	req.setREQ_GROUP(rs.getInt("REQ_GROUP"));
+            	if(rs.getString("REQ_REC_DATE").equals("")) {
+            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
+            	}else {
+            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11) + rs.getString("REQ_REC_DATE").substring(11, 13) + "시" + rs.getString("REQ_REC_DATE").substring(14, 16) + "분");
+            	}
+            	if(rs.getString("REQ_SUB_DATE").equals("")) {
+            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
+            	}else {
+            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11) + rs.getString("REQ_SUB_DATE").substring(11, 13) + "시" + rs.getString("REQ_SUB_DATE").substring(14, 16) + "분");
+            	}req.setREQ_GROUP(rs.getInt("REQ_GROUP"));
             	req.setREQ_SEQUENCE(rs.getInt("REQ_SEQUENCE"));
-            	
             	reqList.add(req);
         	}
         } catch (Exception e) {

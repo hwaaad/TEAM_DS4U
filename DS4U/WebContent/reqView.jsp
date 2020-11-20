@@ -168,22 +168,33 @@
 					<td>
 					<a href="reqShow.jsp?REQ_SQ=<%= req.getREQ_SQ() %>">
 					<%= req.getREQ_DATE() %></a></td>
-					<td><%= req.getREQ_REC_DATE() %>
+					<td>
 					<% 
 					if (req.getREQ_REC_DATE().equals("")) {
 						session.setAttribute("REQ_SQ", req.getREQ_SQ());
 					%>
-					<a href="reqReciveWrite.jsp" id = "writeBtn" onclick = "window.open(this.href, '_blank', 'width=500, height=500, toolbars=no, scrollbars=yes'); return false;">등록</a>
+					<a href="reqReciveWrite.jsp?REQ_SQ=<%= req.getREQ_SQ() %>" id = "writeBtn">등록</a>
 					<% 
 					} else {
 					%> 
-						<%= req.getREQ_REC_DATE() %>	
+						<a href="reqrecShow.jsp?REQ_SQ=<%= req.getREQ_SQ() %>"> <%= req.getREQ_REC_DATE()%></a>	
 					<% 
 					}
 					%>
 					</td>
-					<td><%= req.getREQ_SUB_DATE() %>
-					<button onclick="location=windows.open('reqSubmitWrite.jsp')">등록</button>
+					<td>
+					<% 
+					if (req.getREQ_SUB_DATE().equals("")) {
+						session.setAttribute("REQ_SQ", req.getREQ_SQ());
+					%>
+					<a href="reqfileWrite.jsp?REQ_SQ=<%= req.getREQ_SQ() %>" id = "writeBtn">등록</a>
+					<% 
+					} else {
+					%> 
+						<a href="reqfileShow.jsp?REQ_SQ=<%= req.getREQ_SQ() %>"> <%= req.getREQ_SUB_DATE()%></a>	
+					<% 
+					}
+					%>
 					</td>					
 				</tr>
 			<%

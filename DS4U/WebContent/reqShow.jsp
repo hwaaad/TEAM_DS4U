@@ -100,7 +100,7 @@
 						<tbody>
 							<tr>
 								<td colspan="5" style="text-align : right;">
-									<a href="apvView.jsp" class="btn btn-primary">목록</a>
+									<a href="reqView.jsp" class="btn btn-primary">목록</a>
 			
 								</td>
 							</tr>			
