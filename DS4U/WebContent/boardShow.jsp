@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="board.BoardDAO" %>
 <%@ page import="board.BoardDTO" %>
+<%@ page import="comment.CommentDAO" %>
+<%@ page import="comment.CommentDTO" %>
 <%@ include file="/head.jsp" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
@@ -42,6 +44,12 @@
 		return;	
 	}
 	boardDAO.hit(BOARD_SQ);
+	String COMMENT_SQ = null;
+	if (request.getParameter("COMMENT_SQ") != null) {
+		COMMENT_SQ = (String) request.getParameter("COMMENT_SQ");
+	}
+	//CommentDAO commentDAO = new CommentDAO();
+	//CommentDTO comment = commentDAO.getComment(BOARD_SQ);
 %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -109,25 +117,22 @@
 						%>						
 					</div>
 				</div>
-				<div id="boardReply">
-					<h4>댓글</h4>
-					<div id="replyWrap">
-						<ul id="replyBox" class="clearFix">
-							<li>댓글이 없습니다.</li>
-						</ul>
-						<form id="addReplyDiv">
-							<div class="replyImg"><img src="${contextPath}/showProfileImg"></div>
-							<div id="inputBox">
-								<textarea rows="3" name="rContent"></textarea>
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-								<button class="btn" onclick="addReply(); return false;">댓글 등록</button>
-							</div>
-						</form>
-					</div>
+				<div id="disqus_thread"></div>
+					<script>
+					    var disqus_config = function () {
+					    this.page.url = 'http://localhost:8080/DS4U/<?=str_replace(":","/",$ID)?>';  // Replace PAGE_URL with your page's canonical URL variable
+					    this.page.identifier = 'http://localhost:8080/DS4U/<?=str_replace(":","/",$ID)?>'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+					    };
+					    (function() { 
+					    var d = document, s = d.createElement('script');
+					    s.src = 'https://ds4u-1.disqus.com/embed.js';
+					    s.setAttribute('data-timestamp', +new Date());
+					    (d.head || d.body).appendChild(s);
+					    })();
+					</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>	
 				</div>
 			</div>
 		</div>
-	</div>
-	
 </body>
 </html>
