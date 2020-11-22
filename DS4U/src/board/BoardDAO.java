@@ -10,9 +10,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class BoardDAO {
-
-	DataSource dataSource;
-	
+	DataSource dataSource;	
 	public BoardDAO() {
 		try {
 			InitialContext initContext = new InitialContext();
@@ -23,18 +21,19 @@ public class BoardDAO {
 		}
 	}
 	
-    public int write(String STF_ID, String BOARD_NM, String BOARD_TXT, String BOARD_FILE, String BOARD_RFILE) {
+    public int write(String STF_ID, String BOARD_TYPE, String BOARD_NM, String BOARD_TXT, String BOARD_FILE, String BOARD_RFILE) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
-        String SQL = "INSERT INTO BOARD SELECT ?, IFNULL((SELECT MAX(BOARD_SQ) + 1 FROM BOARD), 1), ?, ?, now(), 0, ?, ?, IFNULL((SELECT MAX(BOARD_GROUP) + 1 FROM BOARD), 0), 0, 0, 1";
+        String SQL = "INSERT INTO BOARD SELECT ?, IFNULL((SELECT MAX(BOARD_SQ) + 1 FROM BOARD), 1), ?, ?, ?, now(), 0, ?, ?, IFNULL((SELECT MAX(BOARD_GROUP) + 1 FROM BOARD), 0), 0, 0, 1";
         try {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, STF_ID);
-            pstmt.setString(2, BOARD_NM);
-            pstmt.setString(3, BOARD_TXT);
-            pstmt.setString(4, BOARD_FILE);
-            pstmt.setString(5, BOARD_RFILE);
+            pstmt.setString(2, BOARD_TYPE);
+            pstmt.setString(3, BOARD_NM);
+            pstmt.setString(4, BOARD_TXT);
+            pstmt.setString(5, BOARD_FILE);
+            pstmt.setString(6, BOARD_RFILE);       
             return pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,7 +45,7 @@ public class BoardDAO {
         		e.printStackTrace();
         	}       	
         }
-        return -1;      // DB ø¿∑˘       
+        return -1;      // DB Ïò§Î•ò       
 	}
     
     public BoardDTO getBoard(String BOARD_SQ) {
@@ -59,13 +58,14 @@ public class BoardDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, BOARD_SQ);
-            rs = pstmt.executeQuery(); // Ω««‡ ∞·∞˙∏¶ ≥÷¿Ω
+            rs = pstmt.executeQuery(); // Ïã§Ìñâ Í≤∞Í≥ºÎ•º ÎÑ£Ïùå
             if (rs.next()) {
             	board.setSTF_ID(rs.getString("STF_ID"));
             	board.setBOARD_SQ(rs.getInt("BOARD_SQ"));
+            	board.setBOARD_TYPE(rs.getString("BOARD_TYPE"));
             	board.setBOARD_NM(rs.getString("BOARD_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	board.setBOARD_TXT(rs.getString("BOARD_TXT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	board.setBOARD_DT(rs.getString("BOARD_DT").substring(0, 11) + rs.getString("BOARD_DT").substring(11, 13) + "Ω√" + rs.getString("BOARD_DT").substring(14, 16) + "∫–");
+            	board.setBOARD_DT(rs.getString("BOARD_DT").substring(0, 11));
             	board.setBOARDHIT(rs.getInt("BOARDHIT"));
             	board.setBOARD_FILE(rs.getString("BOARD_FILE"));
             	board.setBOARD_RFILE(rs.getString("BOARD_RFILE"));
@@ -99,15 +99,16 @@ public class BoardDAO {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
             pstmt.setInt(2, (Integer.parseInt(pageNumber) - 1) * 10);
-            rs = pstmt.executeQuery(); // Ω««‡ ∞·∞˙∏¶ ≥÷¿Ω
+            rs = pstmt.executeQuery(); // Ïã§Ìñâ Í≤∞Í≥ºÎ•º ÎÑ£Ïùå
             boardList = new ArrayList<BoardDTO>();
             while (rs.next()) {
             	BoardDTO board = new BoardDTO();
             	board.setSTF_ID(rs.getString("STF_ID"));
             	board.setBOARD_SQ(rs.getInt("BOARD_SQ"));
+            	board.setBOARD_TYPE(rs.getString("BOARD_TYPE"));
             	board.setBOARD_NM(rs.getString("BOARD_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	board.setBOARD_TXT(rs.getString("BOARD_TXT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	board.setBOARD_DT(rs.getString("BOARD_DT").substring(0, 11) + rs.getString("BOARD_DT").substring(11, 13) + "Ω√" + rs.getString("BOARD_DT").substring(14, 16) + "∫–");
+            	board.setBOARD_DT(rs.getString("BOARD_DT").substring(0, 11));
             	board.setBOARDHIT(rs.getInt("BOARDHIT"));
             	board.setBOARD_FILE(rs.getString("BOARD_FILE"));
             	board.setBOARD_RFILE(rs.getString("BOARD_RFILE"));
@@ -150,7 +151,7 @@ public class BoardDAO {
         		e.printStackTrace();
         	}       	
         }
-        return -1;      // DB ø¿∑˘       
+        return -1;      // DB Ïò§Î•ò       
 	}
     
     public String getFile(String BOARD_SQ) {
@@ -162,7 +163,7 @@ public class BoardDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, BOARD_SQ);
-            rs = pstmt.executeQuery(); // Ω««‡ ∞·∞˙∏¶ ≥÷¿Ω
+            rs = pstmt.executeQuery(); // Ïã§Ìñâ Í≤∞Í≥ºÎ•º ÎÑ£Ïùå
             if (rs.next()) {
             	return rs.getString("BOARD_FILE");
         	}
@@ -190,7 +191,7 @@ public class BoardDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, BOARD_SQ);
-            rs = pstmt.executeQuery(); // Ω««‡ ∞·∞˙∏¶ ≥÷¿Ω
+            rs = pstmt.executeQuery(); // Ïã§Ìñâ Í≤∞Í≥ºÎ•º ÎÑ£Ïùå
             if (rs.next()) {
             	return rs.getString("BOARD_RFILE");
         	}
@@ -208,18 +209,19 @@ public class BoardDAO {
         }
         return "";          	
     }
-    public int update(String BOARD_SQ, String BOARD_NM, String BOARD_TXT, String BOARD_FILE, String BOARD_RFILE) {
+    public int update(String BOARD_SQ, String BOARD_TYPE, String BOARD_NM, String BOARD_TXT, String BOARD_FILE, String BOARD_RFILE) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
-        String SQL = "UPDATE BOARD SET BOARD_NM = ?, BOARD_TXT = ?, BOARD_FILE = ?, BOARD_RFILE = ? WHERE BOARD_SQ = ?";
+        String SQL = "UPDATE BOARD SET BOARD_TYPE = ?, BOARD_NM = ?, BOARD_TXT = ?, BOARD_FILE = ?, BOARD_RFILE = ? WHERE BOARD_SQ = ?";
         try {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, BOARD_NM);
-            pstmt.setString(2, BOARD_TXT);
-            pstmt.setString(3, BOARD_FILE);
-            pstmt.setString(4, BOARD_RFILE);
-            pstmt.setInt(5, Integer.parseInt(BOARD_SQ));
+            pstmt.setString(1, BOARD_TYPE);
+            pstmt.setString(2, BOARD_NM);
+            pstmt.setString(3, BOARD_TXT);
+            pstmt.setString(4, BOARD_FILE);
+            pstmt.setString(5, BOARD_RFILE);            
+            pstmt.setInt(6, Integer.parseInt(BOARD_SQ));
             return pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -231,7 +233,7 @@ public class BoardDAO {
         		e.printStackTrace();
         	}       	
         }
-        return -1;      // DB ø¿∑˘       
+        return -1;      // DB Ïò§Î•ò       
 	}
     
     public int delete(String BOARD_SQ) {
@@ -253,7 +255,7 @@ public class BoardDAO {
         		e.printStackTrace();
         	}       	
         }
-        return -1;      // DB ø¿∑˘       
+        return -1;      // DB Ïò§Î•ò       
 	}
     
     public int reply(String STF_ID, String BOARD_NM, String BOARD_TXT, String BOARD_FILE, String BOARD_RFILE, BoardDTO parent) {
@@ -282,7 +284,7 @@ public class BoardDAO {
         		e.printStackTrace();
         	}       	
         }
-        return -1;      // DB ø¿∑˘       
+        return -1;      // DB Ïò§Î•ò       
 	}
     
     public int replyUpdate(BoardDTO parent) {
@@ -304,7 +306,7 @@ public class BoardDAO {
         		e.printStackTrace();
         	}       	
         }
-        return -1;      // DB ø¿∑˘       
+        return -1;      // DB Ïò§Î•ò       
 	}
     
     public boolean nextPage(String pageNumber) {
@@ -316,7 +318,7 @@ public class BoardDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
-            rs = pstmt.executeQuery(); // Ω««‡ ∞·∞˙∏¶ ≥÷¿Ω
+            rs = pstmt.executeQuery(); // Ïã§Ìñâ Í≤∞Í≥ºÎ•º ÎÑ£Ïùå
             if (rs.next()) {
             	return true;
         	}
@@ -343,7 +345,7 @@ public class BoardDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, (Integer.parseInt(pageNumber) - 1)* 10);
-            rs = pstmt.executeQuery(); // Ω««‡ ∞·∞˙∏¶ ≥÷¿Ω
+            rs = pstmt.executeQuery(); // Ïã§Ìñâ Í≤∞Í≥ºÎ•º ÎÑ£Ïùå
             if (rs.next()) {
             	return rs.getInt(1) / 10;
         	}
@@ -361,34 +363,35 @@ public class BoardDAO {
         return 0;          	
     }
     
-    public ArrayList<BoardDTO> getSearch(String BOARD_DIVIDE, String searchType, String search, int pageNumber) {
-    	//if (BOARD_DIVIDE.equals("¿¸√º")) {
-    	//	BOARD_DIVIDE = "";
-    	//}
+    public ArrayList<BoardDTO> getSearch(String BOARD_TYPE, String searchType, String search, int PageNumber) {
+    	if (BOARD_TYPE.equals("Ï†ÑÏ≤¥")) {
+    		BOARD_TYPE = "";
+    	}
     	ArrayList<BoardDTO> searchList = null;
     	Connection conn = null;
     	PreparedStatement pstmt = null;
     	ResultSet rs = null;
         String SQL = "";
         try {
-        	if (searchType.equals("√÷Ω≈º¯")) {
-        		SQL = "SELECT * FROM BOARD WHERE BOARD_DIVIDE LIKE ? AND CONCAT(STF_ID, BOARD_NM, BOARD_TXT) LIKE " + "? ORDER BY BOARD_SQ DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
-        	} else if (searchType.equals("¡∂»∏º¯")) {
-        		SQL = "SELECT * FROM BOARD WHERE BOARD_DIVIDE LIKE ? AND CONCAT(STF_ID, BOARD_NM, BOARD_TXT) LIKE " + "? ORDER BY BOARDHIT DESC LIMIT " + pageNumber * 5 + ", " + pageNumber * 5 + 6;
+        	if (searchType.equals("ÏµúÏã†Ïàú")) {
+        		SQL = "SELECT * FROM BOARD WHERE BOARD_TYPE LIKE ? AND CONCAT(STF_ID, BOARD_NM, BOARD_TXT) LIKE " + "? ORDER BY BOARD_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+        	} else if (searchType.equals("Ï°∞ÌöåÏàú")) {
+        		SQL = "SELECT * FROM BOARD WHERE BOARD_TYPE LIKE ? AND CONCAT(STF_ID, BOARD_NM, BOARD_TXT) LIKE " + "? ORDER BY BOARDHIT DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
         	}
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
-            pstmt.setString(1, "%" + BOARD_DIVIDE + "%");
-            pstmt.setString(1, "%" + search + "%");
-            rs = pstmt.executeQuery(); // Ω««‡ ∞·∞˙∏¶ ≥÷¿Ω
+            pstmt.setString(1, "%" + BOARD_TYPE + "%");
+            pstmt.setString(2, "%" + search + "%");
+            rs = pstmt.executeQuery(); 
             searchList = new ArrayList<BoardDTO>();
-            while (rs.next()) {     // ∞·∞˙∞° ¡∏¿Á«œ∏È
+            while (rs.next()) {             	
             	BoardDTO board = new BoardDTO();
             	board.setSTF_ID(rs.getString("STF_ID"));
             	board.setBOARD_SQ(rs.getInt("BOARD_SQ"));
+            	board.setBOARD_TYPE(rs.getString("BOARD_TYPE"));
             	board.setBOARD_NM(rs.getString("BOARD_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	board.setBOARD_TXT(rs.getString("BOARD_TXT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	board.setBOARD_DT(rs.getString("BOARD_DT").substring(0, 11) + rs.getString("BOARD_DT").substring(11, 13) + "Ω√" + rs.getString("BOARD_DT").substring(14, 16) + "∫–");
+            	board.setBOARD_DT(rs.getString("BOARD_DT").substring(0, 11));
             	board.setBOARDHIT(rs.getInt("BOARDHIT"));
             	board.setBOARD_FILE(rs.getString("BOARD_FILE"));
             	board.setBOARD_RFILE(rs.getString("BOARD_RFILE"));
@@ -411,5 +414,4 @@ public class BoardDAO {
         }
         return searchList;     
 	}
-    
 }

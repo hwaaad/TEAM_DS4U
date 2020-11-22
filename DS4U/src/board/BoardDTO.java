@@ -4,6 +4,7 @@ public class BoardDTO {
 
 	String STF_ID;
 	int BOARD_SQ;
+	String BOARD_TYPE;
 	String BOARD_NM;
 	String BOARD_TXT;
 	String BOARD_DT;
@@ -14,7 +15,7 @@ public class BoardDTO {
 	int BOARD_SEQUENCE;
 	int BOARD_LEVEL;
 	int BOARD_AVAILABLE;
-	
+		
 	public String getSTF_ID() {
 		return STF_ID;
 	}
@@ -26,6 +27,12 @@ public class BoardDTO {
 	}
 	public void setBOARD_SQ(int bOARD_SQ) {
 		BOARD_SQ = bOARD_SQ;
+	}
+	public String getBOARD_TYPE() {
+		return BOARD_TYPE;
+	}
+	public void setBOARD_TYPE(String bOARD_TYPE) {
+		BOARD_TYPE = bOARD_TYPE;
 	}
 	public String getBOARD_NM() {
 		return BOARD_NM;
@@ -87,4 +94,5 @@ public class BoardDTO {
 	public void setBOARD_AVAILABLE(int bOARD_AVAILABLE) {
 		BOARD_AVAILABLE = bOARD_AVAILABLE;
 	}
+	
 }
