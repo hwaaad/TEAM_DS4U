@@ -22,26 +22,25 @@ public class BoardWriteServlet extends HttpServlet {
 		try {
 			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 		} catch (Exception e) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "ÆÄÀÏ Å©±â´Â 10MB¸¦ ÃÊ°úÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType", "ì˜¤ë¥˜ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "íŒŒì¼ í¬ê¸°ëŠ” 10MBë¥¼ ì´ˆê³¼í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 			response.sendRedirect("index.jsp");
 			return;
 		}
 		String STF_ID = multi.getParameter("STF_ID");
 		HttpSession session = request.getSession();
-		System.out.println(STF_ID);
-		System.out.println(session.getAttribute("STF_ID"));
 		if (!STF_ID.equals((String) session.getAttribute("STF_ID"))) {
-			session.setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			session.setAttribute("messageContent", "Á¢±ÙÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			session.setAttribute("messageType", "ì˜¤ë¥˜ ë©”ì‹œì§€");
+			session.setAttribute("messageContent", "ì ‘ê·¼í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 			response.sendRedirect("index.jsp");
 			return;	
 		}
+		String BOARD_TYPE = multi.getParameter("BOARD_TYPE");
 		String BOARD_NM = multi.getParameter("BOARD_NM");
 		String BOARD_TXT = multi.getParameter("BOARD_TXT");
 		if (BOARD_NM == null || BOARD_NM.equals("") || BOARD_TXT == null || BOARD_TXT.equals("")) {
-			session.setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			session.setAttribute("messageContent", "¾ç½ÄÀ» ¸ğµÎ ÀÔ·ÂÇÏ¼¼¿ä.");
+			session.setAttribute("messageType", "ì˜¤ë¥˜ ë©”ì‹œì§€");
+			session.setAttribute("messageContent", "ì–‘ì‹ì„ ëª¨ë‘ ì…ë ¥í•˜ì„¸ìš”.");
 			response.sendRedirect("boardWrite.jsp");
 			return;	
 		}
@@ -53,9 +52,9 @@ public class BoardWriteServlet extends HttpServlet {
 			BOARD_RFILE = file.getName();
 		}
 		BoardDAO boardDAO = new BoardDAO();
-		boardDAO.write(STF_ID, BOARD_NM, BOARD_TXT, BOARD_FILE, BOARD_RFILE);
-		request.getSession().setAttribute("messageType", "¼º°ø ¸Ş½ÃÁö");
-		request.getSession().setAttribute("messageContent", "¼º°øÀûÀ¸·Î °Ô½Ã¹°À» ÀÛ¼ºÇÏ¿´½À´Ï´Ù.");
+		boardDAO.write(STF_ID, BOARD_TYPE, BOARD_NM, BOARD_TXT, BOARD_FILE, BOARD_RFILE);
+		request.getSession().setAttribute("messageType", "ì„±ê³µ ë©”ì‹œì§€");
+		request.getSession().setAttribute("messageContent", "ì„±ê³µì ìœ¼ë¡œ ê²Œì‹œë¬¼ì„ ì‘ì„±í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		response.sendRedirect("boardView.jsp");
 		return;
 	}
