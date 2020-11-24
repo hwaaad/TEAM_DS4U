@@ -64,7 +64,27 @@
 		</div>
 		<div id="boardDiv" class="navListDiv" style="text-align: center;">
 			<h3>
-			<a href="${contextPath}/reqView.jsp">보안성검토</a>
+			<a href="${contextPath}/reqWrite.jsp">보안성검토 의뢰</a>
+			</h3>
+		</div>
+		<div id="boardDiv" class="navListDiv">
+			<h3>
+			<a></a>
+			</h3>
+		</div>
+		<div id="boardDiv" class="navListDiv" style="text-align: center;">
+			<h3>
+			<a href="${contextPath}/reqView.jsp">진행중인 보안성검토</a>
+			</h3>
+		</div>
+		<div id="boardDiv" class="navListDiv">
+			<h3>
+			<a></a>
+			</h3>
+		</div>
+		<div id="boardDiv" class="navListDiv" style="text-align: center;">
+			<h3>
+			<a href="${contextPath}/fin_reqView.jsp">완료된 보안성검토</a>
 			</h3>
 		</div>
 		<div id="boardDiv" class="navListDiv">
@@ -87,7 +107,6 @@
 			<a href="${contextPath}/stfManage.jsp">회원관리</a>
 			</h3>
 		</div>
-
 		<div id="mainDiv">
 			<h3>
 			<a href="${contextPath}/"><i class="fas fa-angle-left"></i> 홈으로</a>

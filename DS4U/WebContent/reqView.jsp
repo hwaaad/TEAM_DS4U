@@ -81,7 +81,8 @@
 			<tbody>
 			<%
 				for (int i=0; i<reqList.size(); i++) {
-					ReqDTO req = reqList.get(i);					
+					ReqDTO req = reqList.get(i);
+					if(req.getREQ_STATE() == 3) continue;
 			%>
 				<tr>
 					<td><%= req.getREQ_SQ() %></td>
