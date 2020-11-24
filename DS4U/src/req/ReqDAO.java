@@ -31,7 +31,7 @@ public class ReqDAO {
     		String APV_DATE, String REQ_REC_DATE, String REQ_SUB_DATE) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
-        String SQL = "INSERT INTO REQ SELECT ?, IFNULL((SELECT MAX(REQ_SQ) + 1 FROM REQ), 1), ? ,? , ?, ?, ?, now(), ?, ?, IFNULL((SELECT MAX(REQ_GROUP) + 1 FROM REQ), 0), 0";
+        String SQL = "INSERT INTO REQ SELECT ?, IFNULL((SELECT MAX(REQ_SQ) + 1 FROM REQ), 1), ? ,? , ?, ?, ?, now(), ?, ?, IFNULL((SELECT MAX(REQ_GROUP) + 1 FROM REQ), 0), 0, 1";
     
         try {
         	conn = dataSource.getConnection();
@@ -46,7 +46,7 @@ public class ReqDAO {
             //pstmt.setString(7, APV_COM);
             pstmt.setString(7, REQ_REC_DATE);
             pstmt.setString(8, REQ_SUB_DATE);
-        	return pstmt.executeUpdate();
+            return pstmt.executeUpdate();
         
         }  catch (Exception e) {
         
@@ -67,7 +67,7 @@ public class ReqDAO {
         }
         
         
-        return -1;      // DB ¿À·ù       
+        return -1;      // DB ï¿½ï¿½ï¿½ï¿½       
 	}
    
     
@@ -75,12 +75,11 @@ public class ReqDAO {
     public int update_req_rec_date(String REQ_SQ) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
-        String SQL = "UPDATE REQ SET REQ_REC_DATE=NOW() WHERE REQ_SQ = ?";
-    
+        String SQL = "UPDATE REQ SET REQ_STATE = 2, REQ_REC_DATE = NOW() WHERE REQ_SQ = ?";
+        
         try {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
-        
             pstmt.setString(1, REQ_SQ);
         	return pstmt.executeUpdate();
         
@@ -103,12 +102,12 @@ public class ReqDAO {
         }
         
         
-        return -1;      // DB ¿À·ù       
+        return -1;      // DB ï¿½ï¿½ï¿½ï¿½       
 	}
     public int update_req_sub_date(int REQ_SQ) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
-        String SQL = "UPDATE REQ SET REQ_SUB_DATE=NOW() WHERE REQ_SQ = ?";
+        String SQL = "UPDATE REQ SET REQ_STATE = 3, REQ_SUB_DATE=NOW() WHERE REQ_SQ = ?";
     
         try {
         	conn = dataSource.getConnection();
@@ -136,7 +135,7 @@ public class ReqDAO {
         }
         
         
-        return -1;      // DB ¿À·ù       
+        return -1;      // DB ï¿½ï¿½ï¿½ï¿½       
 	}
      
     public ReqDTO getReq(String REQ_SQ) {
@@ -149,7 +148,7 @@ public class ReqDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, REQ_SQ);
-            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (rs.next()) {
             	req.setSTF_ID(rs.getString("STF_ID"));
             	req.setREQ_SQ(rs.getInt("REQ_SQ"));
@@ -158,18 +157,19 @@ public class ReqDAO {
             	req.setAPV_OBJ(rs.getString("APV_OBJ").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setAPV_CONT(rs.getString("APV_CONT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setAPV_DATE(rs.getString("APV_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11) + rs.getString("REQ_DATE").substring(11, 13) + "½Ã" + rs.getString("REQ_DATE").substring(14, 16) + "ºÐ");
+            	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11) + rs.getString("REQ_DATE").substring(11, 13) + "ï¿½ï¿½" + rs.getString("REQ_DATE").substring(14, 16) + "ï¿½ï¿½");
             	if(rs.getString("REQ_REC_DATE").equals("")) {
             		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
             	}else {
-            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11) + rs.getString("REQ_REC_DATE").substring(11, 13) + "½Ã" + rs.getString("REQ_REC_DATE").substring(14, 16) + "ºÐ");
+            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11) + rs.getString("REQ_REC_DATE").substring(11, 13) + "ï¿½ï¿½" + rs.getString("REQ_REC_DATE").substring(14, 16) + "ï¿½ï¿½");
             	}
             	if(rs.getString("REQ_SUB_DATE").equals("")) {
             		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
             	}else {
-            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11) + rs.getString("REQ_SUB_DATE").substring(11, 13) + "½Ã" + rs.getString("REQ_SUB_DATE").substring(14, 16) + "ºÐ");
+            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11) + rs.getString("REQ_SUB_DATE").substring(11, 13) + "ï¿½ï¿½" + rs.getString("REQ_SUB_DATE").substring(14, 16) + "ï¿½ï¿½");
             	}req.setREQ_GROUP(rs.getInt("REQ_GROUP"));
             	req.setREQ_SEQUENCE(rs.getInt("REQ_SEQUENCE"));
+            	req.setREQ_STATE(rs.getInt("REQ_STATE"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -196,7 +196,7 @@ public class ReqDAO {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
             pstmt.setInt(2, (Integer.parseInt(pageNumber) - 1) * 10);
-            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             reqList = new ArrayList<ReqDTO>();
             while (rs.next()) {
             	ReqDTO req = new ReqDTO();
@@ -207,18 +207,19 @@ public class ReqDAO {
             	req.setAPV_OBJ(rs.getString("APV_OBJ").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setAPV_CONT(rs.getString("APV_CONT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setAPV_DATE(rs.getString("APV_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11) + rs.getString("REQ_DATE").substring(11, 13) + "½Ã" + rs.getString("REQ_DATE").substring(14, 16) + "ºÐ");
+            	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11) + rs.getString("REQ_DATE").substring(11, 13) + "ï¿½ï¿½" + rs.getString("REQ_DATE").substring(14, 16) + "ï¿½ï¿½");
             	if(rs.getString("REQ_REC_DATE").equals("")) {
             		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
             	}else {
-            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11) + rs.getString("REQ_REC_DATE").substring(11, 13) + "½Ã" + rs.getString("REQ_REC_DATE").substring(14, 16) + "ºÐ");
+            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11) + rs.getString("REQ_REC_DATE").substring(11, 13) + "ï¿½ï¿½" + rs.getString("REQ_REC_DATE").substring(14, 16) + "ï¿½ï¿½");
             	}
             	if(rs.getString("REQ_SUB_DATE").equals("")) {
             		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
             	}else {
-            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11) + rs.getString("REQ_SUB_DATE").substring(11, 13) + "½Ã" + rs.getString("REQ_SUB_DATE").substring(14, 16) + "ºÐ");
+            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11) + rs.getString("REQ_SUB_DATE").substring(11, 13) + "ï¿½ï¿½" + rs.getString("REQ_SUB_DATE").substring(14, 16) + "ï¿½ï¿½");
             	}req.setREQ_GROUP(rs.getInt("REQ_GROUP"));
             	req.setREQ_SEQUENCE(rs.getInt("REQ_SEQUENCE"));
+            	req.setREQ_STATE(rs.getInt("REQ_STATE"));
             	reqList.add(req);
         	}
         } catch (Exception e) {
@@ -245,7 +246,7 @@ public class ReqDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
-            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (rs.next()) {
             	return true;
         	}
@@ -272,7 +273,7 @@ public class ReqDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, (Integer.parseInt(pageNumber) - 1)* 10);
-            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (rs.next()) {
             	return rs.getInt(1) / 10;
         	}

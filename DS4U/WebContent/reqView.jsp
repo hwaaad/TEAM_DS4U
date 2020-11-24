@@ -75,6 +75,7 @@
 						<div>검토 요청일</div>
 						<div>회신일</div>
 						<div>보안점검표 제출일</div>
+						<div>상태</div>
 					</li>			
 			<table class="table" style="text-align: center; border: 1px solid #dddddd">
 			<tbody>
@@ -193,6 +194,23 @@
 					%> 
 						<a href="reqfileShow.jsp?REQ_SQ=<%= req.getREQ_SQ() %>"> <%= req.getREQ_SUB_DATE()%></a>	
 					<% 
+					}
+					%>
+					</td>
+					<td>
+					<% 
+					switch(req.getREQ_STATE()){
+					case 1:
+						%> 검토 전 <% 
+						break;
+					case 2:
+						%> 검토 완료 <%
+						break;
+					case 3:
+						%> 사업 완료 <% 
+						break;
+					default :
+						%> null <% 
 					}
 					%>
 					</td>					

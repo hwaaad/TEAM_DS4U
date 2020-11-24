@@ -13,7 +13,14 @@ public class ReqDTO {
 	String REQ_SUB_DATE;
 	int REQ_GROUP;
 	int REQ_SEQUENCE;
+	int REQ_STATE;
 	
+	public int getREQ_STATE() {
+		return REQ_STATE;
+	}
+	public void setREQ_STATE(int rEQ_STATE) {
+		REQ_STATE = rEQ_STATE;
+	}
 	public int getREQ_SQ() {
 		return REQ_SQ;
 	}

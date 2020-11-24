@@ -26,8 +26,8 @@ public class ReqfileWriteServlet  extends HttpServlet {
 			try {
 				multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 			} catch (Exception e) {
-				request.getSession().setAttribute("messageType", "¿À·ù ¸Þ½ÃÁö");
-				request.getSession().setAttribute("messageContent", "ÆÄÀÏ Å©±â´Â 10MB¸¦ ÃÊ°úÇÒ ¼ö ¾ø½À´Ï´Ù.");
+				request.getSession().setAttribute("messageType", "ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½");
+				request.getSession().setAttribute("messageContent", "ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ 10MBï¿½ï¿½ ï¿½Ê°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 				response.sendRedirect("index.jsp");
 				return;
 			}
@@ -36,8 +36,8 @@ public class ReqfileWriteServlet  extends HttpServlet {
 			System.out.println(session.getAttribute("STF_ID"));	
 			System.out.println(STF_ID);
 			if(!STF_ID.equals((String) session.getAttribute("STF_ID"))) {
-				session.setAttribute("messageType", "¿À·ù ¸Þ¼¼Áö");
-				session.setAttribute("messageContent", "Á¢±ÙÇÒ ¼ö ¾ø½À´Ï´Ù.");
+				session.setAttribute("messageType", "ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½");
+				session.setAttribute("messageContent", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 				response.sendRedirect("index.jsp");
 				return;
 			}
@@ -57,13 +57,14 @@ public class ReqfileWriteServlet  extends HttpServlet {
 			}
 			
 			ReqfileDAO reqfDAO = new ReqfileDAO();
-		
+			ReqDAO reqDAO = new ReqDAO();
+			reqDAO.update_req_sub_date(REQ_SQ);
 			
 			reqfDAO.write(STF_ID,REQ_SQ,APV_NM, REQF_FILE, REQF_RFILE);
 			ReqfileDTO reqf = null;
 			reqfDAO.update(reqf); 
-			request.getSession().setAttribute("messageType", "¼º°ø ¸Þ¼¼Áö");
-			request.getSession().setAttribute("messageContent", "¼º°øÀûÀ¸·Î °Ô½Ã¹°À» ÀÛ¼ºÇÏ¿´½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType", "ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½");
+			request.getSession().setAttribute("messageContent", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			response.sendRedirect("reqView.jsp");
 		}
 
