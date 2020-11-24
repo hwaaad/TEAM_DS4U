@@ -49,8 +49,12 @@
     text-align: center;
     color:#fff;
 }
-
-
+#boardDiv ul{
+	margin-top: 10px
+}
+#boardDiv ul li{
+	height: 30px;
+}
 #boardDiv a,#calendarDiv a,#projectDiv a{
 	color : white;
 }

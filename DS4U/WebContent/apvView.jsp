@@ -60,6 +60,7 @@
 	<input type="hidden" value="board" id="pageType">
 		<div id="wsBodyContainer">
 			<h3>정보화 사업</h3>
+			<h4>내역 전체 보기</h4>
 			<div id="boardInner" style="text-align: left;">
 				<ul id="boardList">
 					<li id="listHead">

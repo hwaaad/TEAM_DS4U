@@ -65,6 +65,7 @@
 	<input type="hidden" value="board" id="pageType">
 		<div id="wsBodyContainer">
 			<h3>보안성 검토</h3>
+			<h4>진행중인 보안성 검토</h4>
 			<div id="boardInner">
 				<ul id="boardList">
 					<li id="listHead">
