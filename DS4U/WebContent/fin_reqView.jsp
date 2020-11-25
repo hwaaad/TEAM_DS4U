@@ -223,7 +223,7 @@
 			%>
 				<tr>
 					<td colspan="9">
-						<a href="${contextPath}/reqWrite.jsp" id="writeBtn">글쓰기</a>
+						
 						<ul id="pagination" style="margin: 0 auto;">				
 					<% 
 						int startPage = (Integer.parseInt(pageNumber) / 10) * 10 + 1;

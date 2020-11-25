@@ -28,22 +28,22 @@
 			<ul class="gnbUl">
 			 	<li>
 					<h2>
-						<a lang="en" href="${contextPath}/boardView.jsp"> 게시판 </a>
+						<a lang="kr" href="${contextPath}/boardView.jsp"> 게시판 </a>
 					</h2>
 				</li>
 				<li>
 					<h2>
-						<a lang="en" href="${contextPath}/apvView.jsp"> 정보화사업 </a>
+						<a lang="kr" href="${contextPath}/apvView.jsp"> 정보화사업 </a>
 					</h2>
 				</li>
 			 	<li>
 					<h2>
-						<a lang="en" href="${contextPath}/reqView.jsp"> 보안성검토 </a>
+						<a lang="kr" href="${contextPath}/reqView.jsp"> 보안성검토 </a>
 					</h2>
 				</li>
 				<li>
 					<h2>
-						<a lang="en" href="${contextPath}/stfManage.jsp"> 회원관리 </a>
+						<a lang="kr" href="${contextPath}/stfManage.jsp"> 회원관리 </a>
 					</h2>
 				</li>
 				<li class="memberBtn">
@@ -64,22 +64,22 @@
 			<ul>
 				<li>
 					<h2>
-						<a lang="en" href="${contextPath}/boardView.jsp"> 게시판 </a>
+						<a lang="kr" href="${contextPath}/boardView.jsp"> 게시판 </a>
 					</h2>
 				</li>
 				<li>
 					<h2>
-						<a lang="en" href="${contextPath}/apvView.jsp"> 정보화사업 </a>
+						<a lang="kr" href="${contextPath}/apvView.jsp"> 정보화사업 </a>
 					</h2>
 				</li>
 			 	<li>
 					<h2>
-						<a lang="en" href="${contextPath}/reqView.jsp"> 보안성검토 </a>
+						<a lang="kr" href="${contextPath}/reqView.jsp"> 보안성검토 </a>
 					</h2>
 				</li>
 				<li>
 					<h2>
-						<a lang="en" href="${contextPath}/stfManage.jsp"> 회원관리 </a>
+						<a lang="kr" href="${contextPath}/stfManage.jsp"> 회원관리 </a>
 					</h2>
 				</li>
 			</ul>

@@ -4,7 +4,7 @@ body{height:100%; min-height:120%; background-color:#fff;}
 #boardInner {
 	position:relative;
 	width:100%;
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 35px auto 20px;
 }
 #boardInner .row {
@@ -55,26 +55,41 @@ body{height:100%; min-height:120%; background-color:#fff;}
 }
 #boardInner #boardList div:nth-child(1){
 	font-size:13px;
-	width:100px;
+	width:50px;
 }
 #boardInner #boardList div:nth-child(2){
-	width: 530px;
+	width: 330px;
 	text-align:left;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 #boardInner #boardList div:nth-child(3){
-	width:100px;
+	width:190px;
 }
 #boardInner #boardList div:nth-child(4){
-	width:100px;
+	width:105px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 #boardInner #boardList div:nth-child(5){
-	width:100px;
+	width:105px;
+}
+#boardInner #boardList div:nth-child(6){
+	width:105px;
+}
+#boardInner #boardList div:nth-child(7){
+	width:105px;
+}
+#boardInner #boardList div:nth-child(8){
+	width:105px;
+}
+#boardInner #boardList div:nth-child(9){
+	width:105px;
+}
+#boardInner #boardList div:nth-child(10){
+	width:105px;
 }
 #boardInner .replyCount{
 	color:#E5675A;
@@ -476,7 +491,7 @@ table th[class*="col-"] {
 	width:100px;
 }
 .table > tbody > tr > td:nth-child(2) {
-	width: 500px;
+	width: 300px;
 	text-align:left;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -492,5 +507,25 @@ table th[class*="col-"] {
     overflow: hidden;
 }
 .table > tbody > tr > td:nth-child(5) {
+	width:100px;
+}
+
+.table > tbody > tr > td:nth-child(6) {
+	width:100px;
+}
+
+.table > tbody > tr > td:nth-child(7) {
+	width:100px;
+}
+
+.table > tbody > tr > td:nth-child(8) {
+	width:100px;
+}
+
+.table > tbody > tr > td:nth-child(9) {
+	width:100px;
+}
+
+.table > tbody > tr > td:nth-child(10) {
 	width:100px;
 }

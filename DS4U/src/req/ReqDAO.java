@@ -157,16 +157,16 @@ public class ReqDAO {
             	req.setAPV_OBJ(rs.getString("APV_OBJ").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setAPV_CONT(rs.getString("APV_CONT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setAPV_DATE(rs.getString("APV_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11) + rs.getString("REQ_DATE").substring(11, 13) + "��" + rs.getString("REQ_DATE").substring(14, 16) + "��");
+            	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11));
             	if(rs.getString("REQ_REC_DATE").equals("")) {
             		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
             	}else {
-            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11) + rs.getString("REQ_REC_DATE").substring(11, 13) + "��" + rs.getString("REQ_REC_DATE").substring(14, 16) + "��");
+            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11));
             	}
             	if(rs.getString("REQ_SUB_DATE").equals("")) {
             		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
             	}else {
-            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11) + rs.getString("REQ_SUB_DATE").substring(11, 13) + "��" + rs.getString("REQ_SUB_DATE").substring(14, 16) + "��");
+            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11));
             	}req.setREQ_GROUP(rs.getInt("REQ_GROUP"));
             	req.setREQ_SEQUENCE(rs.getInt("REQ_SEQUENCE"));
             	req.setREQ_STATE(rs.getInt("REQ_STATE"));
@@ -207,16 +207,16 @@ public class ReqDAO {
             	req.setAPV_OBJ(rs.getString("APV_OBJ").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setAPV_CONT(rs.getString("APV_CONT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
             	req.setAPV_DATE(rs.getString("APV_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11) + rs.getString("REQ_DATE").substring(11, 13) + "��" + rs.getString("REQ_DATE").substring(14, 16) + "��");
+            	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11));
             	if(rs.getString("REQ_REC_DATE").equals("")) {
             		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
             	}else {
-            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11) + rs.getString("REQ_REC_DATE").substring(11, 13) + "��" + rs.getString("REQ_REC_DATE").substring(14, 16) + "��");
+            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11));
             	}
             	if(rs.getString("REQ_SUB_DATE").equals("")) {
             		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
             	}else {
-            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11) + rs.getString("REQ_SUB_DATE").substring(11, 13) + "��" + rs.getString("REQ_SUB_DATE").substring(14, 16) + "��");
+            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11));
             	}req.setREQ_GROUP(rs.getInt("REQ_GROUP"));
             	req.setREQ_SEQUENCE(rs.getInt("REQ_SEQUENCE"));
             	req.setREQ_STATE(rs.getInt("REQ_STATE"));

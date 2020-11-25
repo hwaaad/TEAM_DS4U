@@ -176,7 +176,7 @@
 					if (req.getREQ_REC_DATE().equals("")) {
 						session.setAttribute("REQ_SQ", req.getREQ_SQ());
 					%>
-					<a href="reqReciveWrite.jsp?REQ_SQ=<%= req.getREQ_SQ() %>" id = "writeBtn">등록</a>
+					<a href="reqReciveWrite.jsp?REQ_SQ=<%= req.getREQ_SQ() %>" id = "writeBtn2">등록</a>
 					<% 
 					} else {
 					%> 
@@ -190,7 +190,7 @@
 					if (req.getREQ_SUB_DATE().equals("")) {
 						session.setAttribute("REQ_SQ", req.getREQ_SQ());
 					%>
-					<a href="reqfileWrite.jsp?REQ_SQ=<%= req.getREQ_SQ() %>" id = "writeBtn">등록</a>
+					<a href="reqfileWrite.jsp?REQ_SQ=<%= req.getREQ_SQ() %>" id = "writeBtn2">등록</a>
 					<% 
 					} else {
 					%> 

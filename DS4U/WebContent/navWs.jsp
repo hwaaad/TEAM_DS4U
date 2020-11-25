@@ -113,11 +113,6 @@
          <a></a>
          </h3>
       </div>
-      <div id="calendarDiv" class="navListDiv" style="text-align: center;">
-         <h3>
-         <a href="${contextPath}/calMonth.jsp">Calendar</a>
-         </h3>
-      </div>
       <div id="boardDiv" class="navListDiv">
          <h3>
          <a></a>

@@ -4,7 +4,7 @@ body{height:100%; min-height:120%; background-color:#fff;}
 #boardInner {
 	position:relative;
 	width:100%;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 35px auto 20px;
 }
 #boardInner .row {
@@ -55,10 +55,10 @@ body{height:100%; min-height:120%; background-color:#fff;}
 }
 #boardInner #boardList div:nth-child(1){
 	font-size:13px;
-	width:100px;
+	width:50px;
 }
 #boardInner #boardList div:nth-child(2){
-	width: 530px;
+	width: 300px;
 	text-align:left;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -74,6 +74,18 @@ body{height:100%; min-height:120%; background-color:#fff;}
     overflow: hidden;
 }
 #boardInner #boardList div:nth-child(5){
+	width:100px;
+}
+#boardInner #boardList div:nth-child(6){
+	text-align:center;
+	width:100px;
+}
+#boardInner #boardList div:nth-child(7){
+	text-align:center;
+	width:150px;
+}
+#boardInner #boardList div:nth-child(8){
+	text-align:center;
 	width:100px;
 }
 #boardInner .replyCount{
@@ -125,6 +137,16 @@ body{height:100%; min-height:120%; background-color:#fff;}
 	display: block;
     padding: 10px 20px;
     float: right;
+    border-radius: 3px;
+    background-color: #403C39;
+    color: #fff;
+    font-size: 13px;
+    transition: background-color .5s;
+}
+#boardInner #writeBtn2{
+	display: block;
+    padding: 10px 20px;
+    align: middle;
     border-radius: 3px;
     background-color: #403C39;
     color: #fff;
@@ -473,10 +495,10 @@ table th[class*="col-"] {
 }
 .table > tbody > tr > td:nth-child(1) {
 	font-size:13px;
-	width:100px;
+	width:50px;
 }
 .table > tbody > tr > td:nth-child(2) {
-	width: 500px;
+	width: 300px;
 	text-align:left;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -492,5 +514,14 @@ table th[class*="col-"] {
     overflow: hidden;
 }
 .table > tbody > tr > td:nth-child(5) {
+	width:100px;
+}
+.table > tbody > tr > td:nth-child(6) {
+	width:100px;
+}
+.table > tbody > tr > td:nth-child(7) {
+	width:150px;
+}
+.table > tbody > tr > td:nth-child(8) {
 	width:100px;
 }

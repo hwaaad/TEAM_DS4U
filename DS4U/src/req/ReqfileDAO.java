@@ -64,7 +64,7 @@ import req.ReqDTO;
 		        }
 		        
 		        
-		        return -1;      // DB ¿À·ù       
+		        return -1;      // DB ï¿½ï¿½ï¿½ï¿½       
 			}
 		   
 	   
@@ -106,7 +106,7 @@ import req.ReqDTO;
 		         }
 		         
 		         
-		         return -1;      // DB ¿À·ù  
+		         return -1;      // DB ï¿½ï¿½ï¿½ï¿½  
 		    	
 		    }
 	    
@@ -121,13 +121,13 @@ import req.ReqDTO;
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setString(1, REQ_SQ);
-	            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+	            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	            if (rs.next()) {
 	            	reqf.setSTF_ID(rs.getString("STF_ID"));
 	            	reqf.setREQF_SQ(rs.getInt("REQF_SQ"));
 	             	reqf.setREQ_SQ(rs.getInt("REQ_SQ"));
 	             	reqf.setAPV_NM(rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-	            	reqf.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11) + rs.getString("REQ_SUB_DATE").substring(11, 13) + "½Ã" + rs.getString("REQ_SUB_DATE").substring(14, 16) + "ºÐ");
+	            	reqf.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11));
 	            	reqf.setREQF_FILE(rs.getString("REQF_FILE"));
 	            	reqf.setREQF_RFILE(rs.getString("REQF_RFILE"));
 	            	reqf.setREQF_GROUP(rs.getInt("REQF_GROUP"));
@@ -158,7 +158,7 @@ import req.ReqDTO;
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
 	            pstmt.setInt(2, (Integer.parseInt(pageNumber) - 1) * 10);
-	            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+	            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	            reqfList = new ArrayList<ReqfileDTO>();
 	            while (rs.next()) {
 	            	ReqfileDTO reqf = new ReqfileDTO();
@@ -166,7 +166,7 @@ import req.ReqDTO;
 	            	reqf.setREQF_SQ(rs.getInt("REQF_SQ"));
 	             	reqf.setREQ_SQ(rs.getInt("REQ_SQ"));
 	             	reqf.setAPV_NM(rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-	            	reqf.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11) + rs.getString("REQ_SUB_DATE").substring(11, 13) + "½Ã" + rs.getString("REQ_SUB_DATE").substring(14, 16) + "ºÐ");
+	            	reqf.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11));
 	            	reqf.setREQF_GROUP(rs.getInt("REQF_GROUP"));
 	            	reqf.setREQF_SEQUENCE(rs.getInt("REQF_SEQUENCE"));
 	            
@@ -195,7 +195,7 @@ import req.ReqDTO;
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setString(1, REQ_SQ);
-	            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+	            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	            if (rs.next()) {
 	            	return rs.getString("REQF_FILE");
 	        	}
@@ -223,7 +223,7 @@ import req.ReqDTO;
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setString(1, REQ_SQ);
-	            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+	            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	            if (rs.next()) {
 	            	return rs.getString("REQF_RFILE");
 	        	}
@@ -253,7 +253,7 @@ import req.ReqDTO;
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
-	            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+	            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	            if (rs.next()) {
 	            	return true;
 	        	}
@@ -280,7 +280,7 @@ import req.ReqDTO;
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setInt(1, (Integer.parseInt(pageNumber) - 1)* 10);
-	            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+	            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	            if (rs.next()) {
 	            	return rs.getInt(1) / 10;
 	        	}

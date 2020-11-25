@@ -58,7 +58,7 @@ public class ReqRecDAO {
         }
         
         
-        return -1;      // DB ¿À·ù       
+        return -1;      // DB ï¿½ï¿½ï¿½ï¿½       
 	}
 	 public ReqRecDTO getReqRec(String REQ_SQ) {
 	    	ReqRecDTO req_rec = new ReqRecDTO();
@@ -70,14 +70,14 @@ public class ReqRecDAO {
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setString(1, REQ_SQ);
-	            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+	            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	            if (rs.next()) {
 	            	req_rec.setSTF_ID(rs.getString("STF_ID"));
 	            	req_rec.setREQ_SQ(rs.getInt("REQ_SQ"));
 	            	req_rec.setREQ_REC_SQ(rs.getInt("REQ_REC_SQ"));
 	            	req_rec.setAPV_NM(rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 	            	req_rec.setREQ_REC_TXT(rs.getString("REQ_REC_TXT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-	            	req_rec.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11) + rs.getString("REQ_REC_DATE").substring(11, 13) + "½Ã" + rs.getString("REQ_REC_DATE").substring(14, 16) + "ºÐ");
+	            	req_rec.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11));
 	            	req_rec.setREQ_REC_FILE(rs.getString("REQ_REC_FILE"));
 	            	req_rec.setREQ_REC_RFILE(rs.getString("REQ_REC_RFILE"));
 	            }
@@ -103,7 +103,7 @@ public class ReqRecDAO {
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setString(1, REQ_SQ);
-	            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+	            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	            if (rs.next()) {
 	            	return rs.getString("REQ_REC_FILE");
 	        	}
@@ -131,7 +131,7 @@ public class ReqRecDAO {
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setString(1, REQ_SQ);
-	            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+	            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	            if (rs.next()) {
 	            	return rs.getString("REQ_REC_RFILE");
 	        	}
