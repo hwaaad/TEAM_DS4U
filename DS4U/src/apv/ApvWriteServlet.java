@@ -22,21 +22,21 @@ public class ApvWriteServlet extends HttpServlet {
 		try {
 			multi2 = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 		} catch (Exception e) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Þ½ÃÁö");
-			request.getSession().setAttribute("messageContent", "ÆÄÀÏ Å©±â´Â 10MB¸¦ ÃÊ°úÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType", "ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½");
+			request.getSession().setAttribute("messageContent", "ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ 10MBï¿½ï¿½ ï¿½Ê°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			response.sendRedirect("index.jsp");
 			return;
 		}
 		String STF_ID = multi2.getParameter("STF_ID");
 		HttpSession session = request.getSession();
 		if (!STF_ID.equals((String) session.getAttribute("STF_ID"))) {
-			session.setAttribute("messageType", "¿À·ù ¸Þ½ÃÁö");
-			session.setAttribute("messageContent", "Á¢±ÙÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			session.setAttribute("messageType", "ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½");
+			session.setAttribute("messageContent", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			response.sendRedirect("index.jsp");
 			return;	
 		}
 		String APV_NM = multi2.getParameter("APV_NM");
-		String APV_DATE = multi2.getParameter("APV_DATE");
+		String APV_DATE = multi2.getParameter("startDate") + '~' + multi2.getParameter("endDate");
 		String APV_STT_DATE = multi2.getParameter("APV_STT_DATE");
 		String APV_FIN_DATE = multi2.getParameter("APV_FIN_DATE");
 		String APV_BUDGET = multi2.getParameter("APV_BUDGET");
@@ -47,8 +47,8 @@ public class ApvWriteServlet extends HttpServlet {
 				|| APV_STT_DATE == null || APV_STT_DATE.equals("") || APV_FIN_DATE == null || APV_FIN_DATE.equals("")
 				|| APV_BUDGET == null || APV_BUDGET.equals("") || APV_PHONE == null || APV_PHONE.equals("") 
 				|| APV_POLICY_SQ == null || APV_POLICY_SQ.equals("")) {
-			session.setAttribute("messageType", "¿À·ù ¸Þ½ÃÁö");
-			session.setAttribute("messageContent", "¾ç½ÄÀ» ¸ðµÎ ÀÔ·ÂÇÏ¼¼¿ä.");
+			session.setAttribute("messageType", "ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½");
+			session.setAttribute("messageContent", "ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
 			response.sendRedirect("apvWrite.jsp");
 			return;	
 		}
@@ -61,8 +61,8 @@ public class ApvWriteServlet extends HttpServlet {
 		}
 		ApvDAO apvDAO = new ApvDAO();
 		apvDAO.write(STF_ID, APV_NM, APV_DATE, APV_STT_DATE, APV_FIN_DATE, APV_BUDGET, APV_PHONE, APV_POLICY_SQ, APV_FILE, APV_RFILE);
-		request.getSession().setAttribute("messageType", "¼º°ø ¸Þ½ÃÁö");
-		request.getSession().setAttribute("messageContent", "¼º°øÀûÀ¸·Î °Ô½Ã¹°À» ÀÛ¼ºÇÏ¿´½À´Ï´Ù.");
+		request.getSession().setAttribute("messageType", "ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½");
+		request.getSession().setAttribute("messageContent", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		response.sendRedirect("apvView.jsp");
 	}
 }

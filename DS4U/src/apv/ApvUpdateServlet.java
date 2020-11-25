@@ -64,7 +64,7 @@ public class ApvUpdateServlet extends HttpServlet{
 		}
 		
 		String APV_NM = multi.getParameter("APV_NM");
-		String APV_DATE = multi.getParameter("APV_DATE");
+		String APV_DATE = multi.getParameter("startDate") + '~' + multi.getParameter("endDate");
 		String APV_STT_DATE = multi.getParameter("APV_STT_DATE");
 		String APV_FIN_DATE= multi.getParameter("APV_FIN_DATE");
 		String APV_BUDGET = multi.getParameter("APV_BUDGET");

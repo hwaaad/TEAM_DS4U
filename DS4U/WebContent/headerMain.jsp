@@ -4,7 +4,7 @@
 <div id="header">
 	<div class="container clearFix">
 		<h1 id="logo" class="floatleft">
-			<a href="${contextPath}/"> <img src="${contextPath }/images/logo.jpg" />
+			<a href="${contextPath}/index.jsp"> <img src="${contextPath }/images/logo.jpg" />
 			</a>
 		</h1>
 		<div id="m-gnb">
@@ -26,34 +26,24 @@
 				});
 			</script>
 			<ul class="gnbUl">
-				<li>
+			 	<li>
 					<h2>
-						<a lang="en" href="${contextPath}/index.jsp"> Main </a>
-					</h2>
-				</li>
-			 <li>
-					<h2>
-						<a lang="en" href="${contextPath}/boardView.jsp"> Board </a>
+						<a lang="en" href="${contextPath}/boardView.jsp"> 게시판 </a>
 					</h2>
 				</li>
 				<li>
 					<h2>
-						<a lang="en" href="${contextPath}/apvView.jsp"> Business </a>
+						<a lang="en" href="${contextPath}/apvView.jsp"> 정보화사업 </a>
 					</h2>
 				</li>
 			 	<li>
 					<h2>
-						<a lang="en" href="${contextPath}/reqView.jsp"> Security </a>
+						<a lang="en" href="${contextPath}/reqView.jsp"> 보안성검토 </a>
 					</h2>
 				</li>
 				<li>
 					<h2>
-						<a lang="en" href="${contextPath}/alertView.jsp"> Alarm </a>
-					</h2>
-				</li>
-				<li>
-					<h2>
-						<a lang="en" href="${contextPath}/stfManage.jsp"> 회원관리 </a>
+						<a lang="en" href="${contextPath}/sftManage.jsp"> 회원관리 </a>
 					</h2>
 				</li>
 				<li class="memberBtn">
@@ -74,32 +64,22 @@
 			<ul>
 				<li>
 					<h2>
-						<a lang="en" href="${contextPath}/index.jsp"> Main </a>
+						<a lang="en" href="${contextPath}/boardView.jsp"> 게시판 </a>
+					</h2>
+				</li>
+				<li>
+					<h2>
+						<a lang="en" href="${contextPath}/apvView.jsp"> 정보화사업 </a>
 					</h2>
 				</li>
 			 	<li>
 					<h2>
-						<a lang="en" href="${contextPath}/boardView.jsp"> Board </a>
-					</h2>
-				</li>
-			 	<li>
-					<h2>
-						<a lang="en" href="${contextPath}/apvView.jsp"> Business </a>
+						<a lang="en" href="${contextPath}/reqView.jsp"> 보안성검토 </a>
 					</h2>
 				</li>
 				<li>
 					<h2>
-						<a lang="en" href="${contextPath}/reqView.jsp"> Security </a>
-					</h2>
-				</li>
-				<li>
-					<h2>
-						<a lang="en" href="${contextPath}/alertView.jsp"> Alarm </a>
-					</h2>
-				</li>
-				<li>
-					<h2>
-						<a lang="en" href="${contextPath}/stfManage.jsp"> 회원관리 </a>
+						<a lang="en" href="${contextPath}/sftManage.jsp"> 회원관리 </a>
 					</h2>
 				</li>
 			</ul>

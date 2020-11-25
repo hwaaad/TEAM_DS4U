@@ -106,7 +106,7 @@
 									<%
 									}else{
 									%>
-									<a href="fin_reqView.jsp" class="btn btn-primary">목록</a>
+									<a href="reqView.jsp" class="btn btn-primary">목록</a>
 									<% } %>
 								</td>
 							</tr>			
