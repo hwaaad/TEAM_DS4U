@@ -160,4 +160,12 @@
   	<servlet-name>adminUpdateServlet</servlet-name>
   	<url-pattern>/adminUpdate</url-pattern>
   </servlet-mapping>                       
+<servlet>
+    <servlet-name>ApvUpdateServlet</servlet-name>
+    <servlet-class>apv.ApvUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApvUpdateServlet</servlet-name>
+    <url-pattern>/apvUpdate</url-pattern>
+  </servlet-mapping>
 </web-app>

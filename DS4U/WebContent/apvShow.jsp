@@ -106,15 +106,22 @@
 								<td colspan="2"><a href="apvDownload.jsp?APV_SQ=<%= apv.getAPV_SQ() %>"><%= apv.getAPV_FILE() %></a></td>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td colspan="5" style="text-align : right;">
-									<a href="apvView.jsp" class="btn btn-primary">목록</a>
-			
-								</td>
-							</tr>			
-						</tbody>
-					
+						
+							
+						<div class="row btns">
+							<a href="apvView.jsp" class="btn btn-primary">목록</a>
+							
+							<%
+								if (STF_ID.equals(apv.getSTF_ID())) {								
+							%>
+							
+								<a href="apvUpdate.jsp?APV_SQ=<%= apv.getAPV_SQ() %>" class="btn">수정</a>
+								<a href="apvDelete?APV_SQ=<%= apv.getAPV_SQ() %>" class="btn" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
+							<%		
+								}
+							%>
+										
+						</div>
 					</table>
 				</div>		
 				</div>

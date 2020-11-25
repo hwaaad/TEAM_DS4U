@@ -52,9 +52,64 @@ public class ApvDAO {
         		e.printStackTrace();
         	}       	
         }
-        return -1;      // DB ¿À·ù       
+        return -1;      // DB ï¿½ï¿½ï¿½ï¿½       
 	}
 
+    public int update(String APV_NM, String APV_DATE, String APV_STT_DATE, String APV_FIN_DATE, String APV_BUDGET,
+    		String APV_PHONE, String APV_POLICY_SQ, String APV_FILE, String APV_RFILE, String APV_SQ) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+        String SQL = "UPDATE APV SET APV_NM= ?, APV_DATE = ?, APV_STT_DATE = ?, APV_FIN_DATE = ?, APV_BUDGET = ?, APV_PHONE=?, APV_POLICY_SQ=?, APV_FILE=?, APV_RFILE=? WHERE APV_SQ = ?";
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+          
+            pstmt.setString(1, APV_NM);
+            pstmt.setString(2, APV_DATE);
+            pstmt.setString(3, APV_STT_DATE);
+            pstmt.setString(4, APV_FIN_DATE);
+            pstmt.setString(5, APV_BUDGET); 
+            pstmt.setString(6, APV_PHONE); 
+            pstmt.setString(7, APV_POLICY_SQ); 
+            pstmt.setString(8, APV_FILE); 
+            pstmt.setString(9, APV_RFILE); 
+           pstmt.setInt(10, Integer.parseInt(APV_SQ));
+            
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return -1;      // DB ì˜¤ë¥˜       
+	}
+    
+    public int delete(String APV_SQ) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+        String SQL = "UPDATE APV SET APV_AVAILABLE = 0 WHERE APV_SQ = ?";
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, Integer.parseInt(APV_SQ));
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return -1;      // DB ì˜¤ë¥˜       
+	}
     public ApvDTO getApv(String APV_SQ) {
     	ApvDTO apv = new ApvDTO();
     	Connection conn = null;
@@ -65,7 +120,7 @@ public class ApvDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, APV_SQ);
-            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (rs.next()) {
             	apv.setAPV_SQ(rs.getInt("APV_SQ"));
             	apv.setSTF_ID(rs.getString("STF_ID"));
@@ -107,7 +162,7 @@ public class ApvDAO {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
             pstmt.setInt(2, (Integer.parseInt(pageNumber) - 1) * 10);
-            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             apvList = new ArrayList<ApvDTO>();
             while (rs.next()) {
             	ApvDTO apv = new ApvDTO();
@@ -150,7 +205,7 @@ public class ApvDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, APV_SQ);
-            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (rs.next()) {
             	return rs.getString("APV_FILE");
         	}
@@ -178,7 +233,7 @@ public class ApvDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, APV_SQ);
-            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (rs.next()) {
             	return rs.getString("APV_RFILE");
         	}
@@ -206,7 +261,7 @@ public class ApvDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
-            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (rs.next()) {
             	return true;
         	}
@@ -233,7 +288,7 @@ public class ApvDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, (Integer.parseInt(pageNumber) - 1)* 10);
-            rs = pstmt.executeQuery(); // ½ÇÇà °á°ú¸¦ ³ÖÀ½
+            rs = pstmt.executeQuery(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (rs.next()) {
             	return rs.getInt(1) / 10;
         	}
