@@ -43,7 +43,7 @@
 				</li>
 				<li>
 					<h2>
-						<a lang="en" href="${contextPath}/sftManage.jsp"> 회원관리 </a>
+						<a lang="en" href="${contextPath}/stfManage.jsp"> 회원관리 </a>
 					</h2>
 				</li>
 				<li class="memberBtn">
@@ -79,7 +79,7 @@
 				</li>
 				<li>
 					<h2>
-						<a lang="en" href="${contextPath}/sftManage.jsp"> 회원관리 </a>
+						<a lang="en" href="${contextPath}/stfManage.jsp"> 회원관리 </a>
 					</h2>
 				</li>
 			</ul>
