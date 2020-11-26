@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="stf.StfDTO" %>
 <%@ page import="stf.StfDAO" %>
+<%@ page import="apv.ApvDTO" %>
+<%@ page import="apv.ApvDAO" %>
 <%@ include file="head.jsp" %>
 <!DOCTYPE html>
 <html>

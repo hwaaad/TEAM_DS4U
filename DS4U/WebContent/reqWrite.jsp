@@ -99,7 +99,7 @@
 					           
 					            while (rs.next()) {
 					            	
-					          		int APV_SQ = rs.getInt("APV_SQ");
+					            	APV_SQ = Integer.toString(rs.getInt("APV_SQ"));
 					            	String APV_NM = rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
 		    
 					            	%>
