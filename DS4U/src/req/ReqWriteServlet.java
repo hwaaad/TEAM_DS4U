@@ -58,6 +58,8 @@ public class ReqWriteServlet extends HttpServlet {
 		
 		ReqDAO reqDAO = new ReqDAO();
 		reqDAO.write(STF_ID,APV_SQ, APV_NM, APV_OBJ, APV_CONT, APV_DATE,  REQ_REC_DATE, REQ_SUB_DATE);
+		reqDAO.update_apv_date(APV_SQ);
+		
 		request.getSession().setAttribute("messageType", "성공 메세지");
 		request.getSession().setAttribute("messageContent", "성공적으로 게시물을 작성하였습니다.");
 		response.sendRedirect("reqView.jsp");

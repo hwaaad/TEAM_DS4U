@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="req.ReqDAO" %>
 <%@ page import="req.ReqDTO" %>
+<%@ page import="apv.ApvDAO" %>
+<%@ page import="apv.ApvDTO" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
 <%@ include file="/head.jsp" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <%
+
+	String APV_SQ = null;
 	String STF_ID = null;
+	String STF_NM = null;
+	String STF_PH = null;
 	if (session.getAttribute("STF_ID") != null) {
 		STF_ID = (String) session.getAttribute("STF_ID");
 	}
@@ -36,6 +48,9 @@
 	
 	ReqDAO reqDAO = new ReqDAO();
 	ReqDTO req = reqDAO.getReq(REQ_SQ);
+	
+	ApvDAO apvDAO = new ApvDAO();
+	ApvDTO apv = apvDAO.getApv(APV_SQ);
 %>
 
 <head>
@@ -83,6 +98,88 @@
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업 기간</h5></td>
 								<td colspan="2"><h5><%= req.getAPV_DATE() %></h5></td>
+							</tr>
+							<tr>
+								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업담당자</h5></td>
+								<td>
+									<% 
+								
+										Connection conn = null;
+						    			PreparedStatement pstmt = null;
+						    			ResultSet rs = null;
+						    			DataSource dataSource;
+						    			InitialContext initContext = new InitialContext();
+										Context envContext = (Context) initContext.lookup("java:/comp/env");
+										dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
+						    			try{
+						    		
+						    					conn = dataSource.getConnection();
+						    					String SQL = "SELECT STF_NM FROM STF WHERE STF_ID = ?";
+					           					pstmt = conn.prepareStatement(SQL);
+					           					pstmt.setString(1, req.getSTF_ID());
+					           					rs = pstmt.executeQuery();
+					           		
+					           	 			while (rs.next()) {
+						            	
+					           	 				STF_NM = rs.getString("STF_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+						            	
+						            	
+						           					 	%>
+						         				  <%= STF_NM %>
+						            					<%
+						          				  } 									
+						  				  	}catch (Exception e) {
+						   			         e.printStackTrace();
+						   				     } finally {
+						        				try {
+						        						if (rs != null) rs.close();
+						        						if (pstmt != null) pstmt.close();
+						        						if (conn != null) conn.close();
+						        					} catch (Exception e) {
+						        							e.printStackTrace();
+						        							}       	
+					            
+						    					   	 	}
+									 %>
+						
+								</td>
+							</tr>
+							<tr>
+								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>연락처</h5></td>
+								<td>
+								<%
+								try{
+						    		
+						    		conn = dataSource.getConnection();
+						    		String SQL = "SELECT STF_PH FROM STF WHERE STF_ID = ?";
+					           		pstmt = conn.prepareStatement(SQL);
+					           		pstmt.setString(1, req.getSTF_ID());
+					           		rs = pstmt.executeQuery();
+					           		
+					           	 	while (rs.next()) {
+						            	
+					           	 		STF_PH = rs.getString("STF_PH").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+						            	
+						            	
+						            	%>
+						           <%= STF_PH %>
+						            	<%
+						            } 									
+						    	}catch (Exception e) {
+						            e.printStackTrace();
+						        } finally {
+						        	try {
+						        		if (rs != null) rs.close();
+						        		if (pstmt != null) pstmt.close();
+						        		if (conn != null) conn.close();
+						        	} catch (Exception e) {
+						        		e.printStackTrace();
+						        	}       	
+					            
+						        }
+						 %>
+						
+								</td>
 							</tr>
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>검토 요청일</h5></td>

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="board.BoardDAO" %>
 <%@ page import="board.BoardDTO" %>
-<%@ page import="comment.CommentDAO" %>
-<%@ page import="comment.CommentDTO" %>
 <%@ include file="/head.jsp" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
@@ -44,10 +42,10 @@
 		return;	
 	}
 	boardDAO.hit(BOARD_SQ);
-	String COMMENT_SQ = null;
+/*	String COMMENT_SQ = null;
 	if (request.getParameter("COMMENT_SQ") != null) {
 		COMMENT_SQ = (String) request.getParameter("COMMENT_SQ");
-	}
+	} */
 	//CommentDAO commentDAO = new CommentDAO();
 	//CommentDTO comment = commentDAO.getComment(BOARD_SQ);
 %>

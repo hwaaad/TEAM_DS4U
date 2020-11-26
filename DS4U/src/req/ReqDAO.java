@@ -67,7 +67,7 @@ public class ReqDAO {
         }
         
         
-        return -1;      // DB ����       
+        return -1;      // DB 占쏙옙占쏙옙       
 	}
    
     
@@ -102,7 +102,7 @@ public class ReqDAO {
         }
         
         
-        return -1;      // DB ����       
+        return -1;      // DB 占쏙옙占쏙옙       
 	}
     public int update_req_sub_date(int REQ_SQ) {
     	Connection conn = null;
@@ -135,8 +135,42 @@ public class ReqDAO {
         }
         
         
-        return -1;      // DB ����       
+        return -1;      // DB 占쏙옙占쏙옙       
 	}
+    
+    public int update_apv_date(int APV_SQ) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+        String SQL = "UPDATE REQ,APV SET REQ.APV_DATE = APV.APV_DATE WHERE REQ.APV_SQ= APV.APV_SQ ";
+    
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+
+            pstmt.executeUpdate();
+        
+        }  catch (Exception e) {
+        
+            e.printStackTrace();
+        }
+        
+       
+        finally {
+        	try {
+        	
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}      
+        
+        	
+        }
+        
+        
+        return -1;           
+	}
+    
      
     public ReqDTO getReq(String REQ_SQ) {
     	ReqDTO req = new ReqDTO();
@@ -148,7 +182,7 @@ public class ReqDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, REQ_SQ);
-            rs = pstmt.executeQuery(); // ���� ����� ����
+            rs = pstmt.executeQuery(); // 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙
             if (rs.next()) {
             	req.setSTF_ID(rs.getString("STF_ID"));
             	req.setREQ_SQ(rs.getInt("REQ_SQ"));
@@ -196,7 +230,7 @@ public class ReqDAO {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
             pstmt.setInt(2, (Integer.parseInt(pageNumber) - 1) * 10);
-            rs = pstmt.executeQuery(); // ���� ����� ����
+            rs = pstmt.executeQuery(); // 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙
             reqList = new ArrayList<ReqDTO>();
             while (rs.next()) {
             	ReqDTO req = new ReqDTO();
@@ -246,7 +280,7 @@ public class ReqDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
-            rs = pstmt.executeQuery(); // ���� ����� ����
+            rs = pstmt.executeQuery(); // 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙
             if (rs.next()) {
             	return true;
         	}
@@ -273,7 +307,7 @@ public class ReqDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, (Integer.parseInt(pageNumber) - 1)* 10);
-            rs = pstmt.executeQuery(); // ���� ����� ����
+            rs = pstmt.executeQuery(); // 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙
             if (rs.next()) {
             	return rs.getInt(1) / 10;
         	}

@@ -40,18 +40,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- <link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/custom.css"> -->
-
+	<link rel="stylesheet" type="text/css" href="${contextPath}/css/headerWs.css"/>
+	<link rel="stylesheet" type="text/css" href="${contextPath}/css/navWs.css"/>
 	<link rel="stylesheet" type="text/css" href="${contextPath}/css/req.css"/>
-	
-	<title>서울교통공사</title>
-	
-
-    
+	<link rel="stylesheet" type="text/css" href="${contextPath}/css/modal.css"/>
+	<title>보안점검표 제출</title>
+	<script src="js/bootstrap.js"></script>
 </head>
 
 <body>
+<%@ include file="/headerWs.jsp" %>
+	<%@ include file="/navWs.jsp" %>
 	
     <!-- 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
  	<div id="wsBody">
@@ -149,11 +148,9 @@
 					            
 						        }
 					%>
-					</td>
-					
-						
 						<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>"></td>						
 					</tr>
+					
 					<tr>
 						<td style="width: 130px;"><h5>파일 첨부</h5></td>
 						<td colspan="2">
@@ -179,9 +176,9 @@
 									})
 								})
 							</script>
-						</td>
+						
 				
-						<td><input type="hidden" name="REQ_SQ" value="<%= REQ_SQ %>"></td>			
+						<input type="hidden" name="REQ_SQ" value="<%= REQ_SQ %>"></td>			
 					
 						</tr>
 				

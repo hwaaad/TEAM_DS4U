@@ -16,6 +16,7 @@
 <!DOCTYPE html>
 <html>
 <%
+	String APV_SQ = null;
 	String STF_ID = null;
 	if (session.getAttribute("STF_ID") != null) {
 		STF_ID = (String) session.getAttribute("STF_ID");
@@ -34,6 +35,8 @@
 		return;
 	}
 	StfDTO stf = new StfDAO().getUser(STF_ID);
+	ApvDTO apv = new ApvDAO().getApv(APV_SQ);
+
 %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -128,16 +131,19 @@
 					</tr>		
 					<tr>
 						<td style="width: 130px; text-align: left;"><h5>3. 사업 내용</h5></td>
-						<td><textarea class="form-control" cols="100" rows="10" name="APV_CONT" id="APV_CONT" maxlength="1000" placeholder="사업 내용을 입력하세요."></textarea></td>
-					</tr>
-					<tr>
-						<td style="width: 130px; text-align: left;"><h5>4. 사업 기간</h5></td>
-						<td><textarea class="form-control" cols="100" name="APV_DATE" id="APV_DATE" maxlength="100" placeholder="사업 기간을 입력하세요."></textarea></td>				
+						<td><textarea class="form-control" cols="100" rows="10" name="APV_CONT" id="APV_CONT" maxlength="1000" placeholder="사업 내용을 입력하세요."></textarea>
+						<input type="hidden" name="APV_DATE" value="<%=apv.getAPV_DATE() %>"></td>	
 					</tr>				
 					<tr>
-						<td style="width: 130px;"><h5>5. 담당자</h5></td>
-						<td><h5><%= stf.getSTF_ID() %></h5>
+						<td style="width: 130px; text-align: left;"><h5>5. 담당자</h5></td>
+						<td><h5><%= stf.getSTF_NM() %></h5>
+						<input type="hidden" name="STF_NM" value="<%= stf.getSTF_NM() %>">	
 						<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>"></td>						
+					</tr>
+					<tr>
+						<td style="width: 130px;text-align: left;"><h5>6. 연락처</h5></td>
+						<td><h5><%=stf.getSTF_PH() %></h5>
+						<input type="hidden" name="APV_PHONE" value="<%=stf.getSTF_PH() %>"></td>													
 					</tr>
 					<tr>
 						<td style="width: 130px;"><h5>6. 파일 첨부</h5></td>
