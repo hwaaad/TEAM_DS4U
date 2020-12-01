@@ -93,52 +93,28 @@
 			<table class="table" style="text-align: center; border: 1px solid #dddddd">
 			<tbody>		
 			<%
-			for (int i=0; i<boardList.size(); i++) {
-				BoardDTO board = boardList.get(i);
-				if (board.getBOARD_TYPE().equals("공지")) {
+				ArrayList<BoardDTO> searchList = new ArrayList<BoardDTO>();
+				searchList = new BoardDAO().getSearch(BOARD_TYPE, searchType, search, PageNumber);
+				for (int i=0; i<searchList.size(); i++) {
+					if (i == 10) break;
+					BoardDTO board = searchList.get(i);
+					if (board.getBOARD_TYPE().equals("공지")) {
 			%>
 				<tr>
 					<td><span class="noticeMark">공지</span></td>
 					<td style="text-align: left; font-weight: 730;">
 					<a href="boardShow.jsp?BOARD_SQ=<%= board.getBOARD_SQ() %>">
 			<%
-				for (int j=0; j<board.getBOARD_LEVEL(); j++) {
-			%>
-					<span class="fas fa-angle-right" aria-hidden="true"></span>
-			<% 
-				}
-			%>
-			<%
-				if (board.getBOARD_AVAILABLE() == 0) {
-			%>
-				(삭제된 게시물입니다.)
-			<%
-				} else {
-			%>
-				<%= board.getBOARD_NM() %>
-			<%
-				}
-			%>
-				</a></td>
-					<td style="font-weight: 730;"><%= board.getSTF_ID() %></td>
-					<td style="font-weight: 730;"><%= board.getBOARD_DT() %></td>
-					<td style="font-weight: 730;"><%= board.getBOARDHIT() %></td></tr>
-			<%
-					}
-				}
-
-			%>
-
-			<%
-			for (int i=0; i<boardList.size(); i++) {
-				BoardDTO board = boardList.get(i);
-				if (board.getBOARD_TYPE().equals("일반")) {
+					} else {
 			%>
 				<tr>
 					<td><%= board.getBOARD_SQ() %></td>
 					<td style="text-align: left;">
 					<a href="boardShow.jsp?BOARD_SQ=<%= board.getBOARD_SQ() %>">
 			<%
+					}
+			%>
+			<%
 				for (int j=0; j<board.getBOARD_LEVEL(); j++) {
 			%>
 					<span class="fas fa-angle-right" aria-hidden="true"></span>
@@ -156,17 +132,30 @@
 			<%
 				}
 			%>
+			<%
+				if (board.getBOARD_TYPE().equals("공지")) {
+			%>
+				</a></td>
+					<td style="font-weight: 730;"><%= board.getSTF_ID() %></td>
+					<td style="font-weight: 730;"><%= board.getBOARD_DT() %></td>
+					<td style="font-weight: 730;"><%= board.getBOARDHIT() %></td></tr>
+			<%
+				} else {
+			%>
 				</a></td>
 					<td><%= board.getSTF_ID() %></td>
 					<td><%= board.getBOARD_DT() %></td>
 					<td><%= board.getBOARDHIT() %></td></tr>
 			<%
-					}
+				}
+			%>
+
+			<%					
 				}
 			%>			
 				<tr>
 					<td colspan="5">
-						<a href="${contextPath}/boardWrite.jsp" id="writeBtn">글쓰기</a>
+						<a href="${contextPath}/boardView.jsp" id="writeBtn">목록</a>
 						<div id="searchWrap">
 							<form action="./boardSearch.jsp" method="get" id="boardSearchForm">							
 								<select name="BOARD_TYPE" id="BOARD_TYPE">
@@ -182,47 +171,32 @@
 							</form>
 						</div>					
 					</td>
-				</tr>						
+				</tr>
+				
 					<td colspan="5">
 					<ul id=pagination>
 					<% 
-						int startPage = (Integer.parseInt(pageNumber) / 10) * 10 + 1;
-						if (Integer.parseInt(pageNumber) % 10 == 0) startPage -= 10;
-						int targetPage = new BoardDAO().targetPage(pageNumber);
-						if (startPage != 1) {
+						if (PageNumber <= 0) {
 					%>
-						<li><a href="boardView.jsp?pageNumber=<%= startPage - 1 %>"><i class="fas fa-angle-left"></i></a></li>
+						<li><a class="page-link disabled"><i class="fas fa-angle-left"></i></a></li>
 					<%
 						} else {
 					%>
-						<li><i class="fas fa-angle-left"></i></li>
-					<%
-						}
-						for (int i=startPage; i<Integer.parseInt(pageNumber); i++) {
-					%>
-						<li><a href="boardView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
+						<li><a href="boardSearch.jsp?BOARD_TYPE=<%= URLEncoder.encode(BOARD_TYPE, "UTF-8") %>&searchType=<%= URLEncoder.encode(searchType, "UTF-8") %>&search=<%= URLEncoder.encode(search, "UTF-8") %>&PageNumber=<%= PageNumber-1 %>"><i class="fas fa-angle-left"></i></a></li>
 					<%
 						}
 					%>
-						<li class="active"><a href="boardView.jsp?pageNumber=<%= pageNumber %>"><%= pageNumber %></a></li>	
-					<%
-						for (int i=Integer.parseInt(pageNumber) + 1; i<=targetPage + Integer.parseInt(pageNumber); i++) {
-							if (i < startPage + 10) {
+					<% 
+						if (searchList.size() < 6) {
 					%>
-						<li><a href="boardView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
-					<%
-							}
-						}
-						if (targetPage + Integer.parseInt(pageNumber) > startPage + 9) {
-					%>
-						<li><a href="boardView.jsp?pageNumber=<%= startPage + 10 %>"><i class="fas fa-angle-right"></i></a></li>
+						<li><a class="page-link disabled"><i class="fas fa-angle-right"></i></a></li>
 					<%
 						} else {
 					%>
-						<li><i class="fas fa-angle-right"></i></li>
+						<li><a href="boardSearch.jsp?BOARD_TYPE=<%= URLEncoder.encode(BOARD_TYPE, "UTF-8") %>&searchType=<%= URLEncoder.encode(searchType, "UTF-8") %>&search=<%= URLEncoder.encode(search, "UTF-8") %>&PageNumber=<%= PageNumber+1 %>"><i class="fas fa-angle-right"></i></a></li>
 					<%
 						}
-					%>						
+					%>	
 					</ul>
 					</td>
 				</tr>							
