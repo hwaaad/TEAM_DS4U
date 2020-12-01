@@ -58,7 +58,7 @@
             </a>
          </h3>
          <ul hidden="true">
-            <li><a href="${contextPath}/#">공지사항</a></li>
+            <li><a href="${contextPath}/noticeView.jsp">공지사항</a></li>
             <li><a href="${contextPath}/boardView.jsp">자유게시판</a></li>
          </ul>
       </div>

@@ -79,7 +79,7 @@
 	<div id="wsBody">
 	<input type="hidden" value="board" id="pageType">
 		<div id="wsBodyContainer">
-			<h3>자유게시판</h3>
+			<h3>공지사항</h3>
 			<div id="boardInner">
 				<div id="inputWrap">
 				<ul id="boardList">
@@ -92,6 +92,7 @@
 					</li>		
 			<table class="table" style="text-align: center; border: 1px solid #dddddd">
 			<tbody>		
+
 			<%
 				for (int i=0; i<boardList.size(); i++) {
 					BoardDTO board = boardList.get(i);
@@ -126,42 +127,6 @@
 			<%
 					}
 				}
-			%>
-
-			<%
-				for (int i=0; i<boardList.size(); i++) {
-					BoardDTO board = boardList.get(i);
-					if (board.getBOARD_TYPE().equals("일반")) {
-			%>
-				<tr>
-					<td><%= board.getBOARD_SQ() %></td>
-					<td style="text-align: left;">
-					<a href="boardShow.jsp?BOARD_SQ=<%= board.getBOARD_SQ() %>">
-			<%
-				for (int j=0; j<board.getBOARD_LEVEL(); j++) {
-			%>
-					<span class="fas fa-angle-right" aria-hidden="true"></span>
-			<% 
-				}
-			%>
-			<%
-				if (board.getBOARD_AVAILABLE() == 0) {
-			%>
-				(삭제된 게시물입니다.)
-			<%
-				} else {
-			%>
-				<%= board.getBOARD_NM() %>
-			<%
-				}
-			%>
-				</a></td>
-					<td><%= board.getSTF_ID() %></td>
-					<td><%= board.getBOARD_DT() %></td>
-					<td><%= board.getBOARDHIT() %></td></tr>
-			<%
-					}
-				}
 			%>			
 				<tr>
 					<td colspan="5">
@@ -191,7 +156,6 @@
 						BoardDTO board = searchList.get(i);
 					}
 			%>
-			
 				
 					<td colspan="5">
 					<ul id=pagination>
@@ -201,7 +165,7 @@
 						int targetPage = new BoardDAO().targetPage(pageNumber);
 						if (startPage != 1) {
 					%>
-						<li><a href="boardView.jsp?pageNumber=<%= startPage - 1 %>"><i class="fas fa-angle-left"></i></a></li>
+						<li><a href="noticeView.jsp?pageNumber=<%= startPage - 1 %>"><i class="fas fa-angle-left"></i></a></li>
 					<%
 						} else {
 					%>
@@ -210,22 +174,22 @@
 						}
 						for (int i=startPage; i<Integer.parseInt(pageNumber); i++) {
 					%>
-						<li><a href="boardView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
+						<li><a href="noticeView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
 					<%
 						}
 					%>
-						<li class="active"><a href="boardView.jsp?pageNumber=<%= pageNumber %>"><%= pageNumber %></a></li>	
+						<li class="active"><a href="noticeView.jsp?pageNumber=<%= pageNumber %>"><%= pageNumber %></a></li>	
 					<%
 						for (int i=Integer.parseInt(pageNumber) + 1; i<=targetPage + Integer.parseInt(pageNumber); i++) {
 							if (i < startPage + 10) {
 					%>
-						<li><a href="boardView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
+						<li><a href="noticeView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
 					<%
 							}
 						}
 						if (targetPage + Integer.parseInt(pageNumber) > startPage + 9) {
 					%>
-						<li><a href="boardView.jsp?pageNumber=<%= startPage + 10 %>"><i class="fas fa-angle-right"></i></a></li>
+						<li><a href="noticeView.jsp?pageNumber=<%= startPage + 10 %>"><i class="fas fa-angle-right"></i></a></li>
 					<%
 						} else {
 					%>

@@ -2,10 +2,17 @@
 <%@ page import="stf.StfDTO" %>
 <%@ page import="stf.StfDAO" %>
 <%@ include file="/head.jsp" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
 <!DOCTYPE html>
 <html>
 <%
 	String STF_ID = null;
+	String STF_DEP = null;
 	if (session.getAttribute("STF_ID") != null) {
 		STF_ID = (String) session.getAttribute("STF_ID");
 	}
@@ -21,6 +28,35 @@
 		session.setAttribute("messageContent", "이메일 인증이 필요합니다.");
 		response.sendRedirect("emailSendConfirm.jsp");
 		return;
+	}
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	DataSource dataSource;
+	InitialContext initContext = new InitialContext();
+	Context envContext = (Context) initContext.lookup("java:/comp/env");
+	dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
+	try {
+		conn = dataSource.getConnection();
+		String SQL = "SELECT STF_DEP FROM STF WHERE STF_ID = ?";
+		pstmt = conn.prepareStatement(SQL);
+		pstmt.setString(1, STF_ID);
+		rs = pstmt.executeQuery();
+		while (rs.next()) {
+        	
+   	 		STF_DEP = rs.getString("STF_DEP").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+        	
+        }
+	}catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	StfDTO stf = new StfDAO().getUser(STF_ID);
 %>
@@ -51,32 +87,46 @@
 				<div class="container">
 					<form method="post" action="./boardWrite" enctype="multipart/form-data">
 					<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
-						<thead></thead>
+						<thead>
+							<tr>
+								<th colspan="3"><h4>게시물 작성</h4></th>
+							</tr>						
+						</thead>
 						<tbody>
 						<tr>
 							<td style="width: 110px;"><h5>아이디</h5></td>
-							<td><h5><%= stf.getSTF_ID() %></h5><input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>"></td>						
+							<td style="width: 830px;"><h5><%= stf.getSTF_ID() %></h5><input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>"></td>						
 						</tr>
 						<tr>
 							<td style="width: 110px;"><h5>글 종류</h5></td>
-							<td>
-								<select id="boardType" name="BOARD_TYPE">
+							<td style="width: 830px;">
+								<select id="BOARD_TYPE" name="BOARD_TYPE">
+								<% 
+									if (STF_DEP.equals("부서4")){
+								%>
 									<option value="일반">일반</option>
 									<option value="공지">공지</option>
+								<%
+									} else {
+								%>
+									<option value="일반">일반</option>
+								<%
+									}
+								%>
 								</select>
 							</td>
 						</tr>								
 						<tr>
 							<td style="width: 110px;"><h5>글 제목</h5></td>
-							<td><textarea id="title" cols="100" maxlength="64" name="BOARD_NM" placeholder="글 제목을 입력하세요."></textarea></td>							
+							<td style="width: 830px;"><textarea id="title" cols="110" maxlength="64" name="BOARD_NM" placeholder="글 제목을 입력하세요."></textarea></td>							
 						</tr>
 						<tr>
 							<td style="width: 110px;"><h5>글 내용</h5></td>
-							<td><textarea class="form-control" cols="100" rows="10" id="content" name="BOARD_TXT" maxlength="255" placeholder="글 내용을 입력하세요."></textarea></td>					
+							<td style="width: 830px;"><textarea class="form-control" cols="110" rows="10" id="content" name="BOARD_TXT" maxlength="255" placeholder="글 내용을 입력하세요."></textarea></td>					
 						</tr>
 						<tr>
 							<td style="width: 110px;"><h5>파일 첨부</h5></td>
-							<td colspan="2">
+							<td style="width: 830px;" colspan="2">
 								<div id="uploadArea" class="floatleft">
 									<span>파일을 업로드하세요.</span>
 									<input multiple="multiple" id="file" type="file" name="BOARD_FILE" class="file">

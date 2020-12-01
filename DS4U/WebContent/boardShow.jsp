@@ -103,8 +103,19 @@
 						</p>
 					</div>
 					<div class="row btns">
-						<a href="boardView.jsp" class="btn">목록</a>
-						<a href="boardReply.jsp?BOARD_SQ=<%= board.getBOARD_SQ() %>" class="btn btn-primary">답변</a>
+						<% 
+							if (board.getBOARD_TYPE().equals("일반")){
+						%>
+							<a href="boardView.jsp" class="btn">목록</a>
+							<a href="boardReply.jsp?BOARD_SQ=<%= board.getBOARD_SQ() %>" class="btn btn-primary">답변</a>
+						<%
+							} else {
+						%>
+							<a href="boardView.jsp" class="btn">목록</a>
+						<%
+							}
+						%>
+						
 						<%
 							if (STF_ID.equals(board.getSTF_ID())) {								
 						%>
