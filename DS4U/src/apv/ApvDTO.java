@@ -13,9 +13,25 @@ public class ApvDTO {
 	String APV_POLICY_SQ;
 	String APV_FILE;
 	String APV_RFILE;
+	String APV_UPLOAD_TIME;
 	int APV_GROUP;
 	int APV_SEQUENCE;
+	int APV_FILE_SQ;
 	
+	
+	
+	public String getAPV_UPLOAD_TIME() {
+		return APV_UPLOAD_TIME;
+	}
+	public void setAPV_UPLOAD_TIME(String aPV_UPLOAD_TIME) {
+		APV_UPLOAD_TIME = aPV_UPLOAD_TIME;
+	}
+	public int getAPV_FILE_SQ() {
+		return APV_FILE_SQ;
+	}
+	public void setAPV_FILE_SQ(int aPV_FILE_SQ) {
+		APV_FILE_SQ = aPV_FILE_SQ;
+	}
 	public int getAPV_SQ() {
 		return APV_SQ;
 	}

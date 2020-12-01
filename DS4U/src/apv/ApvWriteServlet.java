@@ -18,7 +18,7 @@ public class ApvWriteServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		MultipartRequest multi2 = null;
 		int fileMaxSize = 10 * 1024 * 1024;
-		String savePath = request.getRealPath("/upload2").replaceAll("\\\\", "/");
+		String savePath = request.getRealPath("/upload7").replaceAll("\\\\", "/");
 		try {
 			multi2 = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 		} catch (Exception e) {
@@ -60,7 +60,11 @@ public class ApvWriteServlet extends HttpServlet {
 			APV_RFILE = file.getName();
 		}
 		ApvDAO apvDAO = new ApvDAO();
-		apvDAO.write(STF_ID, APV_NM, APV_DATE, APV_STT_DATE, APV_FIN_DATE, APV_BUDGET, APV_PHONE, APV_POLICY_SQ, APV_FILE, APV_RFILE);
+		apvDAO.write(STF_ID, APV_NM, APV_DATE, APV_STT_DATE, APV_FIN_DATE, APV_BUDGET, APV_PHONE, APV_POLICY_SQ);
+		System.out.println(APV_FILE);
+		System.out.println(APV_RFILE);
+		
+		apvDAO.file_write(APV_FILE, APV_RFILE);
 		request.getSession().setAttribute("messageType", "���� �޽���");
 		request.getSession().setAttribute("messageContent", "���������� �Խù��� �ۼ��Ͽ����ϴ�.");
 		response.sendRedirect("apvView.jsp");
