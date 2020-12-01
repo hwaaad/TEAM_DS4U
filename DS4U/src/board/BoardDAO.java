@@ -33,7 +33,7 @@ public class BoardDAO {
             pstmt.setString(3, BOARD_NM);
             pstmt.setString(4, BOARD_TXT);
             pstmt.setString(5, BOARD_FILE);
-            pstmt.setString(6, BOARD_RFILE);       
+            pstmt.setString(6, BOARD_RFILE);
             return pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
