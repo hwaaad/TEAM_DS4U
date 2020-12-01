@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="stf.StfDTO" %>
 <%@ page import="stf.StfDAO" %>
-<%@ page import="apv.ApvDTO" %>
-<%@ page import="apv.ApvDAO" %>
 <%@ include file="head.jsp" %>
 <!DOCTYPE html>
 <html>
 <%
-	String APV_SQ=null;
 	String STF_ID = null;
 	if (session.getAttribute("STF_ID") != null) {
 		STF_ID = (String) session.getAttribute("STF_ID");
@@ -26,7 +23,6 @@
 		return;
 	}
 	StfDTO stf = new StfDAO().getUser(STF_ID);
-	ApvDTO apv = new ApvDAO().getApv(APV_SQ);
 %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -134,22 +130,20 @@
 						<td><textarea class="form-control" cols="100" name="APV_BUDGET" id="APV_BUDGET" maxlength="15" placeholder="소요 예산(원)을 입력하세요."></textarea></td>					
 					</tr>					
 					<tr>
-						<td style="width: 130px;"><h5>6. 담당자</h5></td>
-						<td><h5><%=stf.getSTF_NM() %></h5>
-						<input type="hidden" name="STF_NM" value="<%=stf.getSTF_NM()%>">	
+						<td style="width: 130px; text-align: left;"><h5>6. 아이디</h5></td>
+						<td><h5 style ="text-align: center;"><%= stf.getSTF_ID() %></h5>
 						<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>"></td>						
 					</tr>
 					<tr>
 						<td style="width: 130px; text-align: left;"><h5>7. 연락처</h5></td>
-						<td><h5><%=stf.getSTF_PH() %></h5>
-						<input type="hidden" name="APV_PHONE" value="<%=stf.getSTF_PH() %>"></td>													
+						<td><textarea class="form-control" cols="100" name="APV_PHONE" id="APV_PHONE" maxlength="30" placeholder="연락처를 입력하세요."></textarea></td>													
 					</tr>
 					<tr>
 						<td style="width: 130px; text-align: left;"><h5>8. 사업방침번호</h5></td>
 						<td><textarea class="form-control" cols="100" name="APV_POLICY_SQ" id="APV_POLICY_SQ" maxlength="30" placeholder="사업방침번호를 입력하세요."></textarea></td>									
 					</tr>
 					<tr>
-						<td style="width: 130px;"><h5>9. 파일 첨부</h5></td>
+						<td style="width: 130px; text-align: left;"><h5>9. 사업방침 첨부파일</h5></td>
 						<td colspan="2">
 							<div id="uploadArea" class="floatleft">
 								<span>파일을 업로드하세요.</span>

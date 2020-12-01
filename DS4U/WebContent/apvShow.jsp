@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="apv.ApvDAO" %>
 <%@ page import="apv.ApvDTO" %>
+<%@ include file="/head.jsp" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="javax.sql.DataSource" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.Context" %>
-<%@ include file="/head.jsp" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <%
-	String STF_NM = null;
 	String STF_ID = null;
 	if (session.getAttribute("STF_ID") != null) {
 		STF_ID = (String) session.getAttribute("STF_ID");
@@ -44,6 +43,7 @@
 	
 	ApvDAO apvDAO = new ApvDAO();
 	ApvDTO apv = apvDAO.getApv(APV_SQ);
+	String APV_FILE = null;
 %>
 
 <head>
@@ -98,48 +98,7 @@
 							</tr>
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업담당자</h5></td>
-								<td>
-									<% 
-								
-										Connection conn = null;
-						    			PreparedStatement pstmt = null;
-						    			ResultSet rs = null;
-						    			DataSource dataSource;
-						    			InitialContext initContext = new InitialContext();
-										Context envContext = (Context) initContext.lookup("java:/comp/env");
-										dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
-						    			try{
-						    		
-						    					conn = dataSource.getConnection();
-						    					String SQL = "SELECT STF_NM FROM STF WHERE STF_ID = ?";
-					           					pstmt = conn.prepareStatement(SQL);
-					           					pstmt.setString(1, apv.getSTF_ID());
-					           					rs = pstmt.executeQuery();
-					           		
-					           	 			while (rs.next()) {
-						            	
-					           	 				STF_NM = rs.getString("STF_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
-						            	
-						            	
-						           					 	%>
-						         				  <%= STF_NM %>
-						            					<%
-						          				  } 									
-						  				  	}catch (Exception e) {
-						   			         e.printStackTrace();
-						   				     } finally {
-						        				try {
-						        						if (rs != null) rs.close();
-						        						if (pstmt != null) pstmt.close();
-						        						if (conn != null) conn.close();
-						        					} catch (Exception e) {
-						        							e.printStackTrace();
-						        							}       	
-					            
-						    					   	 	}
-									 %>
-						
-								</td>
+								<td colspan="2"><h5><%= apv.getSTF_ID() %></h5></td>
 							</tr>
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>연락처</h5></td>
@@ -150,8 +109,52 @@
 								<td colspan="2"><h5><%= apv.getAPV_POLICY_SQ() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>첨부파일</h5></td>
-								<td colspan="2"><a href="apvDownload.jsp?APV_SQ=<%= apv.getAPV_SQ() %>"><%= apv.getAPV_FILE() %></a></td>
+								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업방침<br>첨부파일</h5></td>
+								<td colspan="2">
+								<a href="apvDownload.jsp?APV_FILE_SQ=<%= apv.getAPV_SQ() %>">
+								</a>
+								<% 
+								
+								Connection conn = null;
+						    	PreparedStatement pstmt = null;
+						    	ResultSet rs = null;
+						    	DataSource dataSource;
+						    	InitialContext initContext = new InitialContext();
+								Context envContext = (Context) initContext.lookup("java:/comp/env");
+								dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
+						    	try{
+						    		
+						    		conn = dataSource.getConnection();
+						    		String SQL = "SELECT APV_FILE_SQ, APV_FILE, APV_UPLOAD_TIME FROM APV_FILE WHERE APV_SQ = ?";
+					           		pstmt = conn.prepareStatement(SQL);
+					           		pstmt.setInt(1, apv.getAPV_SQ());
+					           		rs = pstmt.executeQuery();
+					           		int i=0;
+					           	 	while (rs.next()) {
+						            	
+					           	 		APV_FILE = rs.getString("APV_FILE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+						            	int APV_FILE_SQ = rs.getInt("APV_FILE_SQ");
+						            	String APV_UPLOAD_TIME = rs.getString("APV_UPLOAD_TIME").substring(0, 11);
+						            			%><a href="apvDownload.jsp?APV_FILE_SQ=<%= APV_FILE_SQ %>">
+								
+						           파일번호 <%= ++i %> : <%= APV_FILE %> (등록 날짜 : <%= APV_UPLOAD_TIME %>)</a><br>
+						            	<%
+						            } 									
+						    	}catch (Exception e) {
+						            e.printStackTrace();
+						        } finally {
+						        	try {
+						        		if (rs != null) rs.close();
+						        		if (pstmt != null) pstmt.close();
+						        		if (conn != null) conn.close();
+						        	} catch (Exception e) {
+						        		e.printStackTrace();
+						        	}       	
+					            
+						        }
+						 %>
+								
+								</td>
 							</tr>
 						</thead>
 						

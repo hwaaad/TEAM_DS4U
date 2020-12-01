@@ -14,20 +14,20 @@
 <body>
     <%
     	request.setCharacterEncoding("UTF-8");
-    	String APV_SQ = request.getParameter("APV_SQ");
-    	if (APV_SQ == null || APV_SQ.equals("")) {
+    	String APV_FILE_SQ = request.getParameter("APV_FILE_SQ");
+    	if (APV_FILE_SQ == null || APV_FILE_SQ.equals("")) {
     		session.setAttribute("messageType", "오류 메시지");
     		session.setAttribute("messageContent", "접근할 수 없습니다.");
     		response.sendRedirect("index.jsp");
     		return;	
     	}
     	String root = request.getSession().getServletContext().getRealPath("/");
-    	String savePath = root + "upload2";
+    	String savePath = root + "upload7";
     	String fileName = "";
     	String realFile = "";
     	ApvDAO apvDAO = new ApvDAO();
-    	fileName = apvDAO.getFile(APV_SQ);
-    	realFile = apvDAO.getRealFile(APV_SQ);
+    	fileName = apvDAO.getFile(APV_FILE_SQ);
+    	realFile = apvDAO.getRealFile(APV_FILE_SQ);
     	if (fileName.equals("") || realFile.equals("")) {
     		session.setAttribute("messageType", "오류 메시지");
     		session.setAttribute("messageContent", "접근할 수 없습니다.");
