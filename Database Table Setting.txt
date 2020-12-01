@@ -74,6 +74,16 @@ create table REQ(
    PRIMARY KEY(REQ_SQ)
 );
 
+[TABLE] REQ - 보안성 검토 의뢰 첨부파일
+create table REQ_FILE(
+	REQ_FILE_SQ INT,
+	REQ_SQ int,
+	REQ_FILE VARCHAR(100),
+	REQ_RFILE VARCHAR(100),
+	REQ_UPLOAD_TIME VARCHAR(64),
+	PRIMARY KEY (REQ_FILE_SQ)
+);
+
 [TABLE] REQ_REC - 보안성 검토 의뢰
 create table REQ_REC(
    STF_ID VARCHAR(20),
