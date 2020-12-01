@@ -111,8 +111,6 @@
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업방침<br>첨부파일</h5></td>
 								<td colspan="2">
-								<a href="apvDownload.jsp?APV_FILE_SQ=<%= apv.getAPV_SQ() %>">
-								</a>
 								<% 
 								
 								Connection conn = null;
