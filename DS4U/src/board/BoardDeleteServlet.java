@@ -23,16 +23,16 @@ public class BoardDeleteServlet extends HttpServlet {
 		String STF_ID = (String) session.getAttribute("STF_ID");
 		String BOARD_SQ = request.getParameter("BOARD_SQ");
 		if (BOARD_SQ == null || BOARD_SQ.equals("")) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "Á¢±ÙÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType", "ì˜¤ë¥˜ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "ì ‘ê·¼í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 			response.sendRedirect("index.jsp");
 			return;
 		}
 		BoardDAO boardDAO = new BoardDAO();
 		BoardDTO board = boardDAO.getBoard(BOARD_SQ);
 		if (!STF_ID.equals(board.getSTF_ID())) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "Á¢±ÙÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType", "ì˜¤ë¥˜ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "ì ‘ê·¼í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 			response.sendRedirect("index.jsp");
 			return;
 		}
@@ -40,8 +40,8 @@ public class BoardDeleteServlet extends HttpServlet {
 		String prev = boardDAO.getRealFile(BOARD_SQ);
 		int result = boardDAO.delete(BOARD_SQ);
 		if (result == -1) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "Á¢±ÙÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType", "ì˜¤ë¥˜ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "ì ‘ê·¼í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 			response.sendRedirect("index.jsp");
 			return;
 		} else {
@@ -49,8 +49,8 @@ public class BoardDeleteServlet extends HttpServlet {
 			if (prevFile.exists()) {
 				prevFile.delete();
 			}
-			request.getSession().setAttribute("messageType", "¼º°ø ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "»èÁ¦¿¡ ¼º°øÇß½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType", "ì„±ê³µ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "ì‚­ì œì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤.");
 			response.sendRedirect("boardView.jsp");
 		}
 		

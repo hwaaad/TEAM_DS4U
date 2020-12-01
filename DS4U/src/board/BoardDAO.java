@@ -258,21 +258,22 @@ public class BoardDAO {
         return -1;      // DB 오류       
 	}
     
-    public int reply(String STF_ID, String BOARD_NM, String BOARD_TXT, String BOARD_FILE, String BOARD_RFILE, BoardDTO parent) {
+    public int reply(String STF_ID, String BOARD_TYPE, String BOARD_NM, String BOARD_TXT, String BOARD_FILE, String BOARD_RFILE, BoardDTO parent) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
-        String SQL = "INSERT INTO BOARD SELECT ?, IFNULL((SELECT MAX(BOARD_SQ) + 1 FROM BOARD), 1), ?, ?, now(), 0, ?, ?, ?, ?, ?, 1";
+        String SQL = "INSERT INTO BOARD SELECT ?, IFNULL((SELECT MAX(BOARD_SQ) + 1 FROM BOARD), 1), ?, ?, ?, now(), 0, ?, ?, ?, ?, ?, 1";
         try {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, STF_ID);
-            pstmt.setString(2, BOARD_NM);
-            pstmt.setString(3, BOARD_TXT);
-            pstmt.setString(4, BOARD_FILE);
-            pstmt.setString(5, BOARD_RFILE);
-            pstmt.setInt(6, parent.getBOARD_GROUP());
-            pstmt.setInt(7, parent.getBOARD_SEQUENCE() + 1);
-            pstmt.setInt(8, parent.getBOARD_LEVEL() + 1);
+            pstmt.setString(2, BOARD_TYPE);
+            pstmt.setString(3, BOARD_NM);
+            pstmt.setString(4, BOARD_TXT);
+            pstmt.setString(5, BOARD_FILE);
+            pstmt.setString(6, BOARD_RFILE);
+            pstmt.setInt(7, parent.getBOARD_GROUP());
+            pstmt.setInt(8, parent.getBOARD_SEQUENCE() + 1);
+            pstmt.setInt(9, parent.getBOARD_LEVEL() + 1);
             return pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -386,21 +387,21 @@ public class BoardDAO {
             searchList = new ArrayList<BoardDTO>();
             while (rs.next()) {             	
             	BoardDTO board = new BoardDTO();
-            	board.setSTF_ID(rs.getString("STF_ID"));
-            	board.setBOARD_SQ(rs.getInt("BOARD_SQ"));
-            	board.setBOARD_TYPE(rs.getString("BOARD_TYPE"));
-            	board.setBOARD_NM(rs.getString("BOARD_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	board.setBOARD_TXT(rs.getString("BOARD_TXT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-            	board.setBOARD_DT(rs.getString("BOARD_DT").substring(0, 11));
-            	board.setBOARDHIT(rs.getInt("BOARDHIT"));
-            	board.setBOARD_FILE(rs.getString("BOARD_FILE"));
-            	board.setBOARD_RFILE(rs.getString("BOARD_RFILE"));
-            	board.setBOARD_GROUP(rs.getInt("BOARD_GROUP"));
-            	board.setBOARD_SEQUENCE(rs.getInt("BOARD_SEQUENCE"));
-            	board.setBOARD_LEVEL(rs.getInt("BOARD_LEVEL"));
-            	board.setBOARD_AVAILABLE(rs.getInt("BOARD_AVAILABLE"));
-            	searchList.add(board);
-        	}            
+                board.setSTF_ID(rs.getString("STF_ID"));
+                board.setBOARD_SQ(rs.getInt("BOARD_SQ"));
+                board.setBOARD_TYPE(rs.getString("BOARD_TYPE"));
+                board.setBOARD_NM(rs.getString("BOARD_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+                board.setBOARD_TXT(rs.getString("BOARD_TXT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+                board.setBOARD_DT(rs.getString("BOARD_DT").substring(0, 11));
+                board.setBOARDHIT(rs.getInt("BOARDHIT"));
+                board.setBOARD_FILE(rs.getString("BOARD_FILE"));
+                board.setBOARD_RFILE(rs.getString("BOARD_RFILE"));
+                board.setBOARD_GROUP(rs.getInt("BOARD_GROUP"));
+                board.setBOARD_SEQUENCE(rs.getInt("BOARD_SEQUENCE"));
+                board.setBOARD_LEVEL(rs.getInt("BOARD_LEVEL"));
+                board.setBOARD_AVAILABLE(rs.getInt("BOARD_AVAILABLE"));                
+            	searchList.add(board);        
+            }            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
