@@ -168,4 +168,13 @@
     <servlet-name>ApvUpdateServlet</servlet-name>
     <url-pattern>/apvUpdate</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ReqUpdateServlet</servlet-name>
+    <servlet-class>req.ReqUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReqUpdateServlet</servlet-name>
+    <url-pattern>/reqUpdate</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

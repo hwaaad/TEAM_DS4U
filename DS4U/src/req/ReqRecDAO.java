@@ -149,4 +149,41 @@ public class ReqRecDAO {
 	        }
 	        return "";          	
 	    }
+	    public ArrayList<ReqRecDTO> getList(String REQ_SQ) {
+	    	ArrayList<ReqRecDTO> reqrecList = null;
+	    	Connection conn = null;
+	    	PreparedStatement pstmt = null;
+	    	ResultSet rs = null;
+	    	String SQL = "SELECT * FROM REQ_REC WHERE REQ_SQ = ?";
+	    	try {
+	    		conn = dataSource.getConnection();
+	    		pstmt = conn.prepareStatement(SQL);
+	    		pstmt.setInt(1, Integer.parseInt(REQ_SQ));
+	    		rs = pstmt.executeQuery();
+	    		reqrecList = new ArrayList<ReqRecDTO>();
+	    		while (rs.next()) {
+	    			ReqRecDTO reqrec = new ReqRecDTO();
+	    			reqrec.setSTF_ID(rs.getString("STF_ID"));
+	    			reqrec.setREQ_SQ(rs.getInt("REQ_SQ"));
+	    			reqrec.setREQ_REC_SQ(rs.getInt("REQ_REC_SQ"));
+	    			reqrec.setAPV_NM(rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+	    			reqrec.setREQ_REC_TXT(rs.getString("REQ_REC_TXT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+	    			reqrec.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+	    			reqrec.setREQ_REC_FILE(rs.getString("REQ_REC_FILE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+	    			reqrec.setREQ_REC_RFILE(rs.getString("REQ_REC_RFILE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+	    			reqrecList.add(reqrec);
+	    		}
+	    	} catch(Exception e) {
+	    		e.printStackTrace();
+	    	} finally {
+	    		try {
+	    			if (rs != null) rs.close();
+	    			if (pstmt != null) pstmt.close();
+	    			if (conn != null) conn.close();
+	    		} catch (Exception e) {
+	    			e.printStackTrace();
+	    		}
+	    	}
+	    	return reqrecList;
+	    }
 }

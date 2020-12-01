@@ -135,18 +135,18 @@
 						<input type="hidden" name="APV_DATE" value="<%=apv.getAPV_DATE() %>"></td>	
 					</tr>				
 					<tr>
-						<td style="width: 130px; text-align: left;"><h5>5. 담당자</h5></td>
+						<td style="width: 130px; text-align: left;"><h5>4. 담당자</h5></td>
 						<td><h5><%= stf.getSTF_NM() %></h5>
 						<input type="hidden" name="STF_NM" value="<%= stf.getSTF_NM() %>">	
 						<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>"></td>						
 					</tr>
 					<tr>
-						<td style="width: 130px;text-align: left;"><h5>6. 연락처</h5></td>
+						<td style="width: 130px;text-align: left;"><h5>5. 연락처</h5></td>
 						<td><h5><%=stf.getSTF_PH() %></h5>
 						<input type="hidden" name="APV_PHONE" value="<%=stf.getSTF_PH() %>"></td>													
 					</tr>
 					<tr>
-						<td style="width: 130px;"><h5>6. 파일 첨부</h5></td>
+						<td style="width: 130px; text-align: left;"><h5>6. 보안성 검토의뢰 <br> &nbsp&nbsp&nbsp&nbsp&nbsp파일 첨부</h5></td>
 						<td colspan="2">
 							<div id="uploadArea" class="floatleft">
 								<span>파일을 업로드하세요.</span>

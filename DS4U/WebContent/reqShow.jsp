@@ -205,6 +205,16 @@
 									%>
 									<a href="reqView.jsp" class="btn btn-primary">목록</a>
 									<% } %>
+									
+									<%
+								if (STF_ID.equals(req.getSTF_ID())) {								
+							%>
+							
+								<a href="reqUpdate.jsp?REQ_SQ=<%= req.getREQ_SQ() %>" class="btn">수정</a>
+								<a href="reqDelete?REQ_SQ=<%= req.getREQ_SQ() %>" class="btn" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
+							<%		
+								}
+							%>
 								</td>
 							</tr>			
 						</tbody>

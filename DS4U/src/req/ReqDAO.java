@@ -67,7 +67,64 @@ public class ReqDAO {
         }
         
         
-        return -1;      // DB 占쏙옙占쏙옙       
+        return -1;      // DB �뜝�룞�삕�뜝�룞�삕       
+	}
+    
+    public int update(int APV_SQ, String APV_NM, String APV_OBJ, String APV_CONT, 
+    		String APV_DATE, String REQ_SQ) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+        String SQL = "UPDATE REQ SET APV_SQ =?, APV_NM= ?, APV_OBJ= ?, APV_CONT =?, APV_DATE =?, REQ_DATE = NOW() WHERE REQ_SQ = ?";
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+         
+            pstmt.setInt(1, APV_SQ);
+            pstmt.setString(2, APV_NM);
+            pstmt.setString(3, APV_OBJ);
+            pstmt.setString(4, APV_CONT);
+            pstmt.setString(5, APV_DATE);
+           pstmt.setInt(6, Integer.parseInt(REQ_SQ));
+   
+            
+            return pstmt.executeUpdate();
+            
+ 
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return -1;      // DB �삤瑜�       
+	}
+    
+    public int delete(String REQ_SQ) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+        String SQL = "UPDATE REQ SET REQ_AVAILABLE = 0 WHERE REQ_SQ = ?";
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, Integer.parseInt(REQ_SQ));
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return -1;      // DB �삤瑜�       
 	}
    
     
@@ -102,7 +159,7 @@ public class ReqDAO {
         }
         
         
-        return -1;      // DB 占쏙옙占쏙옙       
+        return -1;      // DB �뜝�룞�삕�뜝�룞�삕       
 	}
     public int update_req_sub_date(int REQ_SQ) {
     	Connection conn = null;
@@ -135,7 +192,7 @@ public class ReqDAO {
         }
         
         
-        return -1;      // DB 占쏙옙占쏙옙       
+        return -1;      // DB �뜝�룞�삕�뜝�룞�삕       
 	}
     
     public int update_apv_date(int APV_SQ) {
@@ -182,7 +239,7 @@ public class ReqDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, REQ_SQ);
-            rs = pstmt.executeQuery(); // 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙
+            rs = pstmt.executeQuery(); // �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕
             if (rs.next()) {
             	req.setSTF_ID(rs.getString("STF_ID"));
             	req.setREQ_SQ(rs.getInt("REQ_SQ"));
@@ -230,7 +287,7 @@ public class ReqDAO {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
             pstmt.setInt(2, (Integer.parseInt(pageNumber) - 1) * 10);
-            rs = pstmt.executeQuery(); // 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙
+            rs = pstmt.executeQuery(); // �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕
             reqList = new ArrayList<ReqDTO>();
             while (rs.next()) {
             	ReqDTO req = new ReqDTO();
@@ -280,7 +337,7 @@ public class ReqDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, Integer.parseInt(pageNumber) * 10);
-            rs = pstmt.executeQuery(); // 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙
+            rs = pstmt.executeQuery(); // �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕
             if (rs.next()) {
             	return true;
         	}
@@ -307,7 +364,7 @@ public class ReqDAO {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, (Integer.parseInt(pageNumber) - 1)* 10);
-            rs = pstmt.executeQuery(); // 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙
+            rs = pstmt.executeQuery(); // �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕�뜝�룞�삕
             if (rs.next()) {
             	return rs.getInt(1) / 10;
         	}

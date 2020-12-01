@@ -5,6 +5,13 @@
 <%@ page import="req.ReqDTO" %>
 <%@ include file="/head.jsp" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <%
@@ -33,6 +40,7 @@
 	ReqDTO req = reqDAO.getReq(REQ_SQ);
 	ReqRecDAO reqrecDAO = new ReqRecDAO();
 	ReqRecDTO reqrec = reqrecDAO.getReqRec(REQ_SQ);
+	ArrayList<ReqRecDTO> reqrecList = new ReqRecDAO().getList(REQ_SQ);
 %>
 
 <head>
@@ -60,38 +68,50 @@
 			<div id="boardInner">
 				<div id="boardDetail">
 				<div class="container">
+					
 					<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
 						<thead>
+							<%
+				for (int i=0; i<reqrecList.size(); i++) {
+					ReqRecDTO reqrec2 = reqrecList.get(i);
+					
+			%>
 							<tr>
 								<th colspan="2"><h4></h4></th>
 							</tr>
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px; "><h5>사업명</h5></td>
-								<td style="width: 800px;" colspan="2"><h5><%= reqrec.getAPV_NM() %></h5></td>
+								<td style="width: 800px;" colspan="2"><h5><%= reqrec2.getAPV_NM() %></h5></td>
 							</tr>				
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>검토 내용</h5></td>
-								<td colspan="2"><h5><%= reqrec.getREQ_REC_TXT() %></h5></td>
+								<td colspan="2"><h5><%= reqrec2.getREQ_REC_TXT() %></h5></td>
 							</tr>
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>회신 담당자</h5></td>
-								<td colspan="2"><h5><%= reqrec.getSTF_ID() %></h5></td>
+								<td colspan="2"><h5><%= reqrec2.getSTF_ID() %></h5></td>
+							</tr>
+							<tr>
+								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>회신 날짜</h5></td>
+								<td colspan="2"><h5><%= reqrec2.getREQ_REC_DATE() %></h5></td>
 							</tr>
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>첨부파일</h5></td>
-								<td colspan="2"><a href="reqrecDownload.jsp?REQ_SQ=<%= reqrec.getREQ_SQ() %>"><%= reqrec.getREQ_REC_FILE() %></a></td>
+								<td colspan="2"><a href="reqrecDownload.jsp?REQ_REC_SQ=<%= reqrec2.getREQ_REC_SQ() %>"><%= reqrec2.getREQ_REC_FILE() %></a></td>
 							</tr>
+							<% }%>
 						</thead>
 						<tbody>
 							<tr>
 								<td colspan="5" style="text-align : right;">
+									<a href="reqReciveWrite.jsp?REQ_SQ=<%= reqrec.getREQ_SQ() %>" class="btn btn-primary">회신 추가하기</a>
 									<a href="reqView.jsp" class="btn btn-primary">목록</a>
 			
 								</td>
 							</tr>			
 						</tbody>
-					
 					</table>
+					
 				</div>	
 		      
 </body>
