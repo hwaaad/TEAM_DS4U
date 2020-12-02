@@ -1,5 +1,6 @@
 package req;
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,8 +24,8 @@ public class ReqWriteServlet extends HttpServlet {
 		try {
 			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 		} catch (Exception e) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Þ½ÃÁö");
-			request.getSession().setAttribute("messageContent", "ÆÄÀÏ Å©±â´Â 10MB¸¦ ÃÊ°úÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType", "ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½");
+			request.getSession().setAttribute("messageContent", "ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ 10MBï¿½ï¿½ ï¿½Ê°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			response.sendRedirect("index.jsp");
 			return;
 		}
@@ -33,8 +34,8 @@ public class ReqWriteServlet extends HttpServlet {
 		System.out.println(session.getAttribute("STF_ID"));	
 		System.out.println(STF_ID);
 		if(!STF_ID.equals((String) session.getAttribute("STF_ID"))) {
-			session.setAttribute("messageType", "¿À·ù ¸Þ¼¼Áö");
-			session.setAttribute("messageContent", "Á¢±ÙÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			session.setAttribute("messageType", "ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½");
+			session.setAttribute("messageContent", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			response.sendRedirect("index.jsp");
 			return;
 		}
@@ -47,21 +48,29 @@ public class ReqWriteServlet extends HttpServlet {
 		String APV_DATE = multi.getParameter("APV_DATE");
 		if (APV_NM == null || APV_NM.equals("") || APV_OBJ == null || APV_OBJ.equals("")
 				|| APV_CONT == null || APV_CONT.equals("") || APV_DATE == null || APV_DATE.equals("")) {
-			session.setAttribute("messageType", "¿À·ù ¸Þ½ÃÁö");
-			session.setAttribute("messageContent", "¾ç½ÄÀ» ¸ðµÎ ÀÔ·ÂÇÏ¼¼¿ä.");
+			session.setAttribute("messageType", "ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½");
+			session.setAttribute("messageContent", "ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
 			response.sendRedirect("reqWrite.jsp");
 			return;	
 		}
 		
 		String REQ_REC_DATE = "";
 		String REQ_SUB_DATE = "";
+		String REQ_FILE = "";
+		String REQ_RFILE = "";
+		File file = multi.getFile("REQ_FILE");
+		if (file != null) {
+			REQ_FILE = multi.getOriginalFileName("REQ_FILE");
+			REQ_RFILE = file.getName();
+		}
+		
 		
 		ReqDAO reqDAO = new ReqDAO();
 		reqDAO.write(STF_ID,APV_SQ, APV_NM, APV_OBJ, APV_CONT, APV_DATE,  REQ_REC_DATE, REQ_SUB_DATE);
 		reqDAO.update_apv_date(APV_SQ);
-		
-		request.getSession().setAttribute("messageType", "¼º°ø ¸Þ¼¼Áö");
-		request.getSession().setAttribute("messageContent", "¼º°øÀûÀ¸·Î °Ô½Ã¹°À» ÀÛ¼ºÇÏ¿´½À´Ï´Ù.");
+		reqDAO.file_write(REQ_FILE, REQ_RFILE);
+		request.getSession().setAttribute("messageType", "ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½");
+		request.getSession().setAttribute("messageContent", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		response.sendRedirect("reqView.jsp");
 	}
 

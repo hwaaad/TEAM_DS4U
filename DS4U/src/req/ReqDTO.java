@@ -14,7 +14,36 @@ public class ReqDTO {
 	int REQ_GROUP;
 	int REQ_SEQUENCE;
 	int REQ_STATE;
+	int REQ_FILE_SQ;
+	String REQ_FILE;
+	String REQ_RFILE;
+	String REQ_UPLOAD_TIME;
 	
+	
+	public int getREQ_FILE_SQ() {
+		return REQ_FILE_SQ;
+	}
+	public void setREQ_FILE_SQ(int rEQ_FILE_SQ) {
+		REQ_FILE_SQ = rEQ_FILE_SQ;
+	}
+	public String getREQ_FILE() {
+		return REQ_FILE;
+	}
+	public void setREQ_FILE(String rEQ_FILE) {
+		REQ_FILE = rEQ_FILE;
+	}
+	public String getREQ_RFILE() {
+		return REQ_RFILE;
+	}
+	public void setREQ_RFILE(String rEQ_RFILE) {
+		REQ_RFILE = rEQ_RFILE;
+	}
+	public String getREQ_UPLOAD_TIME() {
+		return REQ_UPLOAD_TIME;
+	}
+	public void setREQ_UPLOAD_TIME(String rEQ_UPLOAD_TIME) {
+		REQ_UPLOAD_TIME = rEQ_UPLOAD_TIME;
+	}
 	public int getREQ_STATE() {
 		return REQ_STATE;
 	}

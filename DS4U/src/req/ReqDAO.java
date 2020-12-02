@@ -381,4 +381,107 @@ public class ReqDAO {
         }
         return 0;          	
     }
+    public int file_write(String REQ_FILE, String REQ_RFILE) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+        String SQL = "INSERT INTO REQ_FILE SELECT IFNULL((SELECT MAX(REQ_FILE_SQ) + 1 FROM REQ_FILE), 1), IFNULL((SELECT MAX(REQ_SQ) FROM REQ), 1), ?, ?, now()";
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, REQ_FILE);
+            pstmt.setString(2, REQ_RFILE);
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return -1;      // DB ����       
+	}
+    public int file_update(String REQ_FILE, String REQ_RFILE, String REQ_SQ) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	String SQL = "INSERT INTO REQ_FILE SELECT IFNULL((SELECT MAX(REQ_FILE_SQ) + 1 FROM REQ_FILE), 1), ?, ?, ?, now()";
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+          
+            pstmt.setInt(1, Integer.parseInt(REQ_SQ));
+            pstmt.setString(2, REQ_FILE);
+            pstmt.setString(3, REQ_RFILE);
+            
+            return pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return -1;      // DB 오류       
+	}
+    
+    public String getFile(String REQ_FILE_SQ) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+        String SQL = "SELECT REQ_FILE FROM REQ_FILE WHERE REQ_FILE_SQ = ?";
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, REQ_FILE_SQ);
+            rs = pstmt.executeQuery(); // ���� ����� ����
+            if (rs.next()) {
+            	return rs.getString("REQ_FILE");
+        	}
+            return "";
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (rs != null) rs.close();
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return "";          	
+    }
+    
+    public String getRealFile(String REQ_FILE_SQ) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+        String SQL = "SELECT REQ_RFILE FROM REQ_FILE WHERE REQ_FILE_SQ = ?";
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, REQ_FILE_SQ);
+            rs = pstmt.executeQuery(); // ���� ����� ����
+            if (rs.next()) {
+            	return rs.getString("REQ_RFILE");
+        	}
+            return "";
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (rs != null) rs.close();
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return "";          	
+    }
 }
