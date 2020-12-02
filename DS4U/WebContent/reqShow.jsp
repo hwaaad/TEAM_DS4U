@@ -19,6 +19,7 @@
 	String STF_ID = null;
 	String STF_NM = null;
 	String STF_PH = null;
+	String REQ_FILE = null;
 	if (session.getAttribute("STF_ID") != null) {
 		STF_ID = (String) session.getAttribute("STF_ID");
 	}
@@ -181,6 +182,53 @@
 						
 								</td>
 							</tr>
+							
+							<tr>
+								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>보안성 검토의뢰 <br> 파일 첨부</h5></td>
+								<td colspan="2">
+								<% 
+								
+								conn = null;
+						    	pstmt = null;
+						    	rs = null;
+						    	initContext = new InitialContext();
+								envContext = (Context) initContext.lookup("java:/comp/env");
+								dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
+						    	try{
+						    		
+						    		conn = dataSource.getConnection();
+						    		String SQL = "SELECT REQ_FILE_SQ, REQ_FILE, REQ_UPLOAD_TIME FROM REQ_FILE WHERE REQ_SQ = ?";
+					           		pstmt = conn.prepareStatement(SQL);
+					           		pstmt.setInt(1, req.getREQ_SQ());
+					           		rs = pstmt.executeQuery();
+					           		int i=0;
+					           	 	while (rs.next()) {
+						            	
+					           	 		REQ_FILE = rs.getString("REQ_FILE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+						            	int REQ_FILE_SQ = rs.getInt("REQ_FILE_SQ");
+						            	String REQ_UPLOAD_TIME = rs.getString("REQ_UPLOAD_TIME").substring(0, 11);
+						            			%><a href="reqDownload.jsp?REQ_FILE_SQ=<%= REQ_FILE_SQ %>">
+								
+						           파일번호 <%= ++i %> : <%= REQ_FILE %> (등록 날짜 : <%= REQ_UPLOAD_TIME %>)</a><br>
+						            	<%
+						            } 									
+						    	}catch (Exception e) {
+						            e.printStackTrace();
+						        } finally {
+						        	try {
+						        		if (rs != null) rs.close();
+						        		if (pstmt != null) pstmt.close();
+						        		if (conn != null) conn.close();
+						        	} catch (Exception e) {
+						        		e.printStackTrace();
+						        	}       	
+					            
+						        }
+						 %>
+
+								</td>
+							</tr>
+							
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>검토 요청일</h5></td>
 								<td colspan="2"><h5><%= req.getREQ_DATE() %></h5></td>

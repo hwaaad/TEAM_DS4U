@@ -150,7 +150,7 @@
 						<td colspan="2">
 							<div id="uploadArea" class="floatleft">
 								<span>파일을 업로드하세요.</span>
-								<input multiple="multiple" id="file" type="file" name="APV_FILE" class="file">
+								<input multiple="multiple" id="file" type="file" name="REQ_FILE" class="file">
 							</div>
 							<script type="text/javascript">
 								$(function(){
