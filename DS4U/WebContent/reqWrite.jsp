@@ -136,13 +136,13 @@
 					</tr>				
 					<tr>
 						<td style="width: 130px; text-align: left;"><h5>4. 담당자</h5></td>
-						<td><h5><%= stf.getSTF_NM() %></h5>
+						<td><h5 style="text-align : center;"><%= stf.getSTF_NM() %></h5>
 						<input type="hidden" name="STF_NM" value="<%= stf.getSTF_NM() %>">	
 						<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>"></td>						
 					</tr>
 					<tr>
 						<td style="width: 130px;text-align: left;"><h5>5. 연락처</h5></td>
-						<td><h5><%=stf.getSTF_PH() %></h5>
+						<td><h5 style="text-align: center;"><%=stf.getSTF_PH() %></h5>
 						<input type="hidden" name="APV_PHONE" value="<%=stf.getSTF_PH() %>"></td>													
 					</tr>
 					<tr>

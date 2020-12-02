@@ -108,8 +108,16 @@
 						<tbody>
 							<tr>
 								<td colspan="5" style="text-align : right;">
+								
 									<a href="reqReciveWrite.jsp?REQ_SQ=<%= reqrec.getREQ_SQ() %>" class="btn btn-primary">회신 추가하기</a>
+									<%
+									if(req.getREQ_STATE()==3){ %>
+									<a href="fin_reqView.jsp" class="btn btn-primary">목록</a>
+									<%
+									}else{
+									%>
 									<a href="reqView.jsp" class="btn btn-primary">목록</a>
+									<% } %>
 			
 								</td>
 							</tr>			
