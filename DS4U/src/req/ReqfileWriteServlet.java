@@ -26,8 +26,8 @@ public class ReqfileWriteServlet  extends HttpServlet {
 			try {
 				multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 			} catch (Exception e) {
-				request.getSession().setAttribute("messageType", "���� �޽���");
-				request.getSession().setAttribute("messageContent", "���� ũ��� 10MB�� �ʰ��� �� �����ϴ�.");
+				request.getSession().setAttribute("messageType", "오류 메시지");
+				request.getSession().setAttribute("messageContent","파일 크기는 10MB를 초과할 수 없습니다.");
 				response.sendRedirect("index.jsp");
 				return;
 			}
@@ -36,8 +36,8 @@ public class ReqfileWriteServlet  extends HttpServlet {
 			System.out.println(session.getAttribute("STF_ID"));	
 			System.out.println(STF_ID);
 			if(!STF_ID.equals((String) session.getAttribute("STF_ID"))) {
-				session.setAttribute("messageType", "���� �޼���");
-				session.setAttribute("messageContent", "������ �� �����ϴ�.");
+				session.setAttribute("messageType", "오류 메시지");
+				session.setAttribute("messageContent", "접근할 수 없습니다.");
 				response.sendRedirect("index.jsp");
 				return;
 			}
@@ -63,8 +63,8 @@ public class ReqfileWriteServlet  extends HttpServlet {
 			reqfDAO.write(STF_ID,REQ_SQ,APV_NM, REQF_FILE, REQF_RFILE);
 			ReqfileDTO reqf = null;
 			reqfDAO.update(reqf); 
-			request.getSession().setAttribute("messageType", "���� �޼���");
-			request.getSession().setAttribute("messageContent", "���������� �Խù��� �ۼ��Ͽ����ϴ�.");
+			request.getSession().setAttribute("messageType", "성공 메시지");
+			request.getSession().setAttribute("messageContent", "성공적으로 게시물을 작성하였습니다.");
 			response.sendRedirect("reqView.jsp");
 		}
 

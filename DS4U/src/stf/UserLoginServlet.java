@@ -17,31 +17,31 @@ public class UserLoginServlet extends HttpServlet {
 		String STF_ID = request.getParameter("STF_ID");
 		String STF_PW = request.getParameter("STF_PW");
 		if (STF_ID == null || STF_ID.equals("") || STF_PW == null || STF_PW.equals("")) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "¸ğµç ³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+			request.getSession().setAttribute("messageType","ì˜¤ë¥˜ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "ëª¨ë“  ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”.");
 			response.sendRedirect("login.jsp");
 			return;
 		}
 		int result = new StfDAO().login(STF_ID, STF_PW);
 		if (result == 1) {
 			request.getSession().setAttribute("STF_ID", STF_ID);
-			request.getSession().setAttribute("messageType", "¼º°ø ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "·Î±×ÀÎ¿¡ ¼º°øÇß½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType","ì„±ê³µ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "ë¡œê·¸ì¸ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤.");
 			response.sendRedirect("index.jsp");
 		}
 		else if (result == 2) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "ºñ¹Ğ¹øÈ£¸¦ ´Ù½Ã È®ÀÎÇÏ¼¼¿ä.");
+			request.getSession().setAttribute("messageType", "ì˜¤ë¥˜ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent",  "ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ í™•ì¸í•˜ì„¸ìš”.");
 			response.sendRedirect("login.jsp");
 		}
 		else if (result == 0) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "¾ÆÀÌµğ°¡ ¾ø½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType", "ì˜¤ë¥˜ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "ì•„ì´ë””ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			response.sendRedirect("login.jsp");
 		}
 		else if (result == -1) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "DB ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType","ì˜¤ë¥˜ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent",  "DB ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 			response.sendRedirect("login.jsp");
 		}
 	}

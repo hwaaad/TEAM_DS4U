@@ -50,7 +50,7 @@ public class ApvDAO {
         		e.printStackTrace();
         	}       	
         }
-        return -1;      // DB ����       
+        return -1;      // DB 오류      
 	}
     
     public int file_write(String APV_FILE, String APV_RFILE) {
@@ -73,7 +73,7 @@ public class ApvDAO {
         		e.printStackTrace();
         	}       	
         }
-        return -1;      // DB ����       
+        return -1;      //DB 오류         
 	}
     
     public int update(String APV_NM, String APV_DATE, String APV_STT_DATE, String APV_FIN_DATE, String APV_BUDGET,

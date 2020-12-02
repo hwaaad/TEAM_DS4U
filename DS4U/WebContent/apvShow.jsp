@@ -13,6 +13,7 @@
 <html>
 <%
 	String STF_ID = null;
+	String STF_NM = null;
 	if (session.getAttribute("STF_ID") != null) {
 		STF_ID = (String) session.getAttribute("STF_ID");
 	}
@@ -98,7 +99,47 @@
 							</tr>
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업담당자</h5></td>
-								<td colspan="2"><h5><%= apv.getSTF_ID() %></h5></td>
+								<td>
+									<% 
+										Connection conn = null;
+						    			PreparedStatement pstmt = null;
+						    			ResultSet rs = null;
+						    			DataSource dataSource;
+						    			InitialContext initContext = new InitialContext();
+										Context envContext = (Context) initContext.lookup("java:/comp/env");
+										dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
+						    			try{
+						    		
+						    					conn = dataSource.getConnection();
+						    					String SQL = "SELECT STF_NM FROM STF WHERE STF_ID = ?";
+					           					pstmt = conn.prepareStatement(SQL);
+					           					pstmt.setString(1, apv.getSTF_ID());
+					           					rs = pstmt.executeQuery();
+					           		
+					           	 			while (rs.next()) {
+						            	
+					           	 				STF_NM = rs.getString("STF_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+						            	
+						            	
+						           					 	%>
+						         				  <%= STF_NM %>
+						            					<%
+						          				  } 									
+						  				  	}catch (Exception e) {
+						   			         e.printStackTrace();
+						   				     } finally {
+						        				try {
+						        						if (rs != null) rs.close();
+						        						if (pstmt != null) pstmt.close();
+						        						if (conn != null) conn.close();
+						        					} catch (Exception e) {
+						        							e.printStackTrace();
+						        							}       	
+					            
+						    					   	 	}
+									 %>
+						
+								</td>
 							</tr>
 							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>연락처</h5></td>
@@ -113,13 +154,6 @@
 								<td colspan="2">
 								<% 
 								
-								Connection conn = null;
-						    	PreparedStatement pstmt = null;
-						    	ResultSet rs = null;
-						    	DataSource dataSource;
-						    	InitialContext initContext = new InitialContext();
-								Context envContext = (Context) initContext.lookup("java:/comp/env");
-								dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
 						    	try{
 						    		
 						    		conn = dataSource.getConnection();

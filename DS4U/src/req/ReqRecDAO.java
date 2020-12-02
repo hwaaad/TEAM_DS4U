@@ -21,11 +21,11 @@ public class ReqRecDAO {
 			e.printStackTrace();
 		}
 	}
-	public int write(String STF_ID, String REQ_SQ, String APV_NM, String REQ_REC_TXT, 
+	public int write(String STF_ID, String REQ_SQ, String APV_NM, String REQ_REC_TXT, String REQ_APPROVAL,
     		String REQ_REC_FILE, String REQ_REC_RFILE) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
-        String SQL = "INSERT INTO REQ_REC SELECT ?, ?, IFNULL((SELECT MAX(REQ_REC_SQ) + 1 FROM REQ_REC), 1),? , ?, now(), ?, ?";
+        String SQL = "INSERT INTO REQ_REC SELECT ?, ?, IFNULL((SELECT MAX(REQ_REC_SQ) + 1 FROM REQ_REC), 1),? , ?, ?, now(), ?, ?";
     
         try {
         	conn = dataSource.getConnection();
@@ -35,8 +35,9 @@ public class ReqRecDAO {
             pstmt.setString(2, REQ_SQ);
             pstmt.setString(3, APV_NM);
             pstmt.setString(4, REQ_REC_TXT);
-            pstmt.setString(5, REQ_REC_FILE);
-            pstmt.setString(6, REQ_REC_RFILE);
+            pstmt.setString(5, REQ_APPROVAL);
+            pstmt.setString(6, REQ_REC_FILE);
+            pstmt.setString(7, REQ_REC_RFILE);
         	return pstmt.executeUpdate();
         
         }  catch (Exception e) {
@@ -58,7 +59,7 @@ public class ReqRecDAO {
         }
         
         
-        return -1;      // DB ����       
+        return -1;      // DB 오류      
 	}
 	 public ReqRecDTO getReqRec(String REQ_SQ) {
 	    	ReqRecDTO req_rec = new ReqRecDTO();
@@ -70,13 +71,14 @@ public class ReqRecDAO {
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setString(1, REQ_SQ);
-	            rs = pstmt.executeQuery(); // ���� ����� ����
+	            rs = pstmt.executeQuery(); // 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙
 	            if (rs.next()) {
 	            	req_rec.setSTF_ID(rs.getString("STF_ID"));
 	            	req_rec.setREQ_SQ(rs.getInt("REQ_SQ"));
 	            	req_rec.setREQ_REC_SQ(rs.getInt("REQ_REC_SQ"));
 	            	req_rec.setAPV_NM(rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 	            	req_rec.setREQ_REC_TXT(rs.getString("REQ_REC_TXT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+	            	req_rec.setREQ_APPROVAL(rs.getString("REQ_APPROVAL").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 	            	req_rec.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11));
 	            	req_rec.setREQ_REC_FILE(rs.getString("REQ_REC_FILE"));
 	            	req_rec.setREQ_REC_RFILE(rs.getString("REQ_REC_RFILE"));
@@ -103,7 +105,7 @@ public class ReqRecDAO {
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setString(1, REQ_SQ);
-	            rs = pstmt.executeQuery(); // ���� ����� ����
+	            rs = pstmt.executeQuery(); // 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙
 	            if (rs.next()) {
 	            	return rs.getString("REQ_REC_FILE");
 	        	}
@@ -131,7 +133,7 @@ public class ReqRecDAO {
 	        	conn = dataSource.getConnection();
 	            pstmt = conn.prepareStatement(SQL);
 	            pstmt.setString(1, REQ_SQ);
-	            rs = pstmt.executeQuery(); // ���� ����� ����
+	            rs = pstmt.executeQuery(); // 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙
 	            if (rs.next()) {
 	            	return rs.getString("REQ_REC_RFILE");
 	        	}
@@ -168,6 +170,7 @@ public class ReqRecDAO {
 	    			reqrec.setREQ_REC_SQ(rs.getInt("REQ_REC_SQ"));
 	    			reqrec.setAPV_NM(rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 	    			reqrec.setREQ_REC_TXT(rs.getString("REQ_REC_TXT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+	    			reqrec.setREQ_APPROVAL(rs.getString("REQ_APPROVAL").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 	    			reqrec.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 	    			reqrec.setREQ_REC_FILE(rs.getString("REQ_REC_FILE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 	    			reqrec.setREQ_REC_RFILE(rs.getString("REQ_REC_RFILE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));

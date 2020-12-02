@@ -6,6 +6,7 @@ public class ReqRecDTO {
 	String STF_ID;
 	String APV_NM;
 	String REQ_REC_TXT;
+	String REQ_APPROVAL;
 	String REQ_REC_DATE;
 	String REQ_REC_FILE;
 	String REQ_REC_RFILE;
@@ -52,6 +53,13 @@ public class ReqRecDTO {
 	public void setREQ_REC_TXT(String rEQ_REC_TXT) {
 		REQ_REC_TXT = rEQ_REC_TXT;
 	}
+	public String getREQ_APPROVAL() {
+		return REQ_APPROVAL;
+	}
+	public void setREQ_APPROVAL(String rEQ_APPROVAL) {
+		REQ_APPROVAL = rEQ_APPROVAL;
+	}
+	
 	public String getREQ_REC_DATE() {
 		return REQ_REC_DATE;
 	}

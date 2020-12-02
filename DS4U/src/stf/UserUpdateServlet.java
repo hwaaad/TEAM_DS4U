@@ -27,33 +27,33 @@ public class UserUpdateServlet extends HttpServlet {
 				|| STF_PW2 == null || STF_PW2.equals("") || STF_NM == null || STF_NM.equals("")
 				|| STF_PH == null || STF_PH.equals("") || STF_EML == null || STF_EML.equals("")
 				|| STF_DEP == null || STF_DEP.equals("")) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "¸ğµç ³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä.");
+			request.getSession().setAttribute("messageType","ì˜¤ë¥˜ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "ëª¨ë“  ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”.");
 			response.sendRedirect("update.jsp");
 			return;
 		}
 		if (!STF_ID.equals((String) session.getAttribute("STF_ID"))) {
-			session.setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			session.setAttribute("messageContent", "Á¢±ÙÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			session.setAttribute("messageType","ì˜¤ë¥˜ ë©”ì‹œì§€");
+			session.setAttribute("messageContent", "ì ‘ê·¼í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 			response.sendRedirect("index.jsp");
 			return;	
 		}
 		if (!STF_PW1.equals(STF_PW2)) {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "ºñ¹Ğ¹øÈ£°¡ ¼­·Î ´Ù¸¨´Ï´Ù.");
+			request.getSession().setAttribute("messageType", "ì˜¤ë¥˜ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "ë¹„ë°€ë²ˆí˜¸ê°€ ì„œë¡œ ë‹¤ë¦…ë‹ˆë‹¤.");
 			response.sendRedirect("update.jsp");
 			return;
 		}
 		int result = new StfDAO().update(STF_ID, STF_PW1, STF_NM, STF_PH, STF_EML, STF_DEP);
 		if (result==1) {
 			request.getSession().setAttribute("STF_ID", STF_ID);
-			request.getSession().setAttribute("messageType", "¼º°ø ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "È¸¿øÁ¤º¸ ¼öÁ¤¿¡ ¼º°øÇß½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType","ì„±ê³µ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "íšŒì›ì •ë³´ ìˆ˜ì •ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤.");
 			response.sendRedirect("index.jsp");
 		}
 		else {
-			request.getSession().setAttribute("messageType", "¿À·ù ¸Ş½ÃÁö");
-			request.getSession().setAttribute("messageContent", "DB ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.");
+			request.getSession().setAttribute("messageType",  "ì˜¤ë¥˜ ë©”ì‹œì§€");
+			request.getSession().setAttribute("messageContent", "DB ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 			response.sendRedirect("update.jsp");
 		}
 	}

@@ -1,3 +1,9 @@
 eclipse.preferences.version=1
 encoding//WebContent/connection.jsp=UTF-8
+encoding//src/apv/ApvUpdateServlet.java=UTF-8
+encoding//src/apv/ApvWriteServlet.java=UTF-8
+encoding//src/board/BoardUpdateServlet.java=UTF-8
+encoding//src/req/ReqRecDAO.java=UTF-8
+encoding//src/req/ReqRecWriteServlet.java=UTF-8
 encoding//src/stf/StfDAO.java=UTF-8
+encoding/<project>=UTF-8

@@ -38,8 +38,8 @@ public class BoardUpdateServlet extends HttpServlet {
 		}
 		String BOARD_SQ = multi.getParameter("BOARD_SQ");
 		if (BOARD_SQ == null || BOARD_SQ.equals("")) {
-			session.setAttribute("messageType", "오류 메시지");
-			session.setAttribute("messageContent", "접근할 수 없습니다.");
+			session.setAttribute("messageType","오류 메시지");
+			session.setAttribute("messageContent","접근할 수 없습니다.");
 			response.sendRedirect("index.jsp");
 			return;	
 		}
@@ -63,7 +63,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		String BOARD_FILE = "";
 		String BOARD_RFILE = "";
 		File file = multi.getFile("BOARD_FILE");
-		// 파일이 새롭게 등록된 경우
+		// �뙆�씪�씠 �깉濡�寃� �벑濡앸맂 寃쎌슦
 		if (file != null) {
 			BOARD_FILE = multi.getOriginalFileName("BOARD_FILE");
 			BOARD_RFILE = file.getName();
@@ -72,12 +72,12 @@ public class BoardUpdateServlet extends HttpServlet {
 			if (prevFile.exists()) {
 				prevFile.delete();
 			}
-		} else { // 그렇지 않은 경우
+		} else { // 洹몃젃吏� �븡�� 寃쎌슦
 			BOARD_FILE = boardDAO.getFile(BOARD_SQ);
 			BOARD_RFILE = boardDAO.getRealFile(BOARD_SQ);
 		}
 		boardDAO.update(BOARD_SQ, BOARD_TYPE, BOARD_NM, BOARD_TXT, BOARD_FILE, BOARD_RFILE);
-		request.getSession().setAttribute("messageType", "성공 메시지");
+		request.getSession().setAttribute("messageType",  "성공 메시지");
 		request.getSession().setAttribute("messageContent", "성공적으로 게시물이 수정되었습니다.");
 		response.sendRedirect("boardView.jsp");
 		return;

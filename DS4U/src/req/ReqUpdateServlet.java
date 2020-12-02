@@ -55,8 +55,8 @@ public class ReqUpdateServlet extends HttpServlet{
 		ReqDTO req = reqDAO.getReq(REQ_SQ);
 		
 		if (!STF_ID.equals(req.getSTF_ID())) {
-			session.setAttribute("messageType", "占쏙옙占쏙옙 占쌨쏙옙占쏙옙");
-			session.setAttribute("messageContent", "占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占싹댐옙.");
+			session.setAttribute("messageType", "오류 메세지");
+			session.setAttribute("messageContent","접근할 수 없습니다.");
 			response.sendRedirect("index.jsp");
 			return;	
 		}
@@ -93,7 +93,7 @@ public class ReqUpdateServlet extends HttpServlet{
 		reqDAO.update_apv_date(APV_SQ);
 		reqDAO.file_update(REQ_FILE, REQ_RFILE, REQ_SQ);
 		request.getSession().setAttribute("messageType", "성공 메세지");
-		request.getSession().setAttribute("messageContent", "성공 어쩌고");
+		request.getSession().setAttribute("messageContent", "성공적으로 게시물이 수정되었습니다.");
 		response.sendRedirect("reqView.jsp");
 		return;
 	}

@@ -88,6 +88,10 @@
 								<td colspan="2"><h5><%= reqrec2.getREQ_REC_TXT() %></h5></td>
 							</tr>
 							<tr>
+								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>검토 결과</h5></td>
+								<td colspan="2"><h5><%= reqrec2.getREQ_APPROVAL() %></h5></td>
+							</tr>
+							<tr>
 								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>회신 담당자</h5></td>
 								<td colspan="2"><h5><%= reqrec2.getSTF_ID() %></h5></td>
 							</tr>
