@@ -36,7 +36,7 @@ public class adminUpdateServlet extends HttpServlet {
 		if(STF_ADM.equals("관리자"))
 			result = new StfDAO().dep_Update(STF_ID, "부서4");
 		else
-			result = new StfDAO().dep_Update(changeID, STF_DEP);
+			result = new StfDAO().dep_Update(STF_ID, "부서1");
 		if (result==1) {
 			request.getSession().setAttribute("STF_ID", changeID);
 			request.getSession().setAttribute("messageType", "성공 메시지");
