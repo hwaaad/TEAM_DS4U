@@ -54,6 +54,7 @@
 }
 #boardDiv ul li{
 	height: 30px;
+	color : #e8e8e8;
 }
 #boardDiv a,#calendarDiv a,#projectDiv a{
 	color : white;
@@ -203,9 +204,27 @@
 .currPointer{
 	color : #E5675A;
 }
-
-
-
-
-
-
+.label {
+    display: inline;
+    padding: 0.2em 0.6em 0.3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 1em;
+}
+.label-info {
+  background-color: #EC6D63;
+}
+.img-circle {
+  border-radius: 50%;
+}
+.media-object {
+  display: block;
+}
+.label:empty {
+  display: none;
+}
