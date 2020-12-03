@@ -34,7 +34,7 @@ public class ReqWriteServlet extends HttpServlet {
 		System.out.println(session.getAttribute("STF_ID"));	
 		System.out.println(STF_ID);
 		if(!STF_ID.equals((String) session.getAttribute("STF_ID"))) {
-			session.setAttribute("messageType", "오류 메세지");
+			session.setAttribute("messageType", "오류 메시지");
 			session.setAttribute("messageContent", "접근할 수 없습니다.");
 			response.sendRedirect("index.jsp");
 			return;
@@ -63,13 +63,12 @@ public class ReqWriteServlet extends HttpServlet {
 			REQ_FILE = multi.getOriginalFileName("REQ_FILE");
 			REQ_RFILE = file.getName();
 		}
-		
-		
+				
 		ReqDAO reqDAO = new ReqDAO();
 		reqDAO.write(STF_ID,APV_SQ, APV_NM, APV_OBJ, APV_CONT, APV_DATE,  REQ_REC_DATE, REQ_SUB_DATE);
 		reqDAO.update_apv_date(APV_SQ);
 		reqDAO.file_write(REQ_FILE, REQ_RFILE);
-		request.getSession().setAttribute("messageType", "성공 메세지");
+		request.getSession().setAttribute("messageType", "성공 메시지");
 		request.getSession().setAttribute("messageContent", "성공적으로 게시물을 작성하였습니다.");
 		response.sendRedirect("reqView.jsp");
 	}

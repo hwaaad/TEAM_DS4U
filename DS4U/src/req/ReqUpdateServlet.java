@@ -36,16 +36,15 @@ public class ReqUpdateServlet extends HttpServlet{
 		String STF_ID = multi.getParameter("STF_ID");
 		HttpSession session = request.getSession();
 		if (!STF_ID.equals((String) session.getAttribute("STF_ID"))) {
-			session.setAttribute("messageType", "오류 메세지");
+			session.setAttribute("messageType", "오류 메시지");
 			session.setAttribute("messageContent", "접근할 수 없습니다.");
 			response.sendRedirect("index.jsp");
 			return;	
-		}
-		
+		}		
 		
 		String REQ_SQ = multi.getParameter("REQ_SQ");	
 		if (REQ_SQ == null || REQ_SQ.equals("")) {
-			session.setAttribute("messageType", "오류 메세지");
+			session.setAttribute("messageType", "오류 메시지");
 			session.setAttribute("messageContent", "오류SQ null.");
 			response.sendRedirect("index.jsp");
 			return;	
@@ -55,14 +54,12 @@ public class ReqUpdateServlet extends HttpServlet{
 		ReqDTO req = reqDAO.getReq(REQ_SQ);
 		
 		if (!STF_ID.equals(req.getSTF_ID())) {
-			session.setAttribute("messageType", "오류 메세지");
+			session.setAttribute("messageType", "오류 메시지");
 			session.setAttribute("messageContent","접근할 수 없습니다.");
 			response.sendRedirect("index.jsp");
 			return;	
-		}
-		
-		
-		
+		}		
+				
 		String APV_NM = multi.getParameter("APV_NM");
 		String APV_OBJ = multi.getParameter("APV_OBJ");
 		String APV_CONT = multi.getParameter("APV_CONT");
@@ -86,13 +83,12 @@ public class ReqUpdateServlet extends HttpServlet{
 		}
 		System.out.println(REQ_FILE);
 		System.out.println(REQ_RFILE);
-		int APV_SQ = Integer.parseInt(multi.getParameter("APV_SQ")); 
-		
+		int APV_SQ = Integer.parseInt(multi.getParameter("APV_SQ")); 		
 		
 		reqDAO.update(APV_SQ, APV_NM, APV_OBJ, APV_CONT, APV_DATE, REQ_SQ);
 		reqDAO.update_apv_date(APV_SQ);
 		reqDAO.file_update(REQ_FILE, REQ_RFILE, REQ_SQ);
-		request.getSession().setAttribute("messageType", "성공 메세지");
+		request.getSession().setAttribute("messageType", "성공 메시지");
 		request.getSession().setAttribute("messageContent", "성공적으로 게시물이 수정되었습니다.");
 		response.sendRedirect("reqView.jsp");
 		return;
