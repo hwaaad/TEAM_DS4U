@@ -35,7 +35,7 @@
 		response.sendRedirect("index.jsp");
 		return;	
 	}
-	
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 	ReqDAO reqDAO = new ReqDAO();
 	ReqDTO req = reqDAO.getReq(REQ_SQ);
 	ReqRecDAO reqrecDAO = new ReqRecDAO();

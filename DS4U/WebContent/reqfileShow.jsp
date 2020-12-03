@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="stf.StfDAO" %>
+<%@ page import="stf.StfDTO" %>
 <%@ page import="req.ReqfileDAO" %>
 <%@ page import="req.ReqfileDTO" %>
 <%@ page import="req.ReqDAO" %>
@@ -31,12 +33,11 @@
 		return;	
 	}
 	
-	
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 	ReqfileDAO reqfDAO = new ReqfileDAO();
 	ReqfileDTO reqf = reqfDAO.getReqf(REQ_SQ);
 	ReqDAO reqDAO = new ReqDAO();
 	ReqDTO req = reqDAO.getReq(REQ_SQ);
-
 %>
 
 <head>

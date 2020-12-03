@@ -44,6 +44,7 @@
 		return;			
 	}
 	ArrayList<ReqDTO> reqList = new ReqDAO().getList(pageNumber);
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

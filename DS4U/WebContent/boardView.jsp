@@ -15,7 +15,7 @@
 		session.setAttribute("messageType", "오류 메시지");
 		session.setAttribute("messageContent", "로그인이 필요합니다.");
 		response.sendRedirect("index.jsp");
-		return;	
+		return;		
 	}
 	boolean emailChecked = new StfDAO().getUserEmailChecked(STF_ID);
 	if (emailChecked == false) {
@@ -37,7 +37,7 @@
 		return;			
 	}
 	ArrayList<BoardDTO> boardList = new BoardDAO().getList(pageNumber);
-	
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 	request.setCharacterEncoding("UTF-8");
 	String BOARD_TYPE = "전체";
 	String searchType = "최신순";
@@ -64,10 +64,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<link rel="stylesheet" type="text/css" href="${contextPath}/css/headerWs.css"/>
-	<link rel="stylesheet" type="text/css" href="${contextPath}/css/navWs.css"/>
-	<link rel="stylesheet" type="text/css" href="${contextPath}/css/board.css"/>
-	<link rel="stylesheet" type="text/css" href="${contextPath}/css/modal.css"/>
+	<link rel="stylesheet" type="text/css" href="css/headerWs.css"/>
+	<link rel="stylesheet" type="text/css" href="css/navWs.css"/>
+	<link rel="stylesheet" type="text/css" href="css/board.css"/>
+	<link rel="stylesheet" type="text/css" href="css/modal.css"/>
 	<title>서울교통공사</title>
 	<script src="js/bootstrap.js"></script>
 </head>

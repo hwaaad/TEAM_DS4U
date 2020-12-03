@@ -43,6 +43,7 @@
 		response.sendRedirect("reqView.jsp");
 		return;			
 	}
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 	ArrayList<ReqDTO> reqList = new ReqDAO().getList(pageNumber);
 %>
 <head>

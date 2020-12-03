@@ -40,8 +40,7 @@
 		response.sendRedirect("index.jsp");
 		return;	
 	}
-
-	
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 	ApvDAO apvDAO = new ApvDAO();
 	ApvDTO apv = apvDAO.getApv(APV_SQ);
 	String APV_FILE = null;
@@ -188,23 +187,26 @@
 								
 								</td>
 							</tr>
+							<tr>
+								<td style="background-color: #fafafa; color: #000000; width: 120px;"></td>
+								<td colspan="2">
+									<div class="row btns">
+									<a href="apvView.jsp" class="btn btn-primary">목록</a>
+									
+									<%
+										if (STF_ID.equals(apv.getSTF_ID())) {								
+									%>
+									
+										<a href="apvUpdate.jsp?APV_SQ=<%= apv.getAPV_SQ() %>" class="btn">수정</a>
+										<a href="apvDelete?APV_SQ=<%= apv.getAPV_SQ() %>" class="btn" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
+									<%		
+										}
+									%>												
+									</div>	
+								</td>
+							</tr>													
 						</thead>
-						
-							
-						<div class="row btns">
-							<a href="apvView.jsp" class="btn btn-primary">목록</a>
-							
-							<%
-								if (STF_ID.equals(apv.getSTF_ID())) {								
-							%>
-							
-								<a href="apvUpdate.jsp?APV_SQ=<%= apv.getAPV_SQ() %>" class="btn">수정</a>
-								<a href="apvDelete?APV_SQ=<%= apv.getAPV_SQ() %>" class="btn" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
-							<%		
-								}
-							%>
-										
-						</div>
+
 					</table>
 				</div>		
 				</div>

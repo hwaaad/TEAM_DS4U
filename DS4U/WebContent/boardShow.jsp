@@ -42,12 +42,7 @@
 		return;	
 	}
 	boardDAO.hit(BOARD_SQ);
-/*	String COMMENT_SQ = null;
-	if (request.getParameter("COMMENT_SQ") != null) {
-		COMMENT_SQ = (String) request.getParameter("COMMENT_SQ");
-	} */
-	//CommentDAO commentDAO = new CommentDAO();
-	//CommentDTO comment = commentDAO.getComment(BOARD_SQ);
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

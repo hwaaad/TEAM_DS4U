@@ -26,7 +26,7 @@
 	<link rel="stylesheet" type="text/css" href="css/myPage.css"/>
 	<link rel="stylesheet" type="text/css" href="css/base.css"/>
 	<link rel="stylesheet" type="text/css" href="css/modal.css"/>
-	<title>서울교통공사</title>
+	<title>서울교통공사 - ${STF_ID}님</title>
 	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript">
 		function passwordCheckFunction() {
@@ -59,9 +59,9 @@
 						</div>
 						<div class="myPageContentRow clearFix modifyRow" onclick="location.href='${contextPath}/pfUpdate.jsp'">
 							<p class="title">사진</p>
-							<p class="content msg">현재 프로필 사진 업로드 기능이 비활성화 되었습니다.</p>
+							<p class="content msg">프로필 사진 업로드가 가능합니다. </p>
 							<div id="profileImg">
-								<img alt="나의 프로필 사진" src="${contextPath }/images/profileImage.png"" />
+								<img class="media-object img-circle" id="profileIMG" style="border-radius: 1%; max-width: 170px; max-height: 170px; margin: margin: 0 auto; overflow: hidden;" src="${contextPath}/profile/<%= stf.getSTF_PF() %>"/>
 							</div>
 						</div>
 						<div class="myPageContentRow clearFix">

@@ -37,7 +37,7 @@
 		return;			
 	}
 	ArrayList<BoardDTO> boardList = new BoardDAO().getList(pageNumber);
-	
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 	request.setCharacterEncoding("UTF-8");
 	String BOARD_TYPE = "전체";
 	String searchType = "최신순";

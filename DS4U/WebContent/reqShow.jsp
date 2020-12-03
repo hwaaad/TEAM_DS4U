@@ -14,7 +14,6 @@
 <!DOCTYPE html>
 <html>
 <%
-
 	String APV_SQ = null;
 	String STF_ID = null;
 	String STF_NM = null;
@@ -46,7 +45,7 @@
 		response.sendRedirect("index.jsp");
 		return;	
 	}
-	
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 	ReqDAO reqDAO = new ReqDAO();
 	ReqDTO req = reqDAO.getReq(REQ_SQ);
 	

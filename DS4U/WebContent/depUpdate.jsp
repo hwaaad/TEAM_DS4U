@@ -43,16 +43,10 @@
 				<p>부서를 변경해주세요!</p>
 				<form method="post" action="./depUpdate">
 					<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>">									
-					<div>
-						<label class="btn">
-							<input type="radio" name="STF_DEP" autocomplete="off" value="부서1" checked>부서1											
-						</label>
-						<label class="btn">
-							<input type="radio" name="STF_DEP" autocomplete="off" value="부서2" checked>부서2											
-						</label>
-						<label class="btn">
-							<input type="radio" name="STF_DEP" autocomplete="off" value="부서3" checked>부서3											
-						</label>																	
+					<div class="row btns">
+						<button class="btn" name="STF_DEP" value="부서1" <% if(stf.getSTF_DEP().equals("부서1")) out.print("checked"); %>>부서1</button>											
+						<button class="btn" name="STF_DEP" value="부서2" <% if(stf.getSTF_DEP().equals("부서2")) out.print("checked"); %>>부서2</button>											
+						<button class="btn" name="STF_DEP" value="부서3" <% if(stf.getSTF_DEP().equals("부서3")) out.print("checked"); %>>부서3</button>																											
 					</div>
 						<div class="row btns">
 							<button class="btn" type="submit">수정</button>

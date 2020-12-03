@@ -67,7 +67,7 @@
 	// String STF_DEP = (String) request.getAttribute("STF_DEP");
 	if(!STF_DEP.equals("부서4")){
 		
-		session.setAttribute("messageType", "오류 메세지");
+		session.setAttribute("messageType", "오류 메시지");
 		session.setAttribute("messageContent", "권한이 없습니다.");
 		response.sendRedirect("reqView.jsp");
 		return;

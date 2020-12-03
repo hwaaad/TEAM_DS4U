@@ -25,6 +25,7 @@
 	<link rel="stylesheet" type="text/css" href="css/navWs.css"/>
 	<link rel="stylesheet" type="text/css" href="css/myPage.css"/>
 	<link rel="stylesheet" type="text/css" href="css/modal.css"/>
+	<link rel="stylesheet" type="text/css" href="css/glyphicon.css"/>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<title>서울교통공사</title>
 	<script src="js/bootstrap.js"></script>
@@ -41,18 +42,20 @@
 			<h4>프로필 사진 수정</h4>
 			<div class="myPageInner">
 				<div class ="myPageModify profileModify">
-					<p>프로필 이미지를 변경해주세요!</p>
+					<p>프로필 이미지를 변경하세요!</p>
 					<form class="profileImgForm" method="post" action="./userProfile" enctype="multipart/form-data">
 						<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>">						
-						<div id="profileImg">
-							<img alt="나의 프로필 사진" class="thumbNailImg">
-						</div>
-						<div class="attachImgArea clearFix">		
-							<input type="hidden" id="profileImgType" name="profileImgType"> 
-							<input type="file" id="attachImgBtn" name="STF_PF" class="file" value="사진 선택" accept="image/*" multiple="multiple">
-							<label for="attachImgBtn">프로필 변경</label>
-							<input type="button" id="defalutImgBtn">
-							<label for="defalutImgBtn">기본이미지</label>
+						<div class="row btns" id="STF_PF">
+							<input type="file" name="STF_PF" class="file">
+							<div class="input-group">
+								<input type="text" class="form-control input-lg" disabled placeholder="이미지를 업로드하세요.">
+							      <div id="boardDiv" class="navListDiv">
+							         <h3></h3>
+							      </div>
+								<span class="input-group-btn">
+									<button class="browse btn btn-primary input-lg" type="button"><i class="glyphicon glyphicon-search"></i>파일 찾기</button>
+								</span>
+							</div>
 						</div>
 						<div class="row btns">
 							<button class="btn imgUpload" type="submit" name="STF_PF">적용</button>

@@ -42,6 +42,7 @@
 		response.sendRedirect("apvView.jsp");
 		return;			
 	}
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 	ArrayList<ApvDTO> apvList = new ApvDAO().getList(pageNumber);
 %>
 
