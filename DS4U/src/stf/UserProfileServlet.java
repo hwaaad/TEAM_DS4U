@@ -43,7 +43,7 @@ public class UserProfileServlet extends HttpServlet {
 		File file = multi.getFile("STF_PF");
 		if (file != null) {
 			String ext = file.getName().substring(file.getName().lastIndexOf(".") + 1);
-			if (ext.equals("jpg") || ext.equals("png") || ext.equals("gif")) {
+			if (ext.equals("jpg") || ext.equals("png") || ext.equals("gif") || ext.equals("PNG")) {
 				String prev = new StfDAO().getUser(STF_ID).getSTF_PF();
 				File prevFile = new File(savePath + "/" + prev);
 				if (prevFile.exists()) {
@@ -63,7 +63,7 @@ public class UserProfileServlet extends HttpServlet {
 		new StfDAO().profile(STF_ID, fileName);
 		session.setAttribute("messageType", "성공 메시지");
 		session.setAttribute("messageContent", "프로필 사진이 변경되었습니다.");
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("myPage.jsp");
 		return;	
 	}
 

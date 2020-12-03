@@ -317,7 +317,7 @@ public class StfDAO {
             	if (rs.getString("STF_PF").equals("")) {
             		return "http://localhost:8080/DS4U/images/profileImage.png";
             	}
-            	return "http://localhost:8080/DS4U/images/" + rs.getString("STF_PF");
+            	return "http://localhost:8080/DS4U/profile/" + rs.getString("STF_PF");
         	} 
         } catch (Exception e) {
             e.printStackTrace();
