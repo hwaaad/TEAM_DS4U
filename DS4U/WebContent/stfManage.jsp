@@ -43,6 +43,7 @@
 		return;			
 	}
 	ArrayList<StfDTO> reqList = new StfDAO().getList();
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 	
 %>
 <head>
