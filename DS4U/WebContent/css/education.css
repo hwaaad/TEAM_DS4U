@@ -1,0 +1,497 @@
+@charset "UTF-8";
+body{height:100%; min-height:120%; background-color:#fff;}
+/* education 공통 */
+#educationInner {
+	position:relative;
+	width:100%;
+    max-width: 1000px;
+    margin: 35px auto 20px;
+}
+#educationInner .row {
+	border-bottom:1px solid #e0e0e0;
+	padding:10px;
+	line-height:30px;
+}
+#educationInner .row .floatleft {
+	margin-right: 60px;
+}
+
+/******************************** educationList.jsp *****************************************/
+#educationInner #educationList {
+	margin-bottom:15px;
+}
+#educationInner #educationList li{
+	line-height : 30px;
+	padding: 5px 0;
+	border-bottom:1px solid #E0E0E0;
+}
+#educationInner #educationList li:not(#listHead):hover{
+	background-color:#FCEFEE;	
+}
+#educationInner #educationList #listHead{
+	background-color: #EAEAEA;
+	border-top: 1px solid #E0E0E0;
+}
+#educationInner #educationList #listHead > div{
+	text-align:center;
+}
+#educationInner #educationList li.noticeLi{
+	font-weight:600;
+	
+}
+#educationInner #educationList li * {
+/* 	vertical-align:middle; */
+}
+#educationInner #educationList li:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+#educationInner #educationList div{
+	height:100%;
+	float:left;
+	text-align:center;
+	padding: 0 5px;
+}
+#educationInner #educationList div:nth-child(1){
+	font-size:13px;
+	width:100px;
+}
+#educationInner #educationList div:nth-child(2){
+	width: 530px;
+	text-align:left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#educationInner #educationList div:nth-child(3){
+	width:100px;
+}
+#educationInner #educationList div:nth-child(4){
+	width:100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#educationInner #educationList div:nth-child(5){
+	width:100px;
+}
+#educationInner .replyCount{
+	color:#E5675A;
+	font-size:12px;
+}
+#educationInner a.currPage{
+	background-color:#E5675A;
+	color:#fff;
+	cursor:default;
+}
+#educationInner .reverse {
+	transform:rotate(180deg);
+}
+#educationInner .noticeMark {
+	display:inline-block;
+	padding: 0 7px;
+	border-radius: 10px;
+	background-color: #E5675A;
+	color:#fff;
+}
+
+#educationInner #pagination{
+	text-align:center;
+	margin-bottom: 20px;
+}
+#educationInner #pagination li{	
+	display:inline-block;
+	width:20px;
+	height:20px;
+	font-size:13px;
+}
+#educationInner #pagination li a{	
+	display:block;
+	text-align:center;
+	line-height:20px;
+	width:100%;
+	height:100%;
+	border-radius:50%;
+}
+#educationInner #pagination li a.disable{
+	color: #B7B7B7;
+	cursor:default;
+}
+#educationInner #pagination li a:not(.disable):not(.currPage):hover{
+	background-color: #e7e7e7;
+}
+#educationInner #writeBtn2{
+	display: block;
+    padding: 10px 20px;
+    float: right;
+    border-radius: 3px;
+    background-color: #403C39;
+    color: #fff;
+    font-size: 13px;
+    transition: background-color .5s;
+}
+#educationInner #writeBtn2:hover{
+	background-color: #E5675A;
+}
+#educationInner #educationSearchForm2{
+	margin-right: 300px;
+	text-align:center;
+	font-size: 14px;
+}
+#educationInner #educationSearchForm2 > *{
+	vertical-align: middle;
+    height: 35px;
+    box-sizing: border-box;
+    padding: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+#educationInner #educationSearchForm2 select {
+}
+#educationInner #educationSearchForm2 input[name="keyword"] {
+	padding: 0 10px;
+}
+#educationInner #educationSearchForm2 button {
+	margin-left: 2px;
+	width:60px;
+	background-color: #403C39;
+	color:#fff;
+	transition:background-color .5s;
+}
+#educationInner #educationSearchForm2 button:hover{
+	background-color: #E5675A;
+	cursor:pointer;
+	border-color: transparent;
+}
+#educationInner .noeducation{
+	text-align: center;
+	line-height: 40px;
+}
+
+/******************************** educationView.jsp *****************************************/
+#educationInner #educationDetail .bold {
+	display:inline-block;
+	font-size: 16px;
+	margin-left:10px;
+	font-weight: 500;
+}
+#educationInner #educationDetail #content{
+	min-height: 120px;
+	padding: 20px 30px;
+	line-height:1rem;
+}
+#educationInner #educationDetail .btns{
+	text-align:right;
+	border:0 none;
+	margin-bottom: 20px;
+}
+#educationReply h4 {
+	color:#403C39;
+	margin: 15px 0;
+}
+#educationReply #replyWrap{
+	background-color: #F4F4F4;
+	padding: 25px 70px;
+} 
+#educationReply .replyName {
+	font-weight: 500;
+}
+#educationReply #replyBox > li {
+	margin-bottom:5px;
+}
+#educationReply .replyAuthor a {
+	font-size:13px;
+	color:crimson;
+}
+#educationReply .replyImg {
+	width:46px;
+	height:46px;
+	border-radius:50%;
+	overflow:hidden; 
+	float:left;
+	margin-right:10px;
+	border:2px solid #fff;
+}
+#educationReply .replyImg img {width: 100%}
+#educationReply .replyDetail {
+	float:left;
+	width:calc(100% - 65px);
+	margin-left: 3px;
+}
+#educationReply #modifyReplyDiv .btn{
+	font-size:13px;
+	padding: 0 12px;
+	vertical-align:bottom;
+}
+#educationReply #modifyReplyDiv textarea{
+	vertical-align:bottom;
+}
+#educationReply .replyDetail .replyAuthor{
+	margin-bottom:5px;
+}
+#educationReply .replyDetail .replyContent{
+	font-size:14px;
+	line-height:17px;
+}
+#educationReply .regdate{
+	font-size:13px;
+	color:#aaa;
+}
+#educationReply #addReplyDiv{
+	display:block;
+	margin-top:20px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+#educationReply #addReplyDiv *{vertical-align:middle;}
+#educationReply #addReplyDiv .replyImg {
+	display:inline-block;
+	float:none;
+}
+#educationReply #addReplyDiv #inputBox{
+	display:inline-block;
+	width: calc(100% - 64px);
+	vertical-align:middle;
+}
+#educationReply textarea{
+	width: calc(100% - 110px);
+}
+
+/******************************** educationWriteForm.jsp *****************************************/
+#inputWrap .row {
+	border:0 none;
+}
+#inputWrap .row .floatleft {
+	width: 40%;
+}
+#inputWrap .row *{
+	vertical-align:middle;
+}
+#inputWrap label{
+	display:block;
+	width: 300px;
+}
+#inputWrap label #title{
+	width: calc(100% - 130px);
+}
+#inputWrap label > span{
+	text-align: center;
+	display:inline-block;
+	width:75px;
+}
+#inputWrap #writer input {
+	text-align:center;
+	background-color: #F8F8F8;
+}
+#inputWrap input[type='text'],
+#inputWrap select,
+#inputWrap input[type='password']{
+	border: 1px solid #D1D1D1;
+	border-radius: 5px;
+	line-height:30px;
+	height:30px;
+	padding: 0 10px;
+	margin-left: 20px;
+}
+#inputWrap .row label[for="file"] {
+	width:100px;
+	margin-right:0;
+}
+#inputWrap #uploadArea {
+	position:relative;
+	border-radius: 5px;
+	border: 1px dashed #bbb;
+    min-height: 50px;
+    width: calc(100% - 122px);
+    padding: 10px;
+    margin-right: 0;
+    transition:background-color 0.5s;
+    line-height:18px;
+}
+#inputWrap #uploadArea span{
+	display:block;
+	text-align:center;
+	color: #bbb;
+}
+#inputWrap #uploadArea span.on{
+	color: #000;
+}
+#inputWrap input#file {
+    cursor:pointer;
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	opacity: 0;
+	background-color:transparent;
+}
+#inputWrap #uploadArea:hover{
+	background-color: #eee
+}
+#inputWrap #btns {
+	padding:10px;
+	text-align: right;
+}
+
+/********************************** educationCheckPass *****************************************/
+#educationInner.checkPassInner {
+	display:table;
+	height: 300px;
+	text-align:center;
+}
+#educationInner.checkPassInner #passForm{
+	display:table-cell;
+	vertical-align:middle;
+}
+
+/************************************** educationModifyForm ********************************/
+#educationInner #modifyForm label { width: 40%;}
+
+thead th {
+	background-color: #006DCC;
+	color: white;
+	text-align: center;
+}
+tr td:first-child,
+tr th:first-child {
+	border-top-left-radius: 1px;
+	border-bottom-left-radius: 6px;
+}
+tr td:last-child,
+tr th:last-child {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+td,
+th {
+  padding: 0;
+}
+.table td,
+.table th {
+  background-color: #fff !important;
+}
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #ddd !important;
+}
+
+table td[class*="col-"],
+table th[class*="col-"] {
+  position: static;
+  display: table-cell;
+  float: none;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 10px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+.table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+.table > caption + thead > tr:first-child > th,
+.table > colgroup + thead > tr:first-child > th,
+.table > thead:first-child > tr:first-child > th,
+.table > caption + thead > tr:first-child > td,
+.table > colgroup + thead > tr:first-child > td,
+.table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+.table-bordered {
+  border: 1px solid #ddd;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #ddd;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 2px;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+.table-hover > tbody > tr:hover {
+  background-color: #f5f5f5;
+}
+.table > thead > tr > td.active,
+.table > tbody > tr > td.active,
+.table > tfoot > tr > td.active,
+.table > thead > tr > th.active,
+.table > tbody > tr > th.active,
+.table > tfoot > tr > th.active,
+.table > thead > tr.active > td,
+.table > tbody > tr.active > td,
+.table > tfoot > tr.active > td,
+.table > thead > tr.active > th,
+.table > tbody > tr.active > th,
+.table > tfoot > tr.active > th {
+  background-color: #f5f5f5;
+}
+.table-hover > tbody > tr > td.active:hover,
+.table-hover > tbody > tr > th.active:hover,
+.table-hover > tbody > tr.active:hover > td,
+.table-hover > tbody > tr:hover > .active,
+.table-hover > tbody > tr.active:hover > th {
+  background-color: #e8e8e8;
+}
+.table > thead > tr > td.success,
+.table > tbody > tr > td.success,
+.table > tfoot > tr > td.success,
+.table > thead > tr > th.success,
+.table > tbody > tr > th.success,
+.table > tfoot > tr > th.success,
+.table > thead > tr.success > td,
+.table > tbody > tr.success > td,
+.table > tfoot > tr.success > td,
+.table > thead > tr.success > th,
+.table > tbody > tr.success > th,
+.table > tfoot > tr.success > th {
+  background-color: #dff0d8;
+}
+.table-hover > tbody > tr > td.success:hover,
+.table-hover > tbody > tr > th.success:hover,
+.table-hover > tbody > tr.success:hover > td,
+.table-hover > tbody > tr:hover > .success,
+.table-hover > tbody > tr.success:hover > th {
+  background-color: #d0e9c6;
+}
+.table > tbody > tr > td:nth-child(1) {
+	font-size:13px;
+	width:100px;
+}
+.table > tbody > tr > td:nth-child(2) {
+	display: inline-block;
+	width: 500px;
+	text-align:left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.table > tbody > tr > td:nth-child(3) {
+	width:100px;
+}
+.table > tbody > tr > td:nth-child(4) {
+	width:100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.table > tbody > tr > td:nth-child(5) {
+	width:100px;
+}

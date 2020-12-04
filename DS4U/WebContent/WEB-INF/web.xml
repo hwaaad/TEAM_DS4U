@@ -74,6 +74,30 @@
   	<url-pattern>/boardReply</url-pattern>
   </servlet-mapping>
   <servlet>
+  	<servlet-name>EducationWriteServlet</servlet-name>
+  	<servlet-class>education.EducationWriteServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+  	<servlet-name>EducationWriteServlet</servlet-name>
+  	<url-pattern>/educationWrite</url-pattern>
+  </servlet-mapping>
+    <servlet>
+  	<servlet-name>EducationUpdateServlet</servlet-name>
+  	<servlet-class>education.EducationUpdateServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+  	<servlet-name>EducationUpdateServlet</servlet-name>
+  	<url-pattern>/educationUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>EducationDeleteServlet</servlet-name>
+  	<servlet-class>education.EducationDeleteServlet</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+  	<servlet-name>EducationDeleteServlet</servlet-name>
+  	<url-pattern>/educationDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
   	<servlet-name>ApvWriteServlet</servlet-name>
   	<servlet-class>apv.ApvWriteServlet</servlet-class>
   </servlet>  
