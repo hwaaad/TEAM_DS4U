@@ -101,9 +101,9 @@
 		}
 	}
 	
+	
 	StfDTO stf = new StfDAO().getUser(STF_ID);
 	
-
 %>
 
 <head>
