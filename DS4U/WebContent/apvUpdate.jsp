@@ -146,7 +146,7 @@
                   <td><textarea class="form-control" cols="100" name="APV_BUDGET" id="APV_BUDGET" maxlength="15" placeholder="소요 예산(원)을 입력하세요."><%=apv.getAPV_BUDGET() %></textarea></td>               
                </tr>               
                <tr>
-                  <td style="width: 130px;"><h5>6. 아이디</h5></td>
+                  <td style="width: 130px; text-align: left;"><h5>6. 아이디</h5></td>
                   <td><h5><%= apv.getSTF_ID() %></h5>
                   <input type="hidden" name="STF_ID" value="<%= apv.getSTF_ID() %>"></td>                  
                </tr>

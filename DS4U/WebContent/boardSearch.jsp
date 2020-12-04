@@ -59,6 +59,7 @@
 			System.out.println("검색 페이지 번호 오류");
 		}		
 	}
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 %>
 
 <head>

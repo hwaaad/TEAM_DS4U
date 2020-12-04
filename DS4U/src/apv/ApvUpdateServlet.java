@@ -88,8 +88,11 @@ public class ApvUpdateServlet extends HttpServlet{
 			APV_FILE = multi.getOriginalFileName("APV_FILE");
 			APV_RFILE = file.getName();
 		}
+		System.out.println(APV_FILE);
+		System.out.println(APV_RFILE);
 		apvDAO.update(APV_NM, APV_DATE, APV_STT_DATE, APV_FIN_DATE, APV_BUDGET, APV_PHONE, APV_POLICY_SQ, APV_SQ);
-		apvDAO.file_update(APV_FILE, APV_RFILE, APV_SQ);
+		if (APV_FILE != "" && APV_RFILE != "")
+			apvDAO.file_update(APV_FILE, APV_RFILE, APV_SQ);
 		request.getSession().setAttribute("messageType",  "성공 메시지");
 		request.getSession().setAttribute("messageContent", "성공적으로 게시물이 수정되었습니다.");
 		response.sendRedirect("apvView.jsp");
