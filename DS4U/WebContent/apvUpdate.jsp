@@ -125,7 +125,7 @@
                <tr>
                   <td style="width: 130px; text-align: left;"><h5>2. 사업 기간</h5></td>
                   <td>
-						<input type="text" name="startDate" id="startDate"> ~ <input type="text" name="endDate" id="endDate">
+						<input type="text" name="startDate" id="startDate" value="<%=apv.getAPV_DATE().substring(0,10) %>"> ~ <input type="text" name="endDate" id="endDate" value="<%=apv.getAPV_DATE().substring(11) %>">
 						<input type="hidden" name="APV_DATE" id="APV_DATE">			
 						</td>         
                </tr>      
