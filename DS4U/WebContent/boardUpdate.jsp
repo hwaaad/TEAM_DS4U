@@ -125,7 +125,7 @@
 								</tr>	
 								<tr>
 									<td style="text-align: right;" colspan="2">
-										<input class="btn" type="submit" value="수정">
+										<input class="btn" type="submit" value="수정" onclick="return confirm('글 수정을 완료하시겠습니까?');">
 										<a a class="btn" type="submit" href="boardView.jsp">취소</a>
 									</td>						
 								</tr>																														

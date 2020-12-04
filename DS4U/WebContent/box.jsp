@@ -67,7 +67,8 @@
 			$.ajax({
 				type : 'POST',
 				url : "./chatBox",
-				data : { STF_ID : encodeURIComponent('<%=STF_ID%>') },
+				data : { STF_ID : encodeURIComponent('<%=STF_ID%>') 
+				},
 				success : function(data) {
 					if(data == "") return;
 					$('#boxTable').html('');
@@ -126,6 +127,11 @@
 								<table class="table table-bordered table-hover" style="text-align: center;border: 1px solid #dddddd;margin: 0 auto;width:100%;">
 									<tbody id="boxTable">
 									</tbody>
+									<tr>
+										<td style="text-align: right;" colspan="2">
+											<a class="btn" type="submit" href="find.jsp">새 채팅상대 찾기</a>
+										</td>
+									</tr>	
 								</table>
 							</div>
 						</table>

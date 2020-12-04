@@ -157,7 +157,7 @@
 				data : {
 					fromID : encodeURIComponent(fromID),
 					toID : encodeURIComponent(toID),
-					listType : type /*처음에는 chatID가 0 이상인것부터 쭉, 그다음부터는 lastID 이후로 쭉(lastID는 계속 업데이트됨)*/
+					listType : type
 				},
 				success : function(data){
 					if(data == "") return;
@@ -179,13 +179,6 @@
 				chatListFunction(lastID);
 			}, 3000);
 		}
-		
-		$(document).ready(function(){
-			getUnread();
-			getInfiniteUnread(); /* 메세지함 script */
-			chatListFunction('0'); 
-			getInfiniteChat();
-		});
 	</script>
 </head>
 <body>
@@ -223,7 +216,7 @@
 														<textarea style="height: 80px;" id="chatContent" class="form-control" placeholder="메세지를 입력하세요." maxlength="100"></textarea>
 													</div>
 													<div class="form-group">
-														<button type="button" class="btn btn pull right" style="height:80px" onclick="submitFunction()">전송</button>
+														<button type="button" class="btn btn pull right" style="height:80px; width:70px" onclick="submitFunction()"><i class="glyphicon glyphicon-envelope"></i></button>
 														<div class="clearfix"></div>
 													</div>
 												</div>
@@ -250,11 +243,11 @@
 		</div>
 	</div>
 	
-	<script>
-		$(document).ready(function() {
-			chatListFunction('0');
+	<script>	
+		$(document).ready(function(){
+			chatListFunction('0'); 
 			getInfiniteChat();
-		})
+		});
 	</script>
 </body>
 </html>

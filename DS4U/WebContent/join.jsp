@@ -120,7 +120,7 @@
 									<span id="checkCheckBox" class="checkSentenceRed"></span>
 								</div>
 								<div>
-									<h5 style="color: red;" id="passwordCheckMessage"></h5><input type="submit" value="회원등록" class="joinFormButton">
+									<h5 style="color: red;" id="passwordCheckMessage"></h5><input type="submit" value="회원등록" class="joinFormButton" onclick="return confirm('회원가입을 완료하겠습니까?');">
 								</div>
 							</form>
 						</div>

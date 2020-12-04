@@ -154,7 +154,7 @@
 						<tr>
 							<td style="text-align: right;" colspan="2">
 								<input class="btn" type="submit" value="등록">
-								<a a class="btn" type="submit" href="boardView.jsp">취소</a>
+								<a class="btn" type="submit" href="boardView.jsp">취소</a>
 							</td>						
 						</tr>																														
 						</tbody>

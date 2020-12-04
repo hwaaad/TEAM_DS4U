@@ -28,9 +28,9 @@
 			<ul class="gnbUl">
 			 	<li>
 					<h2>
-						<a lang="kr" href="${contextPath}/boardView.jsp"> 게시판 </a>
+						<a lang="kr" href="${contextPath}/boardView.jsp"> 커뮤니티 </a>
 					</h2>
-				</li>
+				</li>			
 				<li>
 					<h2>
 						<a lang="kr" href="${contextPath}/apvView.jsp"> 정보화사업 </a>
@@ -50,7 +50,7 @@
 					<c:choose>
 						<c:when test="${STF_ID != null }">
 							<a lang="en" href="${contextPath}/myPage.jsp" class="btn">MyPage</a>
-							<a lang="en" href="${contextPath}/logoutAction.jsp" class="btn">Logout</a>
+							<a lang="en" href="${contextPath}/logoutAction.jsp" class="btn" onclick="return confirm('로그아웃 하시겠습니까?');">Logout</a>
 						</c:when>
 						<c:otherwise>
 							<a lang="en" href="${contextPath}/login.jsp" class="btn">Login</a>
@@ -64,9 +64,9 @@
 			<ul>
 				<li>
 					<h2>
-						<a lang="kr" href="${contextPath}/boardView.jsp"> 게시판 </a>
+						<a lang="kr" href="${contextPath}/boardView.jsp"> 커뮤니티 </a>
 					</h2>
-				</li>
+				</li>						
 				<li>
 					<h2>
 						<a lang="kr" href="${contextPath}/apvView.jsp"> 정보화사업 </a>
@@ -89,7 +89,7 @@
 			<c:choose>
 				<c:when test="${STF_ID != null }">
 					<li><a lang="en" href="${contextPath}/myPage.jsp" class="btn">MyPage</a></li>
-					<li><a lang="en" href="${contextPath}/logoutAction.jsp" class="btn">Logout</a></li>
+					<li><a lang="en" href="${contextPath}/logoutAction.jsp" class="btn" onclick="return confirm('로그아웃 하시겠습니까?');">Logout</a></li>
 				</c:when>
 				<c:otherwise>
 					<li><a lang="en" href="${contextPath}/login.jsp" class="btn">Login</a></li>

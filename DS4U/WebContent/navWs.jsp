@@ -42,14 +42,24 @@
       
       <div id="aboutProfile">
          <a href="${contextPath }/myPage.jsp">
-            <img class="media-object img-circle" id="profileIMG" style="border-radius: 1%; max-width: 170px; max-height: 170px; margin: margin: 0 auto; overflow: hidden;" src="${contextPath}/profile/<%= stf.getSTF_PF() %>"/> 
+         <%
+         	if (stf.getSTF_PF().equals("")) {
+         %>
+            <img class="media-object img-circle" id="profileIMG" style="border-radius: 1%; max-width: 170px; max-height: 170px; margin: margin: 0 auto; overflow: hidden;" src="${contextPath}/images/profileImage.png"/>
+         <%
+         	} else {
+         %>
+         	<img class="media-object img-circle" id="profileIMG" style="border-radius: 1%; max-width: 170px; max-height: 170px; margin: margin: 0 auto; overflow: hidden;" src="${contextPath}/profile/<%= stf.getSTF_PF() %>"/>
+         <%
+         	}
+         %> 
          </a>
          <a href="${contextPath }/myPage.jsp"><p><i class="glyphicon glyphicon-user"></i> ${STF_ID}님</p></a>
       </div>
       <!-- 로그아웃버튼 -->
       <div>
          <form action="${contextPath }/logoutAction.jsp" method="post">
-            <input type="submit" value="로그아웃" id="logoutBtn">
+            <input type="submit" value="로그아웃" id="logoutBtn" onclick="return confirm('로그아웃 하시겠습니까?');">
          </form>
       </div>
       <script>

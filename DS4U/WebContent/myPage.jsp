@@ -61,7 +61,17 @@
 							<p class="title">사진</p>
 							<p class="content msg">프로필 사진 업로드가 가능합니다. </p>
 							<div id="profileImg">
-								<img class="media-object img-circle" id="profileIMG" style="border-radius: 1%; max-width: 170px; max-height: 170px; margin: margin: 0 auto; overflow: hidden;" src="${contextPath}/profile/<%= stf.getSTF_PF() %>"/>
+							 <%
+					         	if (stf.getSTF_PF().equals("")) {
+					         %>
+					            <img class="media-object img-circle" id="profileIMG" style="border-radius: 1%; max-width: 170px; max-height: 170px; margin: margin: 0 auto; overflow: hidden;" src="${contextPath}/images/profileImage.png"/>
+					         <%
+					         	} else {
+					         %>
+					         	<img class="media-object img-circle" id="profileIMG" style="border-radius: 1%; max-width: 170px; max-height: 170px; margin: margin: 0 auto; overflow: hidden;" src="${contextPath}/profile/<%= stf.getSTF_PF() %>"/>
+					         <%
+					         	}
+					         %> 
 							</div>
 						</div>
 						<div class="myPageContentRow clearFix">
