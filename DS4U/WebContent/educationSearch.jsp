@@ -56,6 +56,8 @@
 			System.out.println("검색 페이지 번호 오류");
 		}		
 	}
+	
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 %>
 
 <head>
@@ -71,7 +73,7 @@
 
 <body>
 	<%@ include file="/headerWs.jsp" %>
- <%--   <%@ include file="/navWs.jsp" %> --%>  
+  <%@ include file="/navWs.jsp" %>
 	<%@ include file="/modal.jsp" %>
 	<div id="wsBody">
 	<input type="hidden" value="education" id="pageType">

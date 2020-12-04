@@ -2,6 +2,7 @@
 <%@ page import="education.EducationDAO" %>
 <%@ page import="education.EducationDTO" %>
 <%@ page import="stf.StfDAO" %>
+<%@ page import="stf.StfDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.sql.Connection" %>
@@ -15,6 +16,7 @@
 <!DOCTYPE html>
 <html>
 <%
+	
 	String STF_ID = null;
 	String STF_DEP = null;
 	if (session.getAttribute("STF_ID") != null) {
@@ -99,6 +101,8 @@
 		}
 	}
 	
+	StfDTO stf = new StfDAO().getUser(STF_ID);
+	
 
 %>
 
@@ -115,7 +119,7 @@
 
 <body>
 	<%@ include file="/headerWs.jsp" %>
- <%--   <%@ include file="/navWs.jsp" %> --%>  
+ < <%@ include file="/navWs.jsp" %> 
 	<%@ include file="/modal.jsp" %>
 	
 	<div id="wsBody">
