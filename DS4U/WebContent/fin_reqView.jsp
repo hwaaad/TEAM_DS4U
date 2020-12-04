@@ -96,7 +96,7 @@
 			<%
 				for (int i=0; i<reqList.size(); i++) {
 					ReqDTO req = reqList.get(i);
-					if(req.getREQ_STATE() != 3)
+					if(req.getREQ_STATE() != 4)
 						continue;
 					if(year != null){
 						switch(year){
@@ -237,9 +237,12 @@
 						%> 검토 전 <% 
 						break;
 					case 2:
-						%> 검토 완료 <%
+						%> 검토 반려 <%
 						break;
 					case 3:
+						%> 검토 승인 <%
+						break;
+					case 4:
 						%> 사업 완료 <% 
 						break;
 					default :

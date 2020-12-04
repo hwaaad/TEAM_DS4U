@@ -62,7 +62,7 @@ public class ReqRecWriteServlet extends HttpServlet {
 		}
 		
 		ReqDAO reqDAO = new ReqDAO();
-		reqDAO.update_req_rec_date(REQ_SQ);
+		reqDAO.update_req_rec_date(REQ_SQ, REQ_APPROVAL);
 		
 		ReqRecDAO reqrecDAO = new ReqRecDAO();
 		reqrecDAO.write(STF_ID, REQ_SQ, APV_NM, REQ_REC_TXT, REQ_APPROVAL, REQ_REC_FILE, REQ_REC_RFILE);

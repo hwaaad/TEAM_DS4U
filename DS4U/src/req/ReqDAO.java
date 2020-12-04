@@ -129,11 +129,14 @@ public class ReqDAO {
    
     
     
-    public int update_req_rec_date(String REQ_SQ) {
+    public int update_req_rec_date(String REQ_SQ, String REQ_APPROVAL) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
-        String SQL = "UPDATE REQ SET REQ_STATE = 2, REQ_REC_DATE = NOW() WHERE REQ_SQ = ?";
-        
+    	String SQL;
+    	if(REQ_APPROVAL.equals("승인"))
+    		SQL = "UPDATE REQ SET REQ_STATE = 3, REQ_REC_DATE = NOW() WHERE REQ_SQ = ?";
+    	else
+    		SQL = "UPDATE REQ SET REQ_STATE = 2, REQ_REC_DATE = NOW() WHERE REQ_SQ = ?"; 
         try {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
@@ -164,7 +167,7 @@ public class ReqDAO {
     public int update_req_sub_date(int REQ_SQ) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
-        String SQL = "UPDATE REQ SET REQ_STATE = 3, REQ_SUB_DATE=NOW() WHERE REQ_SQ = ?";
+        String SQL = "UPDATE REQ SET REQ_STATE = 4, REQ_SUB_DATE=NOW() WHERE REQ_SQ = ?";
     
         try {
         	conn = dataSource.getConnection();

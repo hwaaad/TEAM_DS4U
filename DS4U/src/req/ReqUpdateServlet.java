@@ -81,13 +81,12 @@ public class ReqUpdateServlet extends HttpServlet{
 			REQ_FILE = multi.getOriginalFileName("REQ_FILE");
 			REQ_RFILE = file.getName();
 		}
-		System.out.println(REQ_FILE);
-		System.out.println(REQ_RFILE);
 		int APV_SQ = Integer.parseInt(multi.getParameter("APV_SQ")); 		
 		
 		reqDAO.update(APV_SQ, APV_NM, APV_OBJ, APV_CONT, APV_DATE, REQ_SQ);
 		reqDAO.update_apv_date(APV_SQ);
-		reqDAO.file_update(REQ_FILE, REQ_RFILE, REQ_SQ);
+		if (REQ_FILE != "" && REQ_RFILE != "")
+			reqDAO.file_update(REQ_FILE, REQ_RFILE, REQ_SQ);
 		request.getSession().setAttribute("messageType", "성공 메시지");
 		request.getSession().setAttribute("messageContent", "성공적으로 게시물이 수정되었습니다.");
 		response.sendRedirect("reqView.jsp");

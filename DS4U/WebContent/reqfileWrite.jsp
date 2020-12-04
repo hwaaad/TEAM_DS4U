@@ -35,6 +35,12 @@
 	}
 	StfDTO stf = new StfDAO().getUser(STF_ID);
 	ReqDTO req = new ReqDAO().getReq(REQ_SQ);
+	if(req.getREQ_REC_DATE().equals("")){
+		session.setAttribute("messageType", "오류 메세지");
+		session.setAttribute("messageContent", "회신이 이루어지지 않아 제출할 수 없습니다.");
+		response.sendRedirect("reqView.jsp");
+		return;
+	}
 
 %>
 <head>
