@@ -35,9 +35,9 @@
 	}
 	StfDTO stf = new StfDAO().getUser(STF_ID);
 	ReqDTO req = new ReqDAO().getReq(REQ_SQ);
-	if(req.getREQ_REC_DATE().equals("")){
+	if(req.getREQ_STATE() != 3){
 		session.setAttribute("messageType", "오류 메세지");
-		session.setAttribute("messageContent", "회신이 이루어지지 않아 제출할 수 없습니다.");
+		session.setAttribute("messageContent", "보안성 검토 승인이 되지 않았으므로 보안점검표 제출을 할 수 없습니다.");
 		response.sendRedirect("reqView.jsp");
 		return;
 	}
