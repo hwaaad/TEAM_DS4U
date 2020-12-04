@@ -45,6 +45,8 @@
 	}
 	ArrayList<ReqDTO> reqList = new ReqDAO().getList(pageNumber);
 	StfDTO stf = new StfDAO().getUser(STF_ID);
+	String year = null;
+	year = request.getParameter("YEAR");
 %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -62,11 +64,21 @@
 	<%@ include file="navWs.jsp" %>
 	<%@ include file="/modal.jsp" %>
 	
+	
 	<div id="wsBody">
+	
 	<input type="hidden" value="board" id="pageType">
 		<div id="wsBodyContainer">
 			<h3>보안성 검토</h3>
 			<h4>완료된 보안성 검토</h4>
+			<br>
+			<p style="color : #4b70fd;">
+			<a style="color : #4b70fd;" href="fin_reqView.jsp">전체</a> &nbsp;/&nbsp;
+			<a style="color : #4b70fd;" href="fin_reqView.jsp?YEAR=<%=2020%>">2020</a>&nbsp;/&nbsp;
+			<a style="color : #4b70fd;" href="fin_reqView.jsp?YEAR=<%=2019%>">2019</a>&nbsp;/&nbsp;
+			<a style="color : #4b70fd;" href="fin_reqView.jsp?YEAR=<%=2018%>">2018</a>&nbsp;/&nbsp;
+			<a style="color : #4b70fd;" href="fin_reqView.jsp?YEAR=<%="others"%>">...</a>
+			</p>
 			<div id="boardInner">
 				<ul id="boardList">
 					<li id="listHead">
@@ -86,6 +98,23 @@
 					ReqDTO req = reqList.get(i);
 					if(req.getREQ_STATE() != 3)
 						continue;
+					if(year != null){
+						switch(year){
+						case "2020":
+							if(req.getREQ_SUB_DATE().contains("2019-") || req.getREQ_SUB_DATE().contains("2018-"))
+								continue;break;
+							
+						case "2019" :
+							if(req.getREQ_SUB_DATE().contains("2020-") || req.getREQ_SUB_DATE().contains("2018-"))
+								continue;break;
+						case "2018" :
+							if(req.getREQ_SUB_DATE().contains("2020-") || req.getREQ_SUB_DATE().contains("2019-"))
+								continue;break;
+						case "others":
+							if(req.getREQ_SUB_DATE().contains("2020-") || req.getREQ_SUB_DATE().contains("2019-") || req.getREQ_SUB_DATE().contains("2018-"))
+								continue;break;
+						}
+					}
 			%>
 				<tr>
 					<td><%= req.getREQ_SQ() %></td>
