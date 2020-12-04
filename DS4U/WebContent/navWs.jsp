@@ -49,7 +49,7 @@
          <%
          	} else {
          %>
-         
+         <img class="media-object img-circle" id="profileIMG" style="border-radius: 1%; max-width: 170px; max-height: 170px; margin: margin: 0 auto; overflow: hidden;" src="${contextPath}/profile/<%= stf.getSTF_PF() %>"/>
          <%
          	} 
          %> 
