@@ -121,3 +121,20 @@ create table chat (
 	chatTime DATETIME,
 	chatRead INT
 	);
+	
+
+[TABLE] EDUCATION - 교육자료 게시판
+create table education(
+    STF_ID varchar(10),
+    EDUCATION_SQ int,
+    EDUCATION_NM varchar(64),
+    EDUCATION_TXT varchar(255),
+    EDUCATION_DT datetime,
+    EDUCATION_HIT int,
+    EDUCATION_FILE varchar(100),
+    EDUCATION_RFILE varchar(100),
+    EDUCATION_GROUP int,
+    EDUCATION_SEQUENCE int,
+    EDUCATION_LEVEL int,
+    EDUCATION_AVAILABLE int,
+    primary key(EDUCATION_SQ));
