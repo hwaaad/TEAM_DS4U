@@ -27,7 +27,17 @@ public class UserLoginServlet extends HttpServlet {
 			request.getSession().setAttribute("STF_ID", STF_ID);
 			request.getSession().setAttribute("messageType","성공 메시지");
 			request.getSession().setAttribute("messageContent", "로그인에 성공했습니다.");
+			
+			//관리자 계정인 경우 첫화면 페이지는 대시보드 
+			if (STF_ID.equals("admin")){
+			
+				response.sendRedirect("index2.jsp");
+				return;	
+			}
+			//사업부서인 경우 일반 페이지 
+			else {
 			response.sendRedirect("index.jsp");
+		}
 		}
 		else if (result == 2) {
 			request.getSession().setAttribute("messageType", "오류 메시지");

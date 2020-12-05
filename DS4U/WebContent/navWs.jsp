@@ -36,9 +36,19 @@
 	</script>
 <div id="wsNav">
    <div id="navContainer">
-      <h1 id="logo">
-         <a href="${contextPath}/index.jsp"> <img src="${contextPath}/images/logo.jpg" /></a>
-      </h1>
+   
+     <h1 id="logo">
+      <c:choose>
+				<c:when test="${STF_ID == 'admin' }">
+					<a href="${contextPath}/index2.jsp" > <img src="${contextPath}/images/logo.jpg" /> </a>
+					
+				</c:when>
+				<c:otherwise>
+					<a href="${contextPath}/index.jsp" > <img src="${contextPath}/images/logo.jpg" /> </a>
+					
+				</c:otherwise>
+			</c:choose>
+    </h1> 
       
       <div id="aboutProfile">
          <a href="${contextPath }/myPage.jsp">
@@ -76,11 +86,22 @@
       <div id="boardDiv" class="navListDiv">
          <h3></h3>
       </div>
+      
       <div id="boardDiv" class="navListDiv" style="text-align: center;">
-         <h3>
-         <a href="${contextPath}/index.jsp">메인</a>
-         </h3>
-      </div>
+			<ul>
+			<c:choose>
+				<c:when test="${STF_ID == 'admin' }">
+					<a href="${contextPath}/index2.jsp" >메인</a></li>
+					
+				</c:when>
+				<c:otherwise>
+					<a href="${contextPath}/index.jsp" >메인</a></li>
+					
+				</c:otherwise>
+			</c:choose>
+			</ul>
+		</div>
+      
       <div id="boardDiv" class="navListDiv">
          <h3></h3>
       </div>
@@ -146,11 +167,21 @@
       <div id="boardDiv" class="navListDiv">
          <h3></h3>
       </div>
-      <div id="mainDiv">
-         <h3>
-         	<a href="${contextPath}/"><i class="fas fa-angle-left"></i><i class="glyphicon glyphicon-home"></i> 홈으로</a>
-         </h3>
-      </div>      
+      <div id="mainDiv" >
+			<ul>
+			<c:choose>
+				<c:when test="${STF_ID == 'admin' }">
+					<li><a href="${contextPath}/index2.jsp" > 홈으로</a></li>
+					
+				</c:when>
+				<c:otherwise>
+					<li><a href="${contextPath}/index.jsp" > 홈으로</a></li>
+					
+				</c:otherwise>
+			</c:choose>
+			</ul>
+		</div>
+    
    </div>
    
 		<script type="text/javascript">
