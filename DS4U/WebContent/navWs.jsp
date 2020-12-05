@@ -12,7 +12,7 @@
 				type : 'POST',
 				url : "./chatUnread",
 				data : {
-					STF_ID : encodeURIComponent(${STF_ID}),
+					STF_ID : encodeURIComponent("<%=STF_ID%>"), 
 				},
 				success : function(result){
 					if(result >= 1){
@@ -49,9 +49,9 @@
          <%
          	} else {
          %>
-         <img class="media-object img-circle" id="profileIMG" style="border-radius: 1%; max-width: 170px; max-height: 170px; margin: margin: 0 auto; overflow: hidden;" src="${contextPath}/profile/<%= stf.getSTF_PF() %>"/>
+         	<img class="media-object img-circle" id="profileIMG" style="border-radius: 1%; max-width: 170px; max-height: 170px; margin: margin: 0 auto; overflow: hidden;" src="${contextPath}/profile/<%= stf.getSTF_PF() %>"/>
          <%
-         	} 
+         	}
          %> 
          </a>
          <a href="${contextPath }/myPage.jsp"><p><i class="glyphicon glyphicon-user"></i> ${STF_ID}님</p></a>
@@ -95,10 +95,9 @@
             <li><a href="${contextPath}/noticeView.jsp">공지사항</a></li>
             <li><a href="${contextPath}/boardView.jsp">자유게시판</a></li>
             <li><a href="${contextPath}/educationView.jsp">교육자료</a></li>
-            
             <li>----------------</li>
             <li><a href="${contextPath}/box.jsp">채팅 <span id="unread" class="label label-info"></span></a></li>
-            <li><a href="${contextPath}/find.jsp">사원찾기</a></li>
+            <li><a href="${contextPath}/find.jsp">채팅상대 찾기</a></li>
          </ul>
       </div>
       <div id="boardDiv" class="navListDiv">
