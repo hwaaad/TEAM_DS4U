@@ -619,5 +619,42 @@ public class BoardDAO {
         	}       	
         }
         return -1;     
-	}    
+	}  
+    
+    public ArrayList<BoardDTO> getList2() {  //공지사항 가져오는 함수
+    	ArrayList<BoardDTO> boardList = null;
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+        String SQL = "SELECT BOARD_SQ, BOARD_NM, STF_ID, BOARD_DT, BOARDHIT FROM BOARD WHERE BOARD_TYPE='공지' LIMIT 5";
+        try {
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery(); // 실행 결과를 넣음
+            boardList = new ArrayList<BoardDTO>();
+            
+            while (rs.next()) {
+            	BoardDTO board = new BoardDTO();
+            	board.setBOARD_SQ(rs.getInt("BOARD_SQ"));
+            	board.setBOARD_NM(rs.getString("BOARD_NM"));
+            	board.setSTF_ID(rs.getString("STF_ID"));
+            	board.setBOARD_DT(rs.getString("BOARD_DT"));
+            	board.setBOARDHIT(rs.getInt("BOARDHIT"));
+            	
+            	boardList.add(board);
+        	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (rs != null) rs.close();
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return boardList;          
+	}
+    
 }

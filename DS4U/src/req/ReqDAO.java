@@ -487,4 +487,113 @@ public class ReqDAO {
         }
         return "";          	
     }
+    
+    public ArrayList<ReqDTO> getList2(){ // 전체 정보화사업 리턴해주는 메소드 
+		ArrayList<ReqDTO> reqList = null; //필요한객체 초기화 
+		Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	String SQL = "SELECT REQ_SQ, APV_NM, STF_ID, REQ_DATE, REQ_REC_DATE, REQ_SUB_DATE FROM REQ LIMIT 5";
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			reqList = new ArrayList<ReqDTO>();
+			while(rs.next()){
+				ReqDTO dto =  new ReqDTO();
+				dto.setREQ_SQ(rs.getInt("REQ_SQ"));
+				dto.setAPV_NM(rs.getString("APV_NM"));
+				dto.setSTF_ID(rs.getString("STF_ID"));
+				dto.setREQ_DATE(rs.getString("REQ_DATE"));
+				dto.setREQ_REC_DATE(rs.getString("REQ_REC_DATE"));
+				dto.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE"));
+				
+	
+				reqList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null)	rs.close();
+				if(pstmt!=null)	pstmt.close();
+				if(conn!=null)	conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return reqList;
+	}
+    public ArrayList<ReqDTO> getList3(){ // 진행중인 정보화사업 리턴해주는 메소드 
+		ArrayList<ReqDTO> reqList = null; //필요한객체 초기화 
+		Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	String SQL = "SELECT REQ_SQ, APV_NM, STF_ID, REQ_DATE, REQ_REC_DATE, REQ_SUB_DATE FROM REQ where REQ_STATE= 2 LIMIT 5";
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			reqList = new ArrayList<ReqDTO>();
+			while(rs.next()){
+				ReqDTO dto =  new ReqDTO();
+				dto.setREQ_SQ(rs.getInt("REQ_SQ"));
+				dto.setAPV_NM(rs.getString("APV_NM"));
+				dto.setSTF_ID(rs.getString("STF_ID"));
+				dto.setREQ_DATE(rs.getString("REQ_DATE"));
+				dto.setREQ_REC_DATE(rs.getString("REQ_REC_DATE"));
+				dto.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE"));
+				
+	
+				reqList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null)	rs.close();
+				if(pstmt!=null)	pstmt.close();
+				if(conn!=null)	conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return reqList;
+	}
+    public ArrayList<ReqDTO> getList4(){ // 완료된 정보화사업 리턴해주는 메소드 
+		ArrayList<ReqDTO> reqList = null; //필요한객체 초기화 
+		Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	String SQL = "SELECT REQ_SQ, APV_NM, STF_ID, REQ_DATE, REQ_REC_DATE, REQ_SUB_DATE FROM REQ where REQ_STATE= 3 LIMIT 5";
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			reqList = new ArrayList<ReqDTO>();
+			while(rs.next()){
+				ReqDTO dto =  new ReqDTO();
+				dto.setREQ_SQ(rs.getInt("REQ_SQ"));
+				dto.setAPV_NM(rs.getString("APV_NM"));
+				dto.setSTF_ID(rs.getString("STF_ID"));
+				dto.setREQ_DATE(rs.getString("REQ_DATE"));
+				dto.setREQ_REC_DATE(rs.getString("REQ_REC_DATE"));
+				dto.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE"));
+				
+	
+				reqList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null)	rs.close();
+				if(pstmt!=null)	pstmt.close();
+				if(conn!=null)	conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return reqList;
+	}
 }
