@@ -53,29 +53,6 @@ body{height:100%; min-height:120%; background-color:#fff;}
 	text-align:center;
 	padding: 0 5px;
 }
-#boardInner #boardList div:nth-child(1){
-	font-size:13px;
-	width:100px;
-}
-#boardInner #boardList div:nth-child(2){
-	width: 530px;
-	text-align:left;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-#boardInner #boardList div:nth-child(3){
-	width:100px;
-}
-#boardInner #boardList div:nth-child(4){
-	width:100px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-#boardInner #boardList div:nth-child(5){
-	width:100px;
-}
 #boardInner .replyCount{
 	color:#E5675A;
 	font-size:12px;
@@ -471,20 +448,51 @@ table th[class*="col-"] {
 .table-hover > tbody > tr.success:hover > th {
   background-color: #d0e9c6;
 }
+
+#boardInner #boardList div:nth-child(1){
+	font-size:13px;
+	font-weight: 600;
+	width:10%;
+}
+#boardInner #boardList div:nth-child(2){
+	font-weight: 600;
+	width: 50%;
+	text-align:left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#boardInner #boardList div:nth-child(3){
+	font-weight: 600;
+	width:100px;
+}
+#boardInner #boardList div:nth-child(4){
+	font-weight: 600;
+	width:100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#boardInner #boardList div:nth-child(5){
+	font-weight: 600;
+	width:100px;
+}
+
+
 .table > tbody > tr > td:nth-child(1) {
 	font-size:13px;
 	width:100px;
 }
 .table > tbody > tr > td:nth-child(2) {
 	display: inline-block;
-	width: 500px;
+	width: 480px;
 	text-align:left;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 .table > tbody > tr > td:nth-child(3) {
-	width:100px;
+	width:120px;
 }
 .table > tbody > tr > td:nth-child(4) {
 	width:100px;
@@ -492,6 +500,48 @@ table th[class*="col-"] {
     white-space: nowrap;
     overflow: hidden;
 }
-.table > tbody > tr > td:nth-child(5) {
+.table > thead > tr > td:nth-child(5) {
 	width:100px;
+}
+
+
+
+.table > thead > tr > td:nth-child(1) {
+	background-color: #E0E0E0 !important;
+	font-size:13px;
+	font-weight: 600;
+	width:100px;
+	border-radius:0px;
+}
+.table > thead > tr > td:nth-child(2) {
+	background-color: #E0E0E0 !important;
+	font-weight: 600;
+	width: 480px;
+	text-align:center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.table > thead > tr > td:nth-child(3) {
+	background-color: #E0E0E0 !important;
+	width:120px;
+	font-weight: 600;
+}
+.table > thead > tr > td:nth-child(4) {
+	background-color: #E0E0E0 !important;
+	width:150px;
+	font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.table > thead > tr > td:nth-child(5) {
+	background-color: #E0E0E0 !important;
+	width:100px;
+	font-weight: 600;
+	border-radius:0px;
+}
+
+#inputWrap input[type='text'], #inputWrap select, #inputWrap input[type='password'] {
+    margin-left: 10px;
 }
