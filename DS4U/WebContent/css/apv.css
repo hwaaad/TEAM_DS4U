@@ -4,7 +4,7 @@ body{height:100%; min-height:120%; background-color:#fff;}
 #boardInner {
 	position:relative;
 	width:100%;
-    max-width: 1300px;
+    max-width: 1600px;
     margin: 35px auto 20px;
 }
 #boardInner .row {
@@ -55,10 +55,10 @@ body{height:100%; min-height:120%; background-color:#fff;}
 }
 #boardInner #boardList div:nth-child(1){
 	font-size:13px;
-	width:50px;
+	width:110px;
 }
 #boardInner #boardList div:nth-child(2){
-	width: 330px;
+	width: 300px;
 	text-align:left;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -68,28 +68,25 @@ body{height:100%; min-height:120%; background-color:#fff;}
 	width:190px;
 }
 #boardInner #boardList div:nth-child(4){
-	width:105px;
+	width:115px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 #boardInner #boardList div:nth-child(5){
-	width:105px;
+	width:120px;
 }
 #boardInner #boardList div:nth-child(6){
-	width:105px;
+	width:120px;
 }
 #boardInner #boardList div:nth-child(7){
-	width:105px;
+	width:120px;
 }
 #boardInner #boardList div:nth-child(8){
-	width:105px;
+	width:120px;
 }
 #boardInner #boardList div:nth-child(9){
-	width:105px;
-}
-#boardInner #boardList div:nth-child(10){
-	width:105px;
+	width:250px;
 }
 #boardInner .replyCount{
 	color:#E5675A;
@@ -498,34 +495,34 @@ table th[class*="col-"] {
     overflow: hidden;
 }
 .table > tbody > tr > td:nth-child(3) {
-	width:100px;
+	width:185px;
 }
 .table > tbody > tr > td:nth-child(4) {
-	width:100px;
+	width:110px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 .table > tbody > tr > td:nth-child(5) {
-	width:100px;
+	width:110px;
 }
 
 .table > tbody > tr > td:nth-child(6) {
-	width:100px;
+	width:110px;
 }
 
 .table > tbody > tr > td:nth-child(7) {
-	width:100px;
+	width:110px;
 }
 
 .table > tbody > tr > td:nth-child(8) {
-	width:100px;
+	width:110px;
 }
 
 .table > tbody > tr > td:nth-child(9) {
-	width:100px;
+	width:250px;
 }
 
 .table > tbody > tr > td:nth-child(10) {
-	width:100px;
+	width:205px;
 }

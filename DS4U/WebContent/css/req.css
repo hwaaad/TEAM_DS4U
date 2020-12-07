@@ -4,7 +4,7 @@ body{height:100%; min-height:120%; background-color:#fff;}
 #boardInner {
 	position:relative;
 	width:100%;
-    max-width: 1100px;
+    max-width: 1160px;
     margin: 35px auto 20px;
 }
 #boardInner .row {
@@ -51,7 +51,7 @@ body{height:100%; min-height:120%; background-color:#fff;}
 	height:100%;
 	float:left;
 	text-align:center;
-	padding: 0 5px;
+	padding: 0 10px;
 }
 #boardInner #boardList div:nth-child(1){
 	font-size:13px;

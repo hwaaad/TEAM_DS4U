@@ -74,7 +74,6 @@
 						<div>전화번호</div>
 						<div>이메일</div>
 						<div>부서</div>
-						<div>프로필</div>
 						<div>관리자 여부</div>
 					</li>			
 			<table class="table" style="text-align: center; border: 1px solid #dddddd">
@@ -90,7 +89,6 @@
 						<td><%= req.getSTF_PH() %></td>		
 						<td><%= req.getSTF_EML() %></td>
 						<td><%= req.getSTF_DEP() %></td>
-						<td><%= req.getSTF_PF() %></td>
 						<td>
 						<% if (req.getSTF_DEP().equals("부서4")){ %>
 							<input type="radio" name="STF_ADM" autocomplete="off" value="관리자" checked>관리자
@@ -103,10 +101,9 @@
 							<%
 							}
 							%>
+							&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn" type="submit">수정</button>
 						</td>
-						<td>
-						<button class="btn" type="submit">수정</button>
-						</td>
+						
 					</form>
 				</tr>
 			<%
