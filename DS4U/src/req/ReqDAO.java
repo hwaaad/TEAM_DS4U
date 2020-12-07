@@ -529,7 +529,7 @@ public class ReqDAO {
 		Connection conn = null;
     	PreparedStatement pstmt = null;
     	ResultSet rs = null;
-    	String SQL = "SELECT REQ_SQ, APV_NM, STF_ID, REQ_DATE, REQ_REC_DATE, REQ_SUB_DATE FROM REQ where REQ_STATE= 2 LIMIT 5";
+    	String SQL = "SELECT REQ_SQ, APV_NM, STF_ID, REQ_DATE, REQ_REC_DATE, REQ_SUB_DATE FROM REQ where REQ_STATE BETWEEN 1 AND 3 LIMIT 5";
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -565,7 +565,7 @@ public class ReqDAO {
 		Connection conn = null;
     	PreparedStatement pstmt = null;
     	ResultSet rs = null;
-    	String SQL = "SELECT REQ_SQ, APV_NM, STF_ID, REQ_DATE, REQ_REC_DATE, REQ_SUB_DATE FROM REQ where REQ_STATE= 3 LIMIT 5";
+    	String SQL = "SELECT REQ_SQ, APV_NM, STF_ID, REQ_DATE, REQ_REC_DATE, REQ_SUB_DATE FROM REQ where REQ_STATE= 4 LIMIT 5";
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(SQL);
