@@ -48,7 +48,7 @@
 		return;			
 	}
 	ArrayList<EducationDTO> educationList = new EducationDAO().getList(pageNumber);
-	
+	EducationDAO educationDAO = new EducationDAO();
 	request.setCharacterEncoding("UTF-8");
 	
 	
@@ -129,15 +129,35 @@
 			<div id="educationInner">
 				<div id="inputWrap">
 				<ul id="educationList">
-					<li id="listHead">
-						<div>No.</div>
-						<div>제목</div>
-						<div>작성자</div>
-						<div>작성일</div>
-						<div>조회수</div>
-					</li>		
+				<table class="table" style="text-align: center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<td>No.</td>
+							<td>제목</td>
+							<td>작성자</td>
+							<td>작성일</td>
+							<td>조회수</td>
+						</tr>
+					</thead>	
+				<tbody>
+			<%
+					if (educationDAO.educationAllCount() <= 0) {
+			%>
 			<table class="table" style="text-align: center; border: 1px solid #dddddd">
-			<tbody>		
+						<tbody>
+							<tr>
+								<td style="width: 977px; text-align: center;">게시물이 없습니다.</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="${contextPath}/educationWrite.jsp" id="writeBtn2">글쓰기</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>	
+			<%
+				}else{
+			%>
 
 			<%
 				for (int i=0; i<educationList.size(); i++) {
@@ -176,16 +196,14 @@
 					<td colspan="5">
 					<a href="${contextPath}/educationWrite.jsp" id="writeBtn2">글쓰기</a>
 					<div id="searchWrap">
-						<form action="./educationSearch.jsp" method="get" id="educationSearchForm2">	
-							
+						<form action="./educationSearch.jsp" method="get" id="educationSearchForm">		
 							<select name="searchType" id="searchType">
 									<option value="최신순">최신순</option>
 									<option value="조회순" <% if (searchType.equals("조회순")) out.println("selected"); %>>조회순</option>
 							</select>
-							<input type="text" name="search"><button>검색</button>
+							<input type="text" name="search" type="submit"><button>검색</button>
 						</form>
-					</div>	
-											
+					</div>						
 					</td>
 				</tr>
 			<%
@@ -234,6 +252,9 @@
 					%>							
 					</ul>
 					</td>
+					<%
+						}
+					%>
 				</tr>							
 			</tbody>
 			</table>

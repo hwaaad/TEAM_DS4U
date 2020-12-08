@@ -38,6 +38,7 @@
 		return;			
 	}
 	ArrayList<EducationDTO> educationList = new EducationDAO().getList(pageNumber);
+	EducationDAO educationDAO = new EducationDAO();
 	
 	request.setCharacterEncoding("UTF-8");
 	String searchType = "최신순";
@@ -84,16 +85,43 @@
 			<div id="educationInner">
 				<div id="inputWrap">
 				<ul id="educationList">
-					<li id="listHead">
-						<div>No.</div>
-						<div>제목</div>
-						<div>작성자</div>
-						<div>작성일</div>
-						<div>조회수</div>
-					</li>		
-			<table class="table" style="text-align: center; border: 1px solid #dddddd">
-			<tbody>		
-			<%
+					<table class="table" style="text-align: center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<td>No.</td>
+							<td>제목</td>
+							<td>작성자</td>
+							<td>작성일</td>
+							<td>조회수</td>
+						</tr>
+					</thead>	
+				<tbody>	
+				<%	
+					if (educationDAO.educationSearchCount(searchType, search, PageNumber) <= 0) {
+				%>	
+					<table class="table" style="text-align: center; border: 1px solid #dddddd">
+						<tbody>	
+							<tr>
+								<td style="width: 977px; text-align: center; border-right:1px solid #dddddd">검색 결과가 없습니다.</td>
+							</tr>
+							<tr>
+								<td colspan="5">
+									<a href="${contextPath}/educationView.jsp" id="writeBtn2">목록</a>
+									<div id="searchWrap">
+										<form action="./educationSearch.jsp" method="get" id="educationSearchForm">							
+											<select name="searchType" id="searchType">
+												<option value="최신순">최신순</option>
+												<option value="조회순" <% if (searchType.equals("조회순")) out.println("selected"); %>>조회순</option>
+											</select>
+											<input type="text" name="search" type="submit"><button>검색</button>
+										</form>
+									</div>					
+								</td>
+							</tr>
+						</tbody>
+					</table>			
+				<%	
+			} else {
 				ArrayList<EducationDTO> searchList = new ArrayList<EducationDTO>();
 				searchList = new EducationDAO().getSearch(searchType, search, PageNumber);
 				for (int i=0; i<searchList.size(); i++) {
@@ -121,6 +149,11 @@
 				} else {
 			%>
 				<%= education.getEDUCATION_NM() %>
+				
+			<%
+				}
+			%>
+				
 				</a></td>
 				<td><%= education.getSTF_ID() %></td>
 				<td><%= education.getEDUCATION_DT() %></td>
@@ -129,14 +162,11 @@
 				}
 			%>
 			
-
-			<%					
-				}
-			%>			
+		
 			
 				<tr>
 					<td colspan="5">
-						<a href="${contextPath}/educationView.jsp" id="writeBtn">목록</a>
+						<a href="${contextPath}/educationView.jsp" id="writeBtn2">목록</a>
 						<div id="searchWrap">
 							<form action="./educationSearch.jsp" method="get" id="educationSearchForm">							
 								<select name="searchType" id="searchType">
@@ -176,6 +206,9 @@
 					%>	
 					</ul>
 					</td>
+					<%
+						}			
+					%>
 				
 					
 											

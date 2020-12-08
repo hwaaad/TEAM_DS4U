@@ -104,31 +104,7 @@ public class ReqDAO {
         }
         return -1;      // DB �삤瑜�       
 	}
-    
-    public int delete(String REQ_SQ) {
-    	Connection conn = null;
-    	PreparedStatement pstmt = null;
-        String SQL = "UPDATE REQ SET REQ_AVAILABLE = 0 WHERE REQ_SQ = ?";
-        try {
-        	conn = dataSource.getConnection();
-            pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1, Integer.parseInt(REQ_SQ));
-            return pstmt.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-        	try {
-        		if (pstmt != null) pstmt.close();
-        		if (conn != null) conn.close();
-        	} catch (Exception e) {
-        		e.printStackTrace();
-        	}       	
-        }
-        return -1;      // DB �삤瑜�       
-	}
-   
-    
-    
+        
     public int update_req_rec_date(String REQ_SQ, String REQ_APPROVAL) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;

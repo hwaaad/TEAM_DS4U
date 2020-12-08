@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import board.BoardDTO;
 import education.EducationDTO;
 
 public class EducationDAO {
@@ -129,6 +130,84 @@ public class EducationDAO {
         	}       	
         }
         return educationList;          
+	}
+    
+    public int educationAllCount() {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+        String SQL = "SELECT COUNT(*) FROM EDUCATION";
+        try {
+        	conn = dataSource.getConnection();
+        	pstmt = conn.prepareStatement(SQL);
+        	rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int count = rs.getInt(1);
+				return count;
+			}
+			return 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(rs != null) rs.close();
+				if(conn != null) conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
+    
+    public int educationSearchCount(String searchType, String search, int PageNumber) {
+    	
+    	ArrayList<EducationDTO> searchList = null;
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+        String SQL = "";
+        try {
+        	if (searchType.equals("최신순")) {
+        		SQL = "SELECT * FROM EDUCATION WHERE CONCAT(STF_ID, EDUCATION_NM, EDUCATION_TXT) LIKE " + "? ORDER BY EDUCATION_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+        	} else if (searchType.equals("조회순")) {
+        		SQL = "SELECT * FROM EDUCATION WHERE CONCAT(STF_ID, EDUCATION_NM, EDUCATION_TXT) LIKE " + "? ORDER BY EDUCATION_HIT DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+        	}
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, "%" + search + "%");
+            rs = pstmt.executeQuery(); 
+            searchList = new ArrayList<EducationDTO>();
+            while (rs.next()) {             	
+            	EducationDTO education = new EducationDTO();
+                education.setSTF_ID(rs.getString("STF_ID"));
+                education.setEDUCATION_SQ(rs.getInt("EDUCATION_SQ"));
+                education.setEDUCATION_NM(rs.getString("EDUCATION_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+                education.setEDUCATION_TXT(rs.getString("EDUCATION_TXT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+                education.setEDUCATION_DT(rs.getString("EDUCATION_DT").substring(0, 11));
+                education.setEDUCATION_HIT(rs.getInt("EDUCATION_HIT"));
+                education.setEDUCATION_FILE(rs.getString("EDUCATION_FILE"));
+                education.setEDUCATION_RFILE(rs.getString("EDUCATION_RFILE"));
+                education.setEDUCATION_GROUP(rs.getInt("EDUCATION_GROUP"));
+                education.setEDUCATION_SEQUENCE(rs.getInt("EDUCATION_SEQUENCE"));
+                education.setEDUCATION_LEVEL(rs.getInt("EDUCATION_LEVEL"));
+                education.setEDUCATION_AVAILABLE(rs.getInt("EDUCATION_AVAILABLE"));                
+            	searchList.add(education);               
+            	return searchList.size();
+            }
+            return 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (rs != null) rs.close();
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return -1;     
 	}
     
     public int hit(String EDUCATION_SQ) {
@@ -317,7 +396,6 @@ public class EducationDAO {
    
 	
     public ArrayList<EducationDTO> getSearch(String searchType, String search, int PageNumber) {
-    	
     	ArrayList<EducationDTO> searchList = null;
     	Connection conn = null;
     	PreparedStatement pstmt = null;

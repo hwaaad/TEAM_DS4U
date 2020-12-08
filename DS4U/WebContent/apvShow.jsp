@@ -198,7 +198,7 @@
 									%>
 									
 										<a href="apvUpdate.jsp?APV_SQ=<%= apv.getAPV_SQ() %>" class="btn">수정</a>
-										<a href="apvDelete?APV_SQ=<%= apv.getAPV_SQ() %>" class="btn" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
+										
 									<%		
 										}
 									%>												

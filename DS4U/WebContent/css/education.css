@@ -53,29 +53,6 @@ body{height:100%; min-height:120%; background-color:#fff;}
 	text-align:center;
 	padding: 0 5px;
 }
-#educationInner #educationList div:nth-child(1){
-	font-size:13px;
-	width:100px;
-}
-#educationInner #educationList div:nth-child(2){
-	width: 530px;
-	text-align:left;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-#educationInner #educationList div:nth-child(3){
-	width:100px;
-}
-#educationInner #educationList div:nth-child(4){
-	width:100px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-#educationInner #educationList div:nth-child(5){
-	width:100px;
-}
 #educationInner .replyCount{
 	color:#E5675A;
 	font-size:12px;
@@ -134,12 +111,12 @@ body{height:100%; min-height:120%; background-color:#fff;}
 #educationInner #writeBtn2:hover{
 	background-color: #E5675A;
 }
-#educationInner #educationSearchForm2{
+#educationInner #educationSearchForm{
 	margin-right: 300px;
 	text-align:center;
 	font-size: 14px;
 }
-#educationInner #educationSearchForm2 > *{
+#educationInner #educationSearchForm > *{
 	vertical-align: middle;
     height: 35px;
     box-sizing: border-box;
@@ -147,19 +124,19 @@ body{height:100%; min-height:120%; background-color:#fff;}
     border: 1px solid #e0e0e0;
     border-radius: 4px;
 }
-#educationInner #educationSearchForm2 select {
+#educationInner #educationSearchForm select {
 }
-#educationInner #educationSearchForm2 input[name="keyword"] {
+#educationInner #educationSearchForm input[name="keyword"] {
 	padding: 0 10px;
 }
-#educationInner #educationSearchForm2 button {
+#educationInner #educationSearchForm button {
 	margin-left: 2px;
 	width:60px;
 	background-color: #403C39;
 	color:#fff;
 	transition:background-color .5s;
 }
-#educationInner #educationSearchForm2 button:hover{
+#educationInner #educationSearchForm button:hover{
 	background-color: #E5675A;
 	cursor:pointer;
 	border-color: transparent;
@@ -471,20 +448,51 @@ table th[class*="col-"] {
 .table-hover > tbody > tr.success:hover > th {
   background-color: #d0e9c6;
 }
+
+#educationInner #educationList div:nth-child(1){
+	font-size:13px;
+	font-weight: 600;
+	width:10%;
+}
+#educationInner #educationList div:nth-child(2){
+	font-weight: 600;
+	width: 50%;
+	text-align:left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#educationInner #educationList div:nth-child(3){
+	font-weight: 600;
+	width:100px;
+}
+#educationInner #educationList div:nth-child(4){
+	font-weight: 600;
+	width:100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#educationInner #educationList div:nth-child(5){
+	font-weight: 600;
+	width:100px;
+}
+
+
 .table > tbody > tr > td:nth-child(1) {
 	font-size:13px;
 	width:100px;
 }
 .table > tbody > tr > td:nth-child(2) {
 	display: inline-block;
-	width: 500px;
+	width: 480px;
 	text-align:left;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 .table > tbody > tr > td:nth-child(3) {
-	width:100px;
+	width:120px;
 }
 .table > tbody > tr > td:nth-child(4) {
 	width:100px;
@@ -492,6 +500,48 @@ table th[class*="col-"] {
     white-space: nowrap;
     overflow: hidden;
 }
-.table > tbody > tr > td:nth-child(5) {
+.table > thead > tr > td:nth-child(5) {
 	width:100px;
+}
+
+
+
+.table > thead > tr > td:nth-child(1) {
+	background-color: #E0E0E0 !important;
+	font-size:13px;
+	font-weight: 600;
+	width:100px;
+	border-radius:0px;
+}
+.table > thead > tr > td:nth-child(2) {
+	background-color: #E0E0E0 !important;
+	font-weight: 600;
+	width: 480px;
+	text-align:center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.table > thead > tr > td:nth-child(3) {
+	background-color: #E0E0E0 !important;
+	width:120px;
+	font-weight: 600;
+}
+.table > thead > tr > td:nth-child(4) {
+	background-color: #E0E0E0 !important;
+	width:150px;
+	font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.table > thead > tr > td:nth-child(5) {
+	background-color: #E0E0E0 !important;
+	width:100px;
+	font-weight: 600;
+	border-radius:0px;
+}
+
+#inputWrap input[type='text'], #inputWrap select, #inputWrap input[type='password'] {
+    margin-left: 10px;
 }
