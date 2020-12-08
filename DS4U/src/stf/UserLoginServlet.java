@@ -16,6 +16,7 @@ public class UserLoginServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		String STF_ID = request.getParameter("STF_ID");
 		String STF_PW = request.getParameter("STF_PW");
+		
 		if (STF_ID == null || STF_ID.equals("") || STF_PW == null || STF_PW.equals("")) {
 			request.getSession().setAttribute("messageType","오류 메시지");
 			request.getSession().setAttribute("messageContent", "모든 내용을 입력하세요.");
