@@ -43,6 +43,25 @@
 		response.sendRedirect("reqView.jsp");
 		return;			
 	}
+	String searchType = "사업명";
+	String search = "";
+	int PageNumber = 1;
+
+	if (request.getParameter("searchType") != null) {
+		searchType = request.getParameter("searchType");
+	}
+	if (request.getParameter("search") != null) {
+		search = request.getParameter("search");
+	}
+	if (request.getParameter("PageNumber") != null) {
+		try {
+			PageNumber = Integer.parseInt(request.getParameter("PageNumber"));
+		} catch (Exception e) {
+			System.out.println("검색 페이지 번호 오류");
+		}		
+	} 
+
+	
 	StfDTO stf = new StfDAO().getUser(STF_ID);
 	ReqDAO reqDAO = new ReqDAO();
 	ArrayList<ReqDTO> reqList = new ReqDAO().getList(pageNumber);
@@ -66,22 +85,21 @@
 	<input type="hidden" value="board" id="pageType">
 		<div id="wsBodyContainer">
 			<h3>보안성검토</h3>
+				<h4>진행중인 보안성 검토</h4>
 			<div id="boardInner">
 				<div id="inputWrap">
 				<ul id="boardList">	
+			<li id="listHead">
+						<div>No.</div>
+						<div>사업명</div>
+						<div>부서명</div>
+						<div>담당자</div>
+						<div>검토 요청일</div>
+						<div>회신일</div>
+						<div>보안점검표 제출일</div>
+						<div>상태</div>
+					</li>			
 				<table class="table" style="text-align: center; border: 1px solid #dddddd">
-					<thead>
-						<tr>
-							<td>No.</td>
-							<td>사업명</td>
-							<td>부서명</td>
-							<td>담당자</td>
-							<td>검토 요청일</td>
-							<td>회신일</td>
-							<td>보안점검표 제출일</td>
-							<td>상태</td>
-						</tr>
-					</thead>
 				<tbody>		
 				<%
 					if (reqDAO.reqAllCount() <= 0) {
@@ -244,6 +262,15 @@
 					<tr>
 						<td colspan="9">
 							<a href="${contextPath}/reqWrite.jsp" id="writeBtn">글쓰기</a>
+						<div id="searchWrap">
+							<form action="./reqSearch.jsp" method="get" id="boardSearchForm">		
+								<select name="searchType" id="searchType">
+									<option value="사업명">사업명</option>
+									<option value="작성자" <% if (searchType.equals("작성자")) out.println("selected"); %>>작성자</option>
+								</select>
+								<input type="text" name="search" type="submit"><button>검색</button>
+							</form>
+						</div>					
 							<ul id="pagination" style="margin: 0 auto;">				
 						<% 
 							int startPage = (Integer.parseInt(pageNumber) / 10) * 10 + 1;

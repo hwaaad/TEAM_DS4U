@@ -105,30 +105,6 @@ public class ReqDAO {
         return -1;      // DB �삤瑜�       
 	}
     
-    public int delete(String REQ_SQ) {
-    	Connection conn = null;
-    	PreparedStatement pstmt = null;
-        String SQL = "UPDATE REQ SET REQ_AVAILABLE = 0 WHERE REQ_SQ = ?";
-        try {
-        	conn = dataSource.getConnection();
-            pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1, Integer.parseInt(REQ_SQ));
-            return pstmt.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-        	try {
-        		if (pstmt != null) pstmt.close();
-        		if (conn != null) conn.close();
-        	} catch (Exception e) {
-        		e.printStackTrace();
-        	}       	
-        }
-        return -1;      // DB �삤瑜�       
-	}
-   
-    
-    
     public int update_req_rec_date(String REQ_SQ, String REQ_APPROVAL) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
@@ -623,4 +599,123 @@ public class ReqDAO {
 		}
 		return -1;
 	}
+ public int reqSearchCount(String searchType, String search, int PageNumber) {
+    	
+    	ArrayList<ReqDTO> reqList = null;
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+        String SQL = "";
+       try {
+    	   if (searchType.equals("사업명")) {
+       		SQL = "SELECT * FROM REQ WHERE REQ_STATE !=4 AND CONCAT(APV_NM) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+       	} else if (searchType.equals("작성자")) {
+       		SQL = "SELECT * FROM REQ WHERE REQ_STATE !=4 AND CONCAT(STF_ID) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+       	}
+    	   	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+    	    pstmt.setString(1, "%" + search + "%");
+            rs = pstmt.executeQuery(); 
+            reqList = new ArrayList<ReqDTO>();
+            while (rs.next()) {             	
+            	ReqDTO req = new ReqDTO();
+            	req.setSTF_ID(rs.getString("STF_ID"));
+            	req.setREQ_SQ(rs.getInt("REQ_SQ"));
+            	req.setAPV_SQ(rs.getInt("APV_SQ"));
+            	req.setAPV_NM(rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	req.setAPV_OBJ(rs.getString("APV_OBJ").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	req.setAPV_CONT(rs.getString("APV_CONT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	req.setAPV_DATE(rs.getString("APV_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11));
+            	if(rs.getString("REQ_REC_DATE").equals("")) {
+            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
+            	}else {
+            		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11));
+            	}
+            	if(rs.getString("REQ_SUB_DATE").equals("")) {
+            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
+            	}else {
+            		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11));
+            	}req.setREQ_GROUP(rs.getInt("REQ_GROUP"));
+            	req.setREQ_SEQUENCE(rs.getInt("REQ_SEQUENCE"));
+            	req.setREQ_STATE(rs.getInt("REQ_STATE"));
+            	reqList.add(req);                           
+            	return reqList.size();
+            }
+		
+            return 0;
+		} catch (Exception e) {
+				e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}       	
+		}
+		return -1;          
+		}
+
+    public ArrayList<ReqDTO> getSearch(String searchType, String search, int PageNumber) {
+	
+	ArrayList<ReqDTO> reqList = null;
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+    String SQL = "";
+    try {
+ 	   if (searchType.equals("사업명")) {
+    		SQL = "SELECT * FROM REQ WHERE REQ_STATE !=4 AND CONCAT(APV_NM) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+    	} else if (searchType.equals("작성자")) {
+    		SQL = "SELECT * FROM REQ WHERE REQ_STATE !=4 AND CONCAT(STF_ID) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+    	}
+	   	conn = dataSource.getConnection();
+        pstmt = conn.prepareStatement(SQL);
+	    pstmt.setString(1, "%" + search + "%");
+        rs = pstmt.executeQuery(); 
+        reqList = new ArrayList<ReqDTO>();
+        while (rs.next()) {             	
+        	ReqDTO req = new ReqDTO();
+        	req.setSTF_ID(rs.getString("STF_ID"));
+        	req.setREQ_SQ(rs.getInt("REQ_SQ"));
+        	req.setAPV_SQ(rs.getInt("APV_SQ"));
+        	req.setAPV_NM(rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+        	req.setAPV_OBJ(rs.getString("APV_OBJ").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+        	req.setAPV_CONT(rs.getString("APV_CONT").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+        	req.setAPV_DATE(rs.getString("APV_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+        	req.setREQ_DATE(rs.getString("REQ_DATE").substring(0, 11));
+        	if(rs.getString("REQ_REC_DATE").equals("")) {
+        		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
+        	}else {
+        		req.setREQ_REC_DATE(rs.getString("REQ_REC_DATE").substring(0, 11));
+        	}
+        	if(rs.getString("REQ_SUB_DATE").equals("")) {
+        		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")); 	
+        	}else {
+        		req.setREQ_SUB_DATE(rs.getString("REQ_SUB_DATE").substring(0, 11));
+        	}req.setREQ_GROUP(rs.getInt("REQ_GROUP"));
+        	req.setREQ_SEQUENCE(rs.getInt("REQ_SEQUENCE"));
+        	req.setREQ_STATE(rs.getInt("REQ_STATE"));
+        	reqList.add(req);                           
+   
+        }
+	
+		} catch (Exception e) {
+				e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}       	
+		}
+		return reqList;          
+	}
+
+    
+    
 }

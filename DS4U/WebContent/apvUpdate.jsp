@@ -145,13 +145,15 @@
                   <td style="width: 1000px;"><textarea class="form-control" cols="150" name="APV_BUDGET" id="APV_BUDGET" maxlength="15" placeholder="소요 예산(원)을 입력하세요."><%=apv.getAPV_BUDGET() %></textarea></td>               
                </tr>               
                <tr>
-                  <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>6. 아이디</h5></td>
-                  <td style="width: 1000px; text-align: center;"><h5><%= apv.getSTF_ID() %></h5>
-                  <input type="hidden" name="STF_ID" value="<%= apv.getSTF_ID() %>"></td>                  
-               </tr>
+                  <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>6. 담당자</h5></td>
+                  <td><h5><%= stf.getSTF_NM() %></h5>
+						<input type="hidden" name="STF_NM" value="<%= stf.getSTF_NM() %>">	
+						<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>"></td>						
+					</tr>
                <tr>
                   <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>7. 연락처</h5></td>
-                  <td style="width: 1000px;"><textarea class="form-control" cols="150" name="APV_PHONE" id="APV_PHONE" maxlength="30" placeholder="연락처를 입력하세요."><%=apv.getAPV_PHONE() %></textarea></td>                                       
+                  <td><h5><%=stf.getSTF_PH() %></h5>
+				 <input type="hidden" name="APV_PHONE" value="<%=stf.getSTF_PH() %>"></td>	    
                </tr>
                <tr>
                   <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>8. 사업방침번호</h5></td>

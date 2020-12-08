@@ -80,7 +80,7 @@ public class ApvDAO {
     		String APV_PHONE, String APV_POLICY_SQ, String APV_SQ) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
-        String SQL = "UPDATE APV SET APV_NM= ?, APV_DATE = ?, APV_STT_DATE = ?, APV_FIN_DATE = ?, APV_BUDGET = ?, APV_PHONE=?, APV_POLICY_SQ=?, WHERE APV_SQ = ?";
+        String SQL = "UPDATE APV SET APV_NM= ?, APV_DATE = ?, APV_STT_DATE = ?, APV_FIN_DATE = ?, APV_BUDGET = ?, APV_PHONE=?, APV_POLICY_SQ=? WHERE APV_SQ = ?";
         try {
         	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
@@ -133,27 +133,6 @@ public class ApvDAO {
         return -1;      // DB 오류       
 	}
     
-    public int delete(String APV_SQ) {
-    	Connection conn = null;
-    	PreparedStatement pstmt = null;
-        String SQL = "UPDATE APV SET APV_AVAILABLE = 0 WHERE APV_SQ = ?";
-        try {
-        	conn = dataSource.getConnection();
-            pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1, Integer.parseInt(APV_SQ));
-            return pstmt.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-        	try {
-        		if (pstmt != null) pstmt.close();
-        		if (conn != null) conn.close();
-        	} catch (Exception e) {
-        		e.printStackTrace();
-        	}       	
-        }
-        return -1;      // DB 오류       
-	}
     public ApvDTO getApv(String APV_SQ) {
     	ApvDTO apv = new ApvDTO();
     	Connection conn = null;
