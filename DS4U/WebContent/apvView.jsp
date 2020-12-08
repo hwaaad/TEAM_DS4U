@@ -43,6 +43,7 @@
 		return;			
 	}
 	StfDTO stf = new StfDAO().getUser(STF_ID);
+	ApvDAO apvDAO = new ApvDAO();
 	ArrayList<ApvDTO> apvList = new ApvDAO().getList(pageNumber);
 %>
 
@@ -63,30 +64,48 @@
 	<%@ include file="headerWs.jsp" %>
 	<%@ include file="navWs.jsp" %>
 	<%@ include file="/modal.jsp" %>
-	
 	<div id="wsBody">
 	<input type="hidden" value="board" id="pageType">
 		<div id="wsBodyContainer">
-			<h3>정보화 사업</h3>
-			<div id="boardInner" style="text-align: left;">
-				<ul id="boardList">
-					<li id="listHead">
-						<div>No.</div>
-						<div>사업명</div>
-						<div>사업 기간</div>
-						<div>사업 시작일</div>
-						<div>사업 종료일</div>
-						<div>소요 예산</div>
-						<div>사업 담당자</div>
-						<div>연락처</div>
-						<div>사업 방침번호</div>
-					</li>			
-			<table class="table" style="text-align: center; border: 1px solid #dddddd">
-			<tbody>
-			<%
-				for (int i=0; i<apvList.size(); i++) {
-					ApvDTO apv = apvList.get(i);
-			%>
+			<h3>자유게시판</h3>
+			<div id="boardInner">
+				<div id="inputWrap">
+				<ul id="boardList">	
+				<table class="table" style="text-align: center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<td>No.</td>
+							<td>사업명</td>
+							<td>사업 기간</td>
+							<td>사업 시작일</td>
+							<td>사업 종료일</td>
+							<td>소요 예산</td>
+							<td>사업 담당자</td>
+							<td>연락처</td>
+							<td>사업 방침번호</td>
+						</tr>
+					</thead>
+				<tbody>	
+				<%
+					if (apvDAO.apvAllCount() <= 0) {
+				%>	
+					<table class="table" style="text-align: center; border: 1px solid #dddddd">
+						<tbody>
+							<tr>
+								<td style="width: 1690px; text-align: center;">진행중인 정보화사업이 없습니다.</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="${contextPath}/apvWrite.jsp" id="writeBtn">글쓰기</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				<%
+					} else {
+						for (int i=0; i<apvList.size(); i++) {
+							ApvDTO apv = apvList.get(i);
+				%>
 					<tr>
 						<td><%= apv.getAPV_SQ() %></td>
 						<td style="text-align: left;"><a href="apvShow.jsp?APV_SQ=<%= apv.getAPV_SQ() %>"><%= apv.getAPV_NM() %></a></td>
@@ -186,12 +205,17 @@
 					<%
 						}
 					%>	
-						
+				<%
+					}
+				%>		
 						</ul>
 					</td>
 				</tr>			
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</div>
+		</div>
+	</div>
 	</div>
     
 </body>

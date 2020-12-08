@@ -36,7 +36,6 @@
 	}
 	StfDTO stf = new StfDAO().getUser(STF_ID);
 	ApvDTO apv = new ApvDAO().getApv(APV_SQ);
-
 %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -76,9 +75,9 @@
 
 				<tbody>
 					<tr>
-						<td style="width: 130px; text-align: left;"><h5>1. 사업명</h5></td>
-							<td> <select name="selectBox" onChange="getSelectValue(this.form);">	
-								<option value="" selected>===선택해주세요===</option>
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>1. 사업명</h5></td>
+							<td style="width: 1000px; text-align: center;"><select style="width: 400px;" name="selectBox" onChange="getSelectValue(this.form);">	
+								<option value="" selected>=================선택해주세요==================</option>
 								<% 
 								Connection conn = null;
 						    	PreparedStatement pstmt = null;
@@ -126,28 +125,28 @@
 						<input type="hidden"  name="APV_NM" ><input type="hidden"  name="APV_SQ" ></td>	
 					</tr>
 					<tr>
-						<td style="width: 130px; text-align: left;"><h5>2. 추진 목적</h5></td>
-						<td><textarea class="form-control" cols="100" rows="5" name="APV_OBJ" id="APV_OBJ" maxlength="600" placeholder="추진 목적을 입력하세요."></textarea></td>			
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>2. 추진 목적</h5></td>
+						<td style="width: 1000px;"><textarea class="form-control" cols="135" rows="5" name="APV_OBJ" id="APV_OBJ" maxlength="600" placeholder="추진 목적을 입력하세요."></textarea></td>			
 					</tr>		
 					<tr>
-						<td style="width: 130px; text-align: left;"><h5>3. 사업 내용</h5></td>
-						<td><textarea class="form-control" cols="100" rows="10" name="APV_CONT" id="APV_CONT" maxlength="1000" placeholder="사업 내용을 입력하세요."></textarea>
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>3. 사업 내용</h5></td>
+						<td style="width: 1000px;"><textarea class="form-control" cols="135" rows="10" name="APV_CONT" id="APV_CONT" maxlength="1000" placeholder="사업 내용을 입력하세요."></textarea>
 						<input type="hidden" name="APV_DATE" value="<%=apv.getAPV_DATE() %>"></td>	
 					</tr>				
 					<tr>
-						<td style="width: 130px; text-align: left;"><h5>4. 담당자</h5></td>
-						<td><h5 style="text-align : center;"><%= stf.getSTF_NM() %></h5>
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>4. 담당자</h5></td>
+						<td style="width: 1000px;"><h5 style="text-align : center;"><%= stf.getSTF_NM() %></h5>
 						<input type="hidden" name="STF_NM" value="<%= stf.getSTF_NM() %>">	
 						<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>"></td>						
 					</tr>
 					<tr>
-						<td style="width: 130px;text-align: left;"><h5>5. 연락처</h5></td>
-						<td><h5 style="text-align: center;"><%=stf.getSTF_PH() %></h5>
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>5. 연락처</h5></td>
+						<td style="width: 1000px;"><h5 style="text-align: center;"><%=stf.getSTF_PH() %></h5>
 						<input type="hidden" name="APV_PHONE" value="<%=stf.getSTF_PH() %>"></td>													
 					</tr>
 					<tr>
-						<td style="width: 130px; text-align: left;"><h5>6. 보안성 검토의뢰 <br> &nbsp&nbsp&nbsp&nbsp&nbsp파일 첨부</h5></td>
-						<td colspan="2">
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>6. 보안성 검토의뢰 <br> &nbsp&nbsp&nbsp&nbsp&nbsp파일 첨부</h5></td>
+						<td style="width: 1000px;" colspan="2">
 							<div id="uploadArea" class="floatleft">
 								<span>파일을 업로드하세요.</span>
 								<input multiple="multiple" id="file" type="file" name="REQ_FILE" class="file">

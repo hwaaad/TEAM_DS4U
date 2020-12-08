@@ -98,27 +98,27 @@
 					<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
 						<thead>
 							<tr>
-								<th colspan="3"><h4>답변 작성</h4></th>
+								<th style="font-weight: 600; background-color: #EAEAEA !important;" colspan="3"><h4>답변 작성</h4></th>
 							</tr>						
 						</thead>
 						<tbody>
 						<tr>
-							<td style="width: 110px;"><h5>아이디</h5></td>
-							<td style="width: 830px;"><h5><%= stf.getSTF_ID() %></h5><input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>">
+							<td style="width: 110px; font-weight: 600; background-color: #EAEAEA !important; "><h5>아이디</h5></td>
+							<td style="width: 830px; text-align: center;"><h5><%= stf.getSTF_ID() %></h5><input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>">
 							<input type="hidden" name="BOARD_SQ" value="<%= BOARD_SQ %>"></td>						
 						</tr>
 						<tr>
-							<td style="width: 110px;"><h5>글 종류</h5></td>
-							<td style="width: 830px;">
-								<select id="BOARD_TYPE" name="BOARD_TYPE">
+							<td style="width: 110px; font-weight: 600; background-color: #EAEAEA !important;"><h5>글 종류</h5></td>
+							<td style="width: 830px; text-align: center;">
+								<select style="width: 160px;" id="BOARD_TYPE" name="BOARD_TYPE">
 								<% 
 									if (STF_DEP.equals("부서4")){
 								%>
-									<option value="일반">일반</option>
+									<option value="일반">=====일반=====</option>
 								<%
 									} else {
 								%>
-									<option value="일반">일반</option>
+									<option value="공지">=====공지=====</option>
 								<%
 									}
 								%>
@@ -126,15 +126,15 @@
 							</td>
 						</tr>								
 						<tr>
-							<td style="width: 110px;"><h5>글 제목</h5></td>
+							<td style="width: 110px; font-weight: 600; background-color: #EAEAEA !important;"><h5>글 제목</h5></td>
 							<td style="width: 830px;"><textarea id="title" cols="110" maxlength="64" name="BOARD_NM" placeholder="글 제목을 입력하세요."></textarea></td>							
 						</tr>
 						<tr>
-							<td style="width: 110px;"><h5>글 내용</h5></td>
+							<td style="width: 110px; font-weight: 600; background-color: #EAEAEA !important;"><h5>글 내용</h5></td>
 							<td style="width: 830px;"><textarea class="form-control" cols="110" rows="10" id="content" name="BOARD_TXT" maxlength="255" placeholder="글 내용을 입력하세요."></textarea></td>					
 						</tr>
 						<tr>
-							<td style="width: 110px;"><h5>파일 첨부</h5></td>
+							<td style="width: 110px; font-weight: 600; background-color: #EAEAEA !important;"><h5>파일 첨부</h5></td>
 							<td style="width: 830px;" colspan="2">
 								<div id="uploadArea" class="floatleft">
 									<span>파일을 업로드하세요.</span>

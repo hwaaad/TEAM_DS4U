@@ -104,8 +104,8 @@
 				<tbody>
 					<tr>
 						<input type="hidden" name="REQ_SQ" value="<%= REQ_SQ %>">
-						<td style="width: 130px; text-align: center;"><h5>1. 사업명</h5></td>
-							<td> <%
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: center;"><h5>1. 사업명</h5></td>
+							<td style="width: 1000px; text-align: center;"> <%
 								try {
 									conn = dataSource.getConnection();
 									String SQL = "SELECT REQ_SQ, APV_NM FROM REQ WHERE REQ_SQ = ?";
@@ -132,23 +132,23 @@
 							</td>	
 					</tr>
 					<tr>
-						<td style="width: 130px; text-align: center;"><h5>2. 검토 내용</h5></td>
-						<td><textarea class="form-control" cols="100" rows="5" name="REQ_REC_TXT" id="REQ_REC_TXT" maxlength="600" placeholder="검토 내용을 입력하세요."></textarea></td>			
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: center;"><h5>2. 검토 내용</h5></td>
+						<td style="width: 1000px;"><textarea class="form-control" cols="140" rows="5" name="REQ_REC_TXT" id="REQ_REC_TXT" maxlength="600" placeholder="검토 내용을 입력하세요."></textarea></td>			
 					</tr>	
 					<tr>	
-						<td style="width: 130px; text-align: center;"><h5>3. 검토 결과</h5></td>
-						<td>
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: center;"><h5>3. 검토 결과</h5></td>
+						<td style="width: 1000px; text-align: center;">
 						<input type="radio" name="REQ_APPROVAL" autocomplete="off" value="승인" checked>승인 
 						<input type="radio" name="REQ_APPROVAL" autocomplete="off" value="반려" checked>반려
 						</td>
 					</tr>	
 					<tr>
-						<td style="width: 130px;"><h5>4. 회신 담당자</h5></td>
-						<td><h5><%= stf.getSTF_ID() %></h5>
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important;"><h5>4. 회신 담당자</h5></td>
+						<td style="width: 1000px; text-align: center;"><h5><%= stf.getSTF_ID() %></h5>
 						<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>"></td>						
 					</tr>
 					<tr>
-						<td style="width: 130px;"><h5>5. 파일 첨부</h5></td>
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important;"><h5>5. 파일 첨부</h5></td>
 						<td colspan="2">
 							<div id="uploadArea" class="floatleft">
 								<span>파일을 업로드하세요.</span>

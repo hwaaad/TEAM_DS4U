@@ -90,11 +90,11 @@
 								</tr>	
 								<tr>
 									<td style="width: 110px;"><h5>글 제목</h5></td>
-									<td style="width: 830px;"><textarea class="form-control" id="title" cols="100" maxlength="64" name="BOARD_NM" placeholder="글 제목을 입력하세요."><%= board.getBOARD_NM() %></textarea></td>						
+									<td style="width: 830px;"><textarea class="form-control" id="title" cols="110" maxlength="64" name="BOARD_NM" placeholder="글 제목을 입력하세요."><%= board.getBOARD_NM() %></textarea></td>						
 								</tr>
 								<tr>
 									<td style="width: 110px;"><h5>글 내용</h5></td>
-									<td style="width: 830px;"><textarea class="form-control" cols="100" rows="10" name="BOARD_TXT" maxlength="255" placeholder="글 내용을 입렵하세요."><%= board.getBOARD_TXT() %></textarea></td>					
+									<td style="width: 830px;"><textarea class="form-control" cols="110" rows="10" name="BOARD_TXT" maxlength="255" placeholder="글 내용을 입렵하세요."><%= board.getBOARD_TXT() %></textarea></td>					
 								</tr>												
 								<tr>
 									<td style="width: 110px;"><h5>파일 첨부</h5></td>

@@ -39,7 +39,6 @@
    // 글 작성자만 글 수정 가능
    ApvDAO apvDAO = new ApvDAO();
    ApvDTO apv = apvDAO.getApv(APV_SQ);
-
 %>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -116,52 +115,50 @@
                                
                <tbody>
                <tr>
-                  <td style="width: 130px; text-align: left;"><h5>1. 사업명</h5></td>
-                  <td><h5><%= apv.getAPV_NM() %></h5>
-                  <input type="hidden" name="APV_NM" value="<%=apv.getAPV_NM() %>">
-                  <input type="hidden" name="APV_SQ" value="<%= APV_SQ %>">
+                  <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>1. 사업명</h5></td>
+                  <td style="width: 1000px; text-align: center;"><h5><%= apv.getAPV_NM() %></h5>
+	                  <input type="hidden" name="APV_NM" value="<%=apv.getAPV_NM() %>">
+	                  <input type="hidden" name="APV_SQ" value="<%= APV_SQ %>">
                   </td>                  
                </tr>
                <tr>
-                  <td style="width: 130px; text-align: left;"><h5>2. 사업 기간</h5></td>
-                  <td>
+                  <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>2. 사업 기간</h5></td>
+                  <td style="width: 1000px; text-align: center;">
 						<input type="text" name="startDate" id="startDate" value="<%=apv.getAPV_DATE().substring(0,10) %>"> ~ <input type="text" name="endDate" id="endDate" value="<%=apv.getAPV_DATE().substring(11) %>">
 						<input type="hidden" name="APV_DATE" id="APV_DATE">			
 						</td>         
                </tr>      
                <tr>
-                  <td style="width: 130px; text-align: left;"><h5>3. 사업 시작일</h5></td>
-                  <td>
+                  <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>3. 사업 시작일</h5></td>
+                  <td style="width: 1000px; text-align: center;">
 						<input type="text" name="APV_STT_DATE" id="APV_STT_DATE" value="<%=apv.getAPV_STT_DATE() %>">
 						</td>
                </tr>
                <tr>
-                  <td style="width: 130px; text-align: left;"><h5>4. 사업 종료일</h5></td>
-                  <td>
+                  <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>4. 사업 종료일</h5></td>
+                  <td style="width: 1000px; text-align: center;">
 						<input type="text" name="APV_FIN_DATE" id="APV_FIN_DATE" value="<%=apv.getAPV_FIN_DATE() %>">
 						</td>            
                </tr>
                <tr>
-                  <td style="width: 130px; text-align: left;"><h5>5. 소요 예산</h5></td>
-                  <td><textarea class="form-control" cols="100" name="APV_BUDGET" id="APV_BUDGET" maxlength="15" placeholder="소요 예산(원)을 입력하세요."><%=apv.getAPV_BUDGET() %></textarea></td>               
+                  <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>5. 소요 예산</h5></td>
+                  <td style="width: 1000px;"><textarea class="form-control" cols="150" name="APV_BUDGET" id="APV_BUDGET" maxlength="15" placeholder="소요 예산(원)을 입력하세요."><%=apv.getAPV_BUDGET() %></textarea></td>               
                </tr>               
                <tr>
-                  <td style="width: 130px; text-align: left;"><h5>6. 담당자</h5></td>
-                  <td><h5><%= stf.getSTF_NM() %></h5>
-						<input type="hidden" name="STF_NM" value="<%= stf.getSTF_NM() %>">	
-						<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>"></td>						
-					</tr>
-               <tr>
-                  <td style="width: 130px; text-align: left;"><h5>7. 연락처</h5></td>
-                  <td><h5><%=stf.getSTF_PH() %></h5>
-				 <input type="hidden" name="APV_PHONE" value="<%=stf.getSTF_PH() %>"></td>													       
+                  <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>6. 아이디</h5></td>
+                  <td style="width: 1000px; text-align: center;"><h5><%= apv.getSTF_ID() %></h5>
+                  <input type="hidden" name="STF_ID" value="<%= apv.getSTF_ID() %>"></td>                  
                </tr>
                <tr>
-                  <td style="width: 130px; text-align: left;"><h5>8. 사업방침번호</h5></td>
-                  <td><textarea class="form-control" cols="100" name="APV_POLICY_SQ" id="APV_POLICY_SQ" maxlength="30" placeholder="사업방침번호를 입력하세요."><%=apv.getAPV_POLICY_SQ() %></textarea></td>                           
+                  <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>7. 연락처</h5></td>
+                  <td style="width: 1000px;"><textarea class="form-control" cols="150" name="APV_PHONE" id="APV_PHONE" maxlength="30" placeholder="연락처를 입력하세요."><%=apv.getAPV_PHONE() %></textarea></td>                                       
                </tr>
                <tr>
-                  <td style="width: 130px;"><h5>9. 사업방침 첨부파일</h5></td>
+                  <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>8. 사업방침번호</h5></td>
+                  <td style="width: 1000px;"><textarea class="form-control" cols="150" name="APV_POLICY_SQ" id="APV_POLICY_SQ" maxlength="30" placeholder="사업방침번호를 입력하세요."><%=apv.getAPV_POLICY_SQ() %></textarea></td>                           
+               </tr>
+               <tr>
+                  <td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: left;"><h5>9. 사업방침 첨부파일</h5></td>
                   <td colspan="2">
                      <div id="uploadArea" class="floatleft">
                         <span>파일을 업로드하세요.</span>

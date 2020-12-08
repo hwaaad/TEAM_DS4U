@@ -41,7 +41,6 @@
 		response.sendRedirect("reqView.jsp");
 		return;
 	}
-
 %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -72,8 +71,8 @@
 
 				<tbody>
 					<tr>
-						<td style="width: 130px; text-align: center;"><h5> 사업명</h5></td>
-							<td>
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important; text-align: center;"><h5> 사업명</h5></td>
+							<td style="width: 800px; text-align: center;">
 					<% 
 								
 								Connection conn = null;
@@ -118,8 +117,8 @@
 						
 					</td>
 					<tr>
-					<td style="width: 130px;"><h5> 담당자</h5></td>
-					<td>
+					<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important;"><h5> 담당자</h5></td>
+					<td style="width: 800px; text-align: center;">
 					<%
 								try{
 						    		
@@ -158,8 +157,8 @@
 					</tr>
 					
 					<tr>
-						<td style="width: 130px;"><h5>파일 첨부</h5></td>
-						<td colspan="2">
+						<td style="width: 130px; font-weight: 600; background-color: #EAEAEA !important;"><h5>파일 첨부</h5></td>
+						<td style="width: 800px; text-align: center;" colspan="2">
 							<div id="uploadArea" class="floatleft">
 								<span>파일을 업로드하세요.</span>
 								<input multiple="multiple" id="file" type="file" name="REQF_FILE" class="file">

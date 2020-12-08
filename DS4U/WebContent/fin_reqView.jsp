@@ -80,19 +80,22 @@
 			<a style="color : #4b70fd;" href="fin_reqView.jsp?YEAR=<%="others"%>">...</a>
 			</p>
 			<div id="boardInner">
-				<ul id="boardList">
-					<li id="listHead">
-						<div>No.</div>
-						<div>사업명</div>
-						<div>부서명</div>
-						<div>담당자</div>
-						<div>검토 요청일</div>
-						<div>회신일</div>
-						<div>보안점검표 제출일</div>
-						<div>상태</div>
-					</li>			
-			<table class="table" style="text-align: center; border: 1px solid #dddddd">
-			<tbody>
+				<div id="inputWrap">
+				<ul id="boardList">	
+				<table class="table" style="text-align: center; border: 1px solid #E0E0E0">
+					<thead>
+						<tr>
+							<td>No.</td>
+							<td>사업명</td>
+							<td>부서명</td>
+							<td>담당자</td>
+							<td>검토 요청일</td>
+							<td>회신일</td>
+							<td>보안점검표 제출일</td>
+							<td>상태</td>
+						</tr>
+					</thead>
+				<tbody>			
 			<%
 				for (int i=0; i<reqList.size(); i++) {
 					ReqDTO req = reqList.get(i);
@@ -118,7 +121,7 @@
 			%>
 				<tr>
 					<td><%= req.getREQ_SQ() %></td>
-						<td style="text-align: center;">
+						<td style="text-align: left;">
 					<a href="apvShow.jsp?APV_SQ=<%= req.getAPV_SQ() %>">
 					<%= req.getAPV_NM() %></a></td>
 					<td>

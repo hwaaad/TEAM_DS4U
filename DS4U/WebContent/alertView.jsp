@@ -47,7 +47,6 @@
 	<link rel="stylesheet" href="css/custom.css"> -->
 	<link rel="stylesheet" type="text/css" href="${contextPath}/css/headerWs.css"/>
 	<link rel="stylesheet" type="text/css" href="${contextPath}/css/navWs.css"/>
-	<link rel="stylesheet" type="text/css" href="${contextPath}/css/req.css"/>
 	<link rel="stylesheet" type="text/css" href="${contextPath}/css/modal.css"/>
 	<link rel="stylesheet" type="text/css" href="${contextPath}/css/alert.css"/>
 	
@@ -58,29 +57,32 @@
 <body>
  	<%@ include file="headerWs.jsp" %>
 	<%@ include file="navWs.jsp" %>
+	<%@ include file="modal.jsp" %>
 	<div id="wsBody">
 	<input type="hidden" value="board" id="pageType">
 		<div id="wsBodyContainer">
-			<h3>보안성 검토 알림</h3>
+			<h3>보안성검토</h3>
 			<div id="boardInner">
-				<ul id="boardList">
-					<li id="listHead">
-						<div>No.</div>
-						<div>사업명</div>
-						<div>부서명</div>
-						<div>담당자</div>
-						<div>사업의뢰일</div>
-						<div>비고</div>
-						
-					</li>			
-			<table class="table" style="text-align: center; border: 1px solid #dddddd">
-			<tbody>
+				<div id="inputWrap">
+				<ul id="boardList">	
+				<table class="table" style="text-align: center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<td>No.</td>
+							<td>사업명</td>
+							<td>부서명</td>
+							<td>담당자</td>
+							<td>사업 의뢰일</td>
+							<td>비고</td>
+						</tr>
+					</thead>
+				<tbody>	
 			<%
 				for (int i=0; i<reqList.size(); i++) {
 					ReqDTO req = reqList.get(i);					
 			%>
 				<tr>
-				<td style="text-align: left;">
+				<td style="text-align: center;">
 				<a href="reviewWrite.jsp?APV_SQ=<%= req.getAPV_SQ() %>">
 				<%= req.getREQ_SQ() %>
 					
@@ -188,47 +190,5 @@
 			</tbody>
 		</table>
 	</div>
-	<%
-		String messageContent = null;
-		if (session.getAttribute("messageContent") != null) {
-			messageContent = (String) session.getAttribute("messageContent");
-		}
-		String messageType = null;
-		if (session.getAttribute("messageType") != null) {
-			messageType = (String) session.getAttribute("messageType");
-		}
-		if (messageContent != null) {
-	%>
-	<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="vertical-alignment-helper">
-			<div class="modal-dialog vertical-align-center">
-				<div class="modal-content <% if(messageType.equals("오류 메시지")) out.println("panel-warning"); else out.println("panel-success");%>">
-					<div class="modal-header panel-heading">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">&times</span>
-							<span class="sr-only">Close</span>
-						</button>
-						<h4 class="modal-title">
-							<%= messageType %>
-						</h4>
-					</div>
-					<div class="modal-body">
-						<%= messageContent %>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<%
-		session.removeAttribute("messageContent");
-		session.removeAttribute("messageType");
-		}
-	%>	   
-	<script>
-		$('#messageModal').modal("show");
-	</script>	      
 </body>
 </html>	

@@ -72,33 +72,33 @@
 				<div id="boardDetail">
 				<div class="container">
 					<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
-						<thead>
+						<tbody>
 							<tr>
-								<th colspan="2"><h4></h4></th>
+								<th style="width: 1000px; background-color: #EAEAEA !important; margin: 0 auto" colspan="3" ><h4>정보화 사업 상세보기</h4></th>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px; "><h5>사업명</h5></td>
-								<td style="width: 800px;" colspan="2"><h5><%= apv.getAPV_NM() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업명</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3"><h5><%= apv.getAPV_NM() %></h5></td>
 							</tr>				
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업기간</h5></td>
-								<td colspan="2"><h5><%= apv.getAPV_DATE() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important; border-top: 1px solid #E0E0E0; border-bottom: 1px solid #E0E0E0;"><h5>사업기간</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3"><h5><%= apv.getAPV_DATE() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업시작일</h5></td>
-								<td colspan="2"><h5><%= apv.getAPV_STT_DATE() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업시작일</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3"><h5><%= apv.getAPV_STT_DATE() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업종료일</h5></td>
-								<td colspan="2"><h5><%= apv.getAPV_FIN_DATE() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업종료일</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3"><h5><%= apv.getAPV_FIN_DATE() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>소요예산</h5></td>
-								<td colspan="2"><h5><%= apv.getAPV_BUDGET() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>소요예산</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3"><h5><%= apv.getAPV_BUDGET() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업담당자</h5></td>
-								<td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업담당자</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3">
 									<% 
 										Connection conn = null;
 						    			PreparedStatement pstmt = null;
@@ -107,50 +107,45 @@
 						    			InitialContext initContext = new InitialContext();
 										Context envContext = (Context) initContext.lookup("java:/comp/env");
 										dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
-						    			try{
-						    		
-						    					conn = dataSource.getConnection();
-						    					String SQL = "SELECT STF_NM FROM STF WHERE STF_ID = ?";
-					           					pstmt = conn.prepareStatement(SQL);
-					           					pstmt.setString(1, apv.getSTF_ID());
-					           					rs = pstmt.executeQuery();
-					           		
-					           	 			while (rs.next()) {
-						            	
-					           	 				STF_NM = rs.getString("STF_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
-						            	
-						            	
-						           					 	%>
-						         				  <%= STF_NM %>
-						            					<%
+						    			try{						    		
+					    					conn = dataSource.getConnection();
+					    					String SQL = "SELECT STF_NM FROM STF WHERE STF_ID = ?";
+				           					pstmt = conn.prepareStatement(SQL);
+				           					pstmt.setString(1, apv.getSTF_ID());
+				           					rs = pstmt.executeQuery();			           		
+					           	 			while (rs.next()) {	
+					           	 				STF_NM = rs.getString("STF_NM");
+							           		%>
+						         				  <h5><%= STF_NM %></h5></td>
+						            		<%
 						          				  } 									
-						  				  	}catch (Exception e) {
-						   			         e.printStackTrace();
-						   				     } finally {
-						        				try {
-						        						if (rs != null) rs.close();
-						        						if (pstmt != null) pstmt.close();
-						        						if (conn != null) conn.close();
-						        					} catch (Exception e) {
-						        							e.printStackTrace();
-						        							}       	
-					            
-						    					   	 	}
+					  				  	} catch (Exception e) {
+					   			         	e.printStackTrace();
+					   				    } finally {
+					        				try {
+				        						if (rs != null) rs.close();
+				        						if (pstmt != null) pstmt.close();
+				        						if (conn != null) conn.close();
+				        					} catch (Exception e) {
+				        						e.printStackTrace();
+				        					}       	
+			            
+				    					}
 									 %>
 						
 								</td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>연락처</h5></td>
-								<td colspan="2"><h5><%= apv.getAPV_PHONE() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>연락처</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3"><h5><%= apv.getAPV_PHONE() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업방침번호</h5></td>
-								<td colspan="2"><h5><%= apv.getAPV_POLICY_SQ() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업방침번호</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3"><h5><%= apv.getAPV_POLICY_SQ() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업방침<br>첨부파일</h5></td>
-								<td colspan="2">
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업방침<br>첨부파일</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3">
 								<% 
 								
 						    	try{
@@ -187,26 +182,21 @@
 								
 								</td>
 							</tr>
-							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"></td>
-								<td colspan="2">
-									<div class="row btns">
-									<a href="apvView.jsp" class="btn btn-primary">목록</a>
+								<td style="width: 1000px; text-align: right;" colspan="3">
+									<a href="apvView.jsp" class="btn btn-primary pull right">목록</a>
 									
 									<%
 										if (STF_ID.equals(apv.getSTF_ID())) {								
 									%>
 									
 										<a href="apvUpdate.jsp?APV_SQ=<%= apv.getAPV_SQ() %>" class="btn">수정</a>
-										
+										<a href="apvDelete?APV_SQ=<%= apv.getAPV_SQ() %>" class="btn" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
 									<%		
 										}
 									%>												
 									</div>	
 								</td>
-							</tr>													
-						</thead>
-
+						</tbody>
 					</table>
 				</div>		
 				</div>
