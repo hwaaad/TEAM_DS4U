@@ -79,29 +79,26 @@
 				<div id="boardDetail">
 				<div class="container">
 					<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
-						<thead>
+						<tbody>
 							<tr>
-								<th colspan="2"><h4></h4></th>
-							</tr>
-							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px; "><h5>사업명</h5></td>
-								<td style="width: 800px;" colspan="2"><h5><%= req.getAPV_NM() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업명</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3"><h5><%= req.getAPV_NM() %></h5></td>
 							</tr>				
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>추진 목적</h5></td>
-								<td colspan="2"><h5><%= req.getAPV_OBJ() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>추진 목적</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3"><h5><%= req.getAPV_OBJ() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업 내용</h5></td>
-								<td colspan="2"><h5><%= req.getAPV_CONT() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업 내용</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3"><h5><%= req.getAPV_CONT() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업 기간</h5></td>
-								<td colspan="2"><h5><%= req.getAPV_DATE() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업 기간</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3"><h5><%= req.getAPV_DATE() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>사업담당자</h5></td>
-								<td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업담당자</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3">
 									<% 
 								
 										Connection conn = null;
@@ -145,8 +142,8 @@
 								</td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>연락처</h5></td>
-								<td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>연락처</h5></td>
+								<td style="width: 1000px; text-align: center;" colspan="3">
 								<%
 								try{
 						    		
@@ -183,8 +180,8 @@
 							</tr>
 							
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>보안성 검토의뢰 <br> 파일 첨부</h5></td>
-								<td colspan="2">
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>보안성 검토의뢰 <br> 파일 첨부</h5></td>
+								<td  style="width: 1000px; text-align: center;" colspan="3">
 								<% 
 								
 								conn = null;
@@ -229,18 +226,18 @@
 							</tr>
 							
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>검토 요청일</h5></td>
-								<td colspan="2"><h5><%= req.getREQ_DATE() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>검토 요청일</h5></td>
+								<td  style="width: 1000px; text-align: center;" colspan="3"><h5><%= req.getREQ_DATE() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>회신일</h5></td>
-								<td colspan="2"><h5><%= req.getREQ_REC_DATE() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>회신일</h5></td>
+								<td  style="width: 1000px; text-align: center;" colspan="3"><h5><%= req.getREQ_REC_DATE() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>보안점검표 제출일</h5></td>
-								<td colspan="2"><h5><%= req.getREQ_SUB_DATE() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>보안점검표 제출일</h5></td>
+								<td  style="width: 1000px; text-align: center;" colspan="3"><h5><%= req.getREQ_SUB_DATE() %></h5></td>
 							</tr>
-						</thead>
+						</tbody>
 						<tbody>
 							<tr>
 								<td colspan="5" style="text-align : right;">
