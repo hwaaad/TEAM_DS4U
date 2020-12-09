@@ -30,7 +30,25 @@
 		response.sendRedirect("emailSendConfirm.jsp");
 		return;
 	}
+	request.setCharacterEncoding("UTF-8");
 	String pageNumber = "1";
+	String searchType ="사업명";
+	String search = "";
+	int PageNumber = 0;
+	ApvDAO apvDAO = new ApvDAO();
+	if(request.getParameter("searchType") != null) {
+		searchType = request.getParameter("searchType");
+	}
+	if(request.getParameter("search") != null) {
+		search = request.getParameter("search");
+	}
+	if(request.getParameter("PageNumber") != null) {
+		try {
+			PageNumber = Integer.parseInt(request.getParameter("PageNumber"));
+		} catch (Exception e) {
+			System.out.println("검색 페이지 번호 오류");
+		}
+	}
 	if (request.getParameter("pageNumber") != null) {
 		pageNumber = request.getParameter("pageNumber");
 	}
@@ -43,7 +61,6 @@
 		return;			
 	}
 	StfDTO stf = new StfDAO().getUser(STF_ID);
-	ApvDAO apvDAO = new ApvDAO();
 	ArrayList<ApvDTO> apvList = new ApvDAO().getList(pageNumber);
 %>
 
@@ -67,7 +84,7 @@
 	<div id="wsBody">
 	<input type="hidden" value="board" id="pageType">
 		<div id="wsBodyContainer">
-			<h3>자유게시판</h3>
+			<h3>정보화사업</h3>
 			<div id="boardInner">
 				<div id="inputWrap">
 				<ul id="boardList">	
@@ -97,6 +114,15 @@
 							<tr>
 								<td>
 									<a href="${contextPath}/apvWrite.jsp" id="writeBtn">글쓰기</a>
+									<div id="searchWrap">
+										<form action="./apvSearch.jsp" method="get" id="boardSearchForm">							
+											<select name="searchType" id="searchType">
+												<option value="사업명">사업명</option>
+												<option value="사업담당자" <% if (searchType.equals("사업담당자")) out.println("selected"); %>>사업담당자</option>
+											</select>
+											<input type="text" name="search" type="submit"><button>검색</button>
+										</form>
+									</div>
 								</td>
 							</tr>
 						</tbody>
@@ -166,6 +192,15 @@
 				<tr>
 					<td colspan="9">
 						<a href="${contextPath}/apvWrite.jsp" id="writeBtn">글쓰기</a>
+						<div id="searchWrap">
+								<form action="./apvSearch.jsp" method="get" id="boardSearchForm">							
+									<select name="searchType" id="searchType">
+										<option value="사업명">사업명</option>
+										<option value="사업담당자" <% if (searchType.equals("사업담당자")) out.println("selected"); %>>사업담당자</option>
+									</select>
+									<input type="text" name="search" type="submit"><button>검색</button>
+								</form>
+							</div>
 					<ul id=pagination>
 					<% 
 						int startPage = (Integer.parseInt(pageNumber) / 10) * 10 + 1;

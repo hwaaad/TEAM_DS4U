@@ -355,4 +355,103 @@ public class ApvDAO {
 		}
 		return -1;
 	}
+    public ArrayList<ApvDTO> getSearch(String searchType, String search, int PageNumber) {
+    	System.out.println(searchType);
+    	ArrayList<ApvDTO> searchList = null;
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+        String SQL = "";
+        try {
+        	if (searchType.equals("사업명")) {
+        		SQL = "SELECT * FROM APV WHERE APV_NM LIKE " + "? ORDER BY APV_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+        	} else if (searchType.equals("사업담당자")) {
+        		SQL = "SELECT * FROM APV WHERE STF_ID LIKE ? ORDER BY APV_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+        	}
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            // pstmt.setString(1, "%" + search + "%");
+            rs = pstmt.executeQuery(); 
+            searchList = new ArrayList<ApvDTO>();
+            while (rs.next()) {             	
+            	ApvDTO apv = new ApvDTO();
+            	apv.setSTF_ID(rs.getString("STF_ID"));
+            	apv.setAPV_SQ(rs.getInt("APV_SQ"));
+            	apv.setAPV_NM(rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_DATE(rs.getString("APV_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_STT_DATE(rs.getString("APV_STT_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_FIN_DATE(rs.getString("APV_FIN_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_BUDGET(rs.getString("APV_BUDGET").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	//apv.setAPV_COM(rs.getString("APV_COM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_PHONE(rs.getString("APV_PHONE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_POLICY_SQ(rs.getString("APV_POLICY_SQ").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));      
+            	//apv.setAPV_FILE(rs.getString("APV_FILE"));
+            	//apv.setAPV_RFILE(rs.getString("APV_RFILE"));
+            	apv.setAPV_GROUP(rs.getInt("APV_GROUP"));
+            	apv.setAPV_SEQUENCE(rs.getInt("APV_SEQUENCE"));
+            	searchList.add(apv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (rs != null) rs.close();
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return searchList;     
+	}
+    public int apvSearchCount(String searchType, String search, int PageNumber) {
+    	ArrayList<ApvDTO> searchList = null;
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+        String SQL = "";
+        try {
+        	if (searchType.equals("사업명")) {
+        		SQL = "SELECT * FROM APV WHERE APV_NM LIKE ? ORDER BY APV_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+            } else if (searchType.equals("사업담당자")) {
+        		SQL = "SELECT * FROM APV WHERE STF_ID LIKE ? ORDER BY APV_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+        	}
+        	conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, "%" + search + "%");
+            rs = pstmt.executeQuery(); 
+            searchList = new ArrayList<ApvDTO>();
+            while (rs.next()) {             	
+            	ApvDTO apv = new ApvDTO();
+            	apv.setSTF_ID(rs.getString("STF_ID"));
+            	apv.setAPV_SQ(rs.getInt("APV_SQ"));
+            	apv.setAPV_NM(rs.getString("APV_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_DATE(rs.getString("APV_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_STT_DATE(rs.getString("APV_STT_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_FIN_DATE(rs.getString("APV_FIN_DATE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_BUDGET(rs.getString("APV_BUDGET").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	//apv.setAPV_COM(rs.getString("APV_COM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_PHONE(rs.getString("APV_PHONE").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+            	apv.setAPV_POLICY_SQ(rs.getString("APV_POLICY_SQ").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));      
+            	//apv.setAPV_FILE(rs.getString("APV_FILE"));
+            	//apv.setAPV_RFILE(rs.getString("APV_RFILE"));
+            	apv.setAPV_GROUP(rs.getInt("APV_GROUP"));
+            	apv.setAPV_SEQUENCE(rs.getInt("APV_SEQUENCE"));
+            	searchList.add(apv);
+            	return searchList.size();
+            }
+            return 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (rs != null) rs.close();
+        		if (pstmt != null) pstmt.close();
+        		if (conn != null) conn.close();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}       	
+        }
+        return -1;     
+	}
 }
