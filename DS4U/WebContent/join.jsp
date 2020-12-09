@@ -103,13 +103,13 @@
 									<h4>DETARTMENT</h4>
 									<div></div>
 									<label class="btn btn-primary active">
-										<input type="radio" name="STF_DEP" autocomplete="off" value="부서1" checked>부서1											
+										<input type="radio" name="STF_DEP" autocomplete="off" value="기계처" checked>기계처											
 									</label>
 									<label class="btn btn-primary">
-										<input type="radio" name="STF_DEP" autocomplete="off" value="부서2">부서2											
+										<input type="radio" name="STF_DEP" autocomplete="off" value="정보통신처">정보통신처											
 									</label>
 									<label class="btn btn-primary">
-										<input type="radio" name="STF_DEP" autocomplete="off" value="부서3">부서3											
+										<input type="radio" name="STF_DEP" autocomplete="off" value="IT기획처">IT기획처											
 									</label>		
 								</div>
 								<div></div>

@@ -8,7 +8,7 @@
 	validationQuery="SELECT 1 FROM DUAL"
 	maxWait="5000"
 	username="root"
-	password="ds4u"
+	password="1111"
 	testOnBorrow="true"
 	url="jdbc:mysql://localhost:3306/DS4U?serverTimezone=UTC"
 />

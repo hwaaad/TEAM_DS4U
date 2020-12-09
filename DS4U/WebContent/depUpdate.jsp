@@ -44,9 +44,9 @@
 				<form method="post" action="./depUpdate">
 					<input type="hidden" name="STF_ID" value="<%= stf.getSTF_ID() %>">									
 					<div class="row btns">
-						<button class="btn" name="STF_DEP" value="부서1" <% if(stf.getSTF_DEP().equals("부서1")) out.print("checked"); %>>부서1</button>											
-						<button class="btn" name="STF_DEP" value="부서2" <% if(stf.getSTF_DEP().equals("부서2")) out.print("checked"); %>>부서2</button>											
-						<button class="btn" name="STF_DEP" value="부서3" <% if(stf.getSTF_DEP().equals("부서3")) out.print("checked"); %>>부서3</button>																											
+						<button class="btn" name="STF_DEP" value="기계처" <% if(stf.getSTF_DEP().equals("기계처")) out.print("checked"); %>>기계처</button>											
+						<button class="btn" name="STF_DEP" value="정보통신처" <% if(stf.getSTF_DEP().equals("정보통신처")) out.print("checked"); %>>정보통신처</button>											
+						<button class="btn" name="STF_DEP" value="IT기획처" <% if(stf.getSTF_DEP().equals("IT기획처")) out.print("checked"); %>>IT기획처</button>																											
 					</div>
 						<div class="row btns">
 							<button class="btn" type="submit">수정</button>

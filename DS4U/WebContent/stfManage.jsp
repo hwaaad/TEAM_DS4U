@@ -90,7 +90,7 @@
 						<td><%= req.getSTF_EML() %></td>
 						<td><%= req.getSTF_DEP() %></td>
 						<td>
-						<% if (req.getSTF_DEP().equals("부서4")){ %>
+						<% if (req.getSTF_DEP().equals("정보보안처")){ %>
 							<input type="radio" name="STF_ADM" autocomplete="off" value="관리자" checked>관리자
 							<input type="radio" name="STF_ADM" autocomplete="off" value="사원">사원
 							<%

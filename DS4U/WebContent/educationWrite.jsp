@@ -60,7 +60,7 @@
 		}
 	}
 	
-	if(!STF_DEP.equals("부서4")){
+	if(!STF_DEP.equals("정보보안처")){
 		session.setAttribute("messageType", "오류 메시지");
 		session.setAttribute("messageContent", "권한이 없습니다.");
 		response.sendRedirect("educationView.jsp");

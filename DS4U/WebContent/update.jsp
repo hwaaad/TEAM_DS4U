@@ -116,14 +116,14 @@
 						<td style="width: 110px;"><h5>부서</h5></td>						
 						<td colspan="2">
 							<div class="btn-group" data-toggle="buttons">
-								<label class="btn btn-primary <% if(stf.getSTF_DEP().equals("부서1")) out.print("active"); %>">
-									<input type="radio" name="STF_DEP" autocomplete="off" value="부서1" <% if(stf.getSTF_DEP().equals("부서1")) out.print("checked"); %>>부서1											
+								<label class="btn btn-primary <% if(stf.getSTF_DEP().equals("기계처")) out.print("active"); %>">
+									<input type="radio" name="STF_DEP" autocomplete="off" value="기계처" <% if(stf.getSTF_DEP().equals("기계처")) out.print("checked"); %>>기계처										
 								</label>
-								<label class="btn btn-primary <% if(stf.getSTF_DEP().equals("부서2")) out.print("active"); %>">
-									<input type="radio" name="STF_DEP" autocomplete="off" value="부서2" <% if(stf.getSTF_DEP().equals("부서2")) out.print("checked"); %>>부서2											
+								<label class="btn btn-primary <% if(stf.getSTF_DEP().equals("정보통신처")) out.print("active"); %>">
+									<input type="radio" name="STF_DEP" autocomplete="off" value="정보통신처" <% if(stf.getSTF_DEP().equals("정보통신처")) out.print("checked"); %>>정보통신처											
 								</label>
-								<label class="btn btn-primary <% if(stf.getSTF_DEP().equals("부서3")) out.print("active"); %>">
-									<input type="radio" name="STF_DEP" autocomplete="off" value="부서3" <% if(stf.getSTF_DEP().equals("부서3")) out.print("checked"); %>>부서3											
+								<label class="btn btn-primary <% if(stf.getSTF_DEP().equals("IT기획처")) out.print("active"); %>">
+									<input type="radio" name="STF_DEP" autocomplete="off" value="IT기획처" <% if(stf.getSTF_DEP().equals("IT기획처")) out.print("checked"); %>>IT기획처										
 								</label>																
 							</div>						
 					</tr>

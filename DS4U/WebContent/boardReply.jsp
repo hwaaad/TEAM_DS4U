@@ -112,7 +112,7 @@
 							<td style="width: 830px; text-align: center;">
 								<select style="width: 160px;" id="BOARD_TYPE" name="BOARD_TYPE">
 								<% 
-									if (STF_DEP.equals("부서4")){
+									if (STF_DEP.equals("정보보안처")){
 								%>
 									<option value="일반">=====일반=====</option>
 								<%
