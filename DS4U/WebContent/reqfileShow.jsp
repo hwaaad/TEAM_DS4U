@@ -63,29 +63,29 @@
 				<div id="boardDetail">
 				<div class="container">
 					<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
-						<thead>
+						<tbody>
 							<tr>
 								<th colspan="2"><h4></h4></th>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px; "><h5>사업명</h5></td>
-								<td style="width: 800px;" colspan="2"><h5><%= reqf.getAPV_NM() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업명</h5></td>
+								<td style="width: 600px; text-align: center;" colspan="2"><h5><%= reqf.getAPV_NM() %></h5></td>
 							</tr>				
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>담당자</h5></td>
-								<td colspan="2"><h5><%= reqf.getSTF_ID() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>담당자</h5></td>
+								<td style="width: 600px; text-align: center;" colspan="2"><h5><%= reqf.getSTF_ID() %></h5></td>
 							</tr>
 							
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>보안점검표 제출일</h5></td>
-								<td colspan="2"><h5><%= reqf.getREQ_SUB_DATE() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>보안점검표 제출일</h5></td>
+								<td style="width: 600px; text-align: center;" colspan="2"><h5><%= reqf.getREQ_SUB_DATE() %></h5></td>
 							</tr>
 							
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>첨부파일</h5></td>
-								<td colspan="2"><a href="reqfileDownload.jsp?REQ_SQ=<%=reqf.getREQ_SQ() %>"><%=reqf.getREQF_FILE() %></a></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>첨부파일</h5></td>
+								<td style="width: 600px; text-align: center;" colspan="2"><a href="reqfileDownload.jsp?REQ_SQ=<%=reqf.getREQ_SQ() %>"><%=reqf.getREQF_FILE() %></a></td>
 							</tr>
-						</thead>
+						</tbody>
 						<tbody>
 							<tr>
 								<td colspan="5" style="text-align : right;">

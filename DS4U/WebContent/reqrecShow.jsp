@@ -64,13 +64,13 @@
 		<div id="wsBodyContainer">
 		
 			<h3>보안성 검토</h3>
-			<h4>보안성 검토 의뢰 상세보기</h4>
+			<h4>보안성 검토 회신 상세보기</h4>
 			<div id="boardInner">
 				<div id="boardDetail">
 				<div class="container">
 					
 					<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
-						<thead>
+						<tbody>
 							<%
 				for (int i=0; i<reqrecList.size(); i++) {
 					ReqRecDTO reqrec2 = reqrecList.get(i);
@@ -80,31 +80,31 @@
 								<th colspan="2"><h4></h4></th>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px; "><h5>사업명</h5></td>
-								<td style="width: 800px;" colspan="2"><h5><%= reqrec2.getAPV_NM() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>사업명</h5></td>
+								<td style="width: 800px; text-align: center;" colspan="2"><h5><%= reqrec2.getAPV_NM() %></h5></td>
 							</tr>				
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>검토 내용</h5></td>
-								<td colspan="2"><h5><%= reqrec2.getREQ_REC_TXT() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>검토 내용</h5></td>
+								<td style="width: 800px; text-align: center;" colspan="2"><h5><%= reqrec2.getREQ_REC_TXT() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>검토 결과</h5></td>
-								<td colspan="2"><h5><%= reqrec2.getREQ_APPROVAL() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>검토 결과</h5></td>
+								<td style="width: 800px; text-align: center;" colspan="2"><h5><%= reqrec2.getREQ_APPROVAL() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>회신 담당자</h5></td>
-								<td colspan="2"><h5><%= reqrec2.getSTF_ID() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>회신 담당자</h5></td>
+							<td style="width: 800px; text-align: center;" colspan="2">h5><%= reqrec2.getSTF_ID() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>회신 날짜</h5></td>
-								<td colspan="2"><h5><%= reqrec2.getREQ_REC_DATE() %></h5></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>회신 날짜</h5></td>
+								<td style="width: 800px; text-align: center;" colspan="2"><h5><%= reqrec2.getREQ_REC_DATE() %></h5></td>
 							</tr>
 							<tr>
-								<td style="background-color: #fafafa; color: #000000; width: 120px;"><h5>첨부파일</h5></td>
-								<td colspan="2"><a href="reqrecDownload.jsp?REQ_REC_SQ=<%= reqrec2.getREQ_REC_SQ() %>"><%= reqrec2.getREQ_REC_FILE() %></a></td>
+								<td style="width: 120px; font-weight: 600; background-color: #EAEAEA !important;"><h5>첨부파일</h5></td>
+								<td style="width: 800px; text-align: center;" colspan="2"><a href="reqrecDownload.jsp?REQ_REC_SQ=<%= reqrec2.getREQ_REC_SQ() %>"><%= reqrec2.getREQ_REC_FILE() %></a></td>
 							</tr>
 							<% }%>
-						</thead>
+						</tbody>
 						<tbody>
 							<tr>
 								<td colspan="5" style="text-align : right;">

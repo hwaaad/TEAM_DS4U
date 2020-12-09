@@ -42,7 +42,7 @@
 	} catch (Exception e) {
 		session.setAttribute("messageType", "오류 메시지");
 		session.setAttribute("messageContent", "페이지 번호가 잘못되었습니다.");
-		response.sendRedirect("reqView.jsp");
+		response.sendRedirect("fin_reqView.jsp");
 		return;			
 	}
 	ArrayList<ReqDTO> reqList = new ReqDAO().getList(pageNumber);
@@ -91,7 +91,7 @@
 	<input type="hidden" value="board" id="pageType">
 		<div id="wsBodyContainer">
 			<h3>보안성 검토</h3>
-			<h4>진행중인 보안성 검토</h4>
+			<h4>완료된 보안성 검토</h4>
 			<div id="boardInner">
 				<ul id="boardList">
 				<table class="table" style="text-align: center; border: 1px solid #dddddd">
@@ -108,7 +108,7 @@
 				
 				<tbody>	
 				<%	
-					if (reqDAO.reqSearchCount(searchType, search, PageNumber) <= 0) {
+					if (reqDAO.fin_reqSearchCount(searchType, search, PageNumber) <= 0) {
 				%>	
 					<table class="table" style="text-align: center; border: 1px solid #dddddd">
 						<tbody>	
@@ -117,9 +117,9 @@
 							</tr>
 							<tr>
 								<td colspan="9">
-									<a href="${contextPath}/reqView.jsp" id="writeBtn">목록</a>
+									<a href="${contextPath}/fin_reqView.jsp" id="writeBtn">목록</a>
 									<div id="searchWrap">
-										<form action="./reqSearch.jsp" method="get" id="boardSearchForm">							
+										<form action="./fin_reqSearch.jsp" method="get" id="boardSearchForm">							
 											<select name="searchType" id="searchType">
 												<option value="사업명">사업명</option>
 												<option value="작성자" <% if (searchType.equals("작성자")) out.println("selected"); %>>작성자</option>
@@ -134,7 +134,7 @@
 				<%	
 			} else {
 				ArrayList<ReqDTO> searchList = new ArrayList<ReqDTO>();
-				searchList = new ReqDAO().getSearch(searchType, search, PageNumber);
+				searchList = new ReqDAO().getfinSearch(searchType, search, PageNumber);
 				for (int i=0; i<searchList.size(); i++) {
 					if (i == 10) break;
 					ReqDTO req = searchList.get(i);
@@ -286,9 +286,9 @@
 			
 				<tr>
 					<td colspan="9">
-						<a href="${contextPath}/reqView.jsp" id="writeBtn">목록</a>
+						<a href="${contextPath}/fin_reqView.jsp" id="writeBtn">목록</a>
 						<div id="searchWrap">
-							<form action="./reqSearch.jsp" method="get" id="boardSearchForm">							
+							<form action="./fin_reqSearch.jsp" method="get" id="boardSearchForm">							
 								<select name="searchType" id="searchType">
 									<option value="사업명">사업명</option>
 									<option value="작성자" <% if (searchType.equals("작성자")) out.println("selected"); %>>작성자</option>
@@ -309,7 +309,7 @@
 					<%
 						} else {
 					%>
-						<li><a href="reqSearch.jsp?searchType=<%= URLEncoder.encode(searchType, "UTF-8") %>&search=<%= URLEncoder.encode(search, "UTF-8") %>&PageNumber=<%= PageNumber-1 %>"><i class="fas fa-angle-left"></i></a></li>
+						<li><a href="fin_reqSearch.jsp?searchType=<%= URLEncoder.encode(searchType, "UTF-8") %>&search=<%= URLEncoder.encode(search, "UTF-8") %>&PageNumber=<%= PageNumber-1 %>"><i class="fas fa-angle-left"></i></a></li>
 					<%
 						}
 					%>
@@ -320,7 +320,7 @@
 					<%
 						} else {
 					%>
-						<li><a href="reqSearch.jsp?searchType=<%= URLEncoder.encode(searchType, "UTF-8") %>&search=<%= URLEncoder.encode(search, "UTF-8") %>&PageNumber=<%= PageNumber+1 %>"><i class="fas fa-angle-right"></i></a></li>
+						<li><a href="fin_reqSearch.jsp?searchType=<%= URLEncoder.encode(searchType, "UTF-8") %>&search=<%= URLEncoder.encode(search, "UTF-8") %>&PageNumber=<%= PageNumber+1 %>"><i class="fas fa-angle-right"></i></a></li>
 					<%
 						}
 					%>	

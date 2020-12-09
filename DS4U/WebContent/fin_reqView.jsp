@@ -15,6 +15,9 @@
 	String STF_ID = null;
 	String STF_DEP = null;
 	String STF_NM = null;
+	String searchType = "사업명";
+	String search = "";
+	int PageNumber=1;
 	if (session.getAttribute("STF_ID") != null) {
 		STF_ID = (String) session.getAttribute("STF_ID");
 	}
@@ -258,7 +261,14 @@
 				}
 			%>
 				<tr>
-					<td colspan="9">
+					<td colspan="8">			
+							<form action="./fin_reqSearch.jsp" method="get" id="finboardSearchForm">		
+								<select name="searchType" id="searchType">
+									<option value="사업명">사업명</option>
+									<option value="작성자" <% if (searchType.equals("작성자")) out.println("selected"); %>>작성자</option>
+								</select>
+								<input type="text" name="search" type="submit"><button>검색</button>
+							</form>
 						
 						<ul id="pagination" style="margin: 0 auto;">				
 					<% 
@@ -267,7 +277,7 @@
 						int targetPage = new ReqDAO().targetPage(pageNumber);
 						if (startPage != 1) {
 					%>
-						<li><a href="reqView.jsp?pageNumber=<%= startPage - 1 %>"><i class="fas fa-angle-left"></i></a></li>
+						<li><a href="fin_reqView.jsp?pageNumber=<%= startPage - 1 %>"><i class="fas fa-angle-left"></i></a></li>
 					<%
 						} else {
 					%>
@@ -276,22 +286,22 @@
 						}
 						for (int i=startPage; i<Integer.parseInt(pageNumber); i++) {
 					%>
-						<li><a href="reqView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
+						<li><a href="fin_reqView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
 					<%
 						}
 					%>
-						<li class="active"><a href="reqView.jsp?pageNumber=<%= pageNumber %>"><%= pageNumber %></a></li>	
+						<li class="active"><a href="fin_reqView.jsp?pageNumber=<%= pageNumber %>"><%= pageNumber %></a></li>	
 					<%
 						for (int i=Integer.parseInt(pageNumber) + 1; i<=targetPage + Integer.parseInt(pageNumber); i++) {
 							if (i < startPage + 10) {
 					%>
-						<li><a href="reqView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
+						<li><a href="fin_reqView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
 					<%
 							}
 						}
 						if (targetPage + Integer.parseInt(pageNumber) > startPage + 9) {
 					%>
-						<li><a href="reqView.jsp?pageNumber=<%= startPage + 10 %>"><i class="fas fa-angle-right"></i></a></li>
+						<li><a href="fin_reqView.jsp?pageNumber=<%= startPage + 10 %>"><i class="fas fa-angle-right"></i></a></li>
 					<%
 						} else {
 					%>
@@ -299,6 +309,7 @@
 					<%
 						}
 					%>	
+					
 						
 						</ul>
 					</td>

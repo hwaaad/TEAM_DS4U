@@ -581,3 +581,37 @@ table th[class*="col-"] {
 #inputWrap input[type='text'], #inputWrap select, #inputWrap input[type='password'] {
     margin-left: 10px;
 }
+
+
+/****************************************************fin_reqView*****************************************/
+
+#boardInner #finboardSearchForm{
+	margin-right:800px;
+	text-align:center;
+	font-size: 14px;
+}
+#boardInner #finboardSearchForm > *{
+	vertical-align: middle;
+    height: 35px;
+    box-sizing: border-box;
+    padding: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+#boardInner #finboardSearchForm select {
+}
+#boardInner #finboardSearchForm input[name="keyword"] {
+	padding: 0 10px;
+}
+#boardInner #finboardSearchForm button {
+	margin-left: 2px;
+	width:60px;
+	background-color: #403C39;
+	color:#fff;
+	transition:background-color .5s;
+}
+#boardInner #finboardSearchForm button:hover{
+	background-color: #E5675A;
+	cursor:pointer;
+	border-color: transparent;
+}
