@@ -610,7 +610,8 @@ public class ReqDAO {
     	   if (searchType.equals("사업명")) {
        		SQL = "SELECT * FROM REQ WHERE REQ_STATE !=4 AND CONCAT(APV_NM) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
        	} else if (searchType.equals("작성자")) {
-       		SQL = "SELECT * FROM REQ WHERE REQ_STATE !=4 AND CONCAT(STF_ID) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+       		SQL = "SELECT REQ.STF_ID, REQ.REQ_SQ, REQ.APV_SQ, REQ.APV_NM, REQ.APV_OBJ,REQ.APV_CONT, REQ.APV_DATE, REQ.REQ_DATE, REQ.REQ_REC_DATE, REQ.REQ_SUB_DATE, REQ.REQ_GROUP, REQ.REQ_SEQUENCE, REQ.REQ_STATE"
+       				+ " FROM REQ JOIN STF on REQ.STF_ID=STF.STF_ID AND req.REQ_STATE != 4 AND STF.STF_NM LIKE  " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
        	}
     	   	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
@@ -667,9 +668,10 @@ public class ReqDAO {
     String SQL = "";
     try {
  	   if (searchType.equals("사업명")) {
-    		SQL = "SELECT * FROM REQ WHERE REQ_STATE !=4 AND CONCAT(APV_NM) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+    		SQL = "SELECT * FROM REQ WHERE REQ_STATE !=4 AND APV_NM LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
     	} else if (searchType.equals("작성자")) {
-    		SQL = "SELECT * FROM REQ WHERE REQ_STATE !=4 AND CONCAT(STF_ID) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+    		SQL = "SELECT REQ.STF_ID, REQ.REQ_SQ, REQ.APV_SQ, REQ.APV_NM, REQ.APV_OBJ,REQ.APV_CONT, REQ.APV_DATE, REQ.REQ_DATE, REQ.REQ_REC_DATE, REQ.REQ_SUB_DATE, REQ.REQ_GROUP, REQ.REQ_SEQUENCE, REQ.REQ_STATE"
+       				+ " FROM REQ JOIN STF on REQ.STF_ID=STF.STF_ID AND req.REQ_STATE != 4 AND STF.STF_NM LIKE  " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
     	}
 	   	conn = dataSource.getConnection();
         pstmt = conn.prepareStatement(SQL);
@@ -726,9 +728,10 @@ public int fin_reqSearchCount(String searchType, String search, int PageNumber) 
         String SQL = "";
        try {
     	   if (searchType.equals("사업명")) {
-       		SQL = "SELECT * FROM REQ WHERE REQ_STATE = 4 AND CONCAT(APV_NM) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+       		SQL = "SELECT * FROM REQ WHERE REQ_STATE = 4 AND APV_NM LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
        	} else if (searchType.equals("작성자")) {
-       		SQL = "SELECT * FROM REQ WHERE REQ_STATE = 4 AND CONCAT(STF_ID) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+       		SQL = "SELECT REQ.STF_ID, REQ.REQ_SQ, REQ.APV_SQ, REQ.APV_NM, REQ.APV_OBJ,REQ.APV_CONT, REQ.APV_DATE, REQ.REQ_DATE, REQ.REQ_REC_DATE, REQ.REQ_SUB_DATE, REQ.REQ_GROUP, REQ.REQ_SEQUENCE, REQ.REQ_STATE"
+       				+ " FROM REQ JOIN STF on REQ.STF_ID=STF.STF_ID AND req.REQ_STATE = 4 AND STF.STF_NM LIKE  " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
        	}
     	   	conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SQL);
@@ -783,11 +786,12 @@ public int fin_reqSearchCount(String searchType, String search, int PageNumber) 
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
     String SQL = "";
-    try {
+    try { 
  	   if (searchType.equals("사업명")) {
-    		SQL = "SELECT * FROM REQ WHERE REQ_STATE=4 AND CONCAT(APV_NM) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+    		SQL = "SELECT * FROM REQ WHERE REQ_STATE=4 AND APV_NM LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
     	} else if (searchType.equals("작성자")) {
-    		SQL = "SELECT * FROM REQ WHERE REQ_STATE=4 AND CONCAT(STF_ID) LIKE " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
+    		SQL = "SELECT REQ.STF_ID, REQ.REQ_SQ, REQ.APV_SQ, REQ.APV_NM, REQ.APV_OBJ,REQ.APV_CONT, REQ.APV_DATE, REQ.REQ_DATE, REQ.REQ_REC_DATE, REQ.REQ_SUB_DATE, REQ.REQ_GROUP, REQ.REQ_SEQUENCE, REQ.REQ_STATE"
+       				+ " FROM REQ JOIN STF on REQ.STF_ID=STF.STF_ID AND req.REQ_STATE = 4 AND STF.STF_NM LIKE  " + "? ORDER BY REQ_SQ DESC LIMIT " + PageNumber * 5 + ", " + PageNumber * 5 + 6;
     	}
 	   	conn = dataSource.getConnection();
         pstmt = conn.prepareStatement(SQL);
