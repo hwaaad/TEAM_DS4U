@@ -2,6 +2,8 @@
 <%@ include file="/head.jsp" %>
 <%@ page import="req.ReqDAO" %>
 <%@ page import="req.ReqDTO" %>
+<%@ page import="stf.StfDAO" %>
+<%@ page import="stf.StfDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
@@ -16,6 +18,7 @@
 <html>
 <%	
 	String STF_ID = null;
+	String STF_NM=null;
 	String STF_DEP = null;
 	if (session.getAttribute("STF_ID") != null) {
 		STF_ID = (String) session.getAttribute("STF_ID");
@@ -24,6 +27,7 @@
 	ArrayList<ReqDTO> reqList2 = new ReqDAO().getList3();
 	ArrayList<ReqDTO> reqList3 = new ReqDAO().getList4();
 	ArrayList<BoardDTO> boardList = new BoardDAO().getList2();
+	StfDTO stf = new StfDAO().getUser(STF_ID);
 %>
 
 <head>
@@ -126,7 +130,42 @@
 					</td>
 					
 					
-					<td><%= req.getSTF_ID() %></td>
+					<td>
+					<% 
+							
+								dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
+						    	try{
+						    		
+						    		conn = dataSource.getConnection();
+						    		String SQL = "SELECT STF_NM FROM STF WHERE STF_ID = ?";
+					           		pstmt = conn.prepareStatement(SQL);
+					           		pstmt.setString(1, req.getSTF_ID());
+					           		rs = pstmt.executeQuery();
+					           		
+					           	 	while (rs.next()) {
+						            	
+					           	 		STF_NM = rs.getString("STF_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+						            	
+						            	
+						            	%>
+						           <%= STF_NM %>
+						            	<%
+						            } 									
+						    	}catch (Exception e) {
+						            e.printStackTrace();
+						        } finally {
+						        	try {
+						        		if (rs != null) rs.close();
+						        		if (pstmt != null) pstmt.close();
+						        		if (conn != null) conn.close();
+						        	} catch (Exception e) {
+						        		e.printStackTrace();
+						        	}       	
+					            
+						        }
+						 %>
+						
+					</td>
 					<td><%= req.getREQ_DATE() %></td>
 					<td> <%= req.getREQ_REC_DATE() %> </td>
 					
@@ -204,7 +243,42 @@
 						
 					</td>
 					
-					<td><%= req.getSTF_ID() %></td>
+					<td>
+					<% 
+							
+								dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
+						    	try{
+						    		
+						    		conn = dataSource.getConnection();
+						    		String SQL = "SELECT STF_NM FROM STF WHERE STF_ID = ?";
+					           		pstmt = conn.prepareStatement(SQL);
+					           		pstmt.setString(1, req.getSTF_ID());
+					           		rs = pstmt.executeQuery();
+					           		
+					           	 	while (rs.next()) {
+						            	
+					           	 		STF_NM = rs.getString("STF_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+						            	
+						            	
+						            	%>
+						           <%= STF_NM %>
+						            	<%
+						            } 									
+						    	}catch (Exception e) {
+						            e.printStackTrace();
+						        } finally {
+						        	try {
+						        		if (rs != null) rs.close();
+						        		if (pstmt != null) pstmt.close();
+						        		if (conn != null) conn.close();
+						        	} catch (Exception e) {
+						        		e.printStackTrace();
+						        	}       	
+					            
+						        }
+						 %>
+						
+					</td>
 					<td><%= req.getREQ_DATE() %></td>
 					<td><%= req.getREQ_REC_DATE() %></td>
 					
@@ -282,7 +356,42 @@
 						
 					</td>
 					
-					<td><%= req.getSTF_ID() %></td>
+					<td>
+					<% 
+							
+								dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
+						    	try{
+						    		
+						    		conn = dataSource.getConnection();
+						    		String SQL = "SELECT STF_NM FROM STF WHERE STF_ID = ?";
+					           		pstmt = conn.prepareStatement(SQL);
+					           		pstmt.setString(1, req.getSTF_ID());
+					           		rs = pstmt.executeQuery();
+					           		
+					           	 	while (rs.next()) {
+						            	
+					           	 		STF_NM = rs.getString("STF_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+						            	
+						            	
+						            	%>
+						           <%= STF_NM %>
+						            	<%
+						            } 									
+						    	}catch (Exception e) {
+						            e.printStackTrace();
+						        } finally {
+						        	try {
+						        		if (rs != null) rs.close();
+						        		if (pstmt != null) pstmt.close();
+						        		if (conn != null) conn.close();
+						        	} catch (Exception e) {
+						        		e.printStackTrace();
+						        	}       	
+					            
+						        }
+						 %>
+						
+					</td>
 					<td><%= req.getREQ_DATE() %></td>
 					<td><%= req.getREQ_REC_DATE() %></td>
 					<td><%= req.getREQ_SUB_DATE() %></td>

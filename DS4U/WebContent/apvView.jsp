@@ -113,7 +113,7 @@
 							</tr>
 							<tr>
 								<td>
-									<a href="${contextPath}/apvWrite.jsp" id="writeBtn">글쓰기</a>
+									<a href="${contextPath}/apvWrite.jsp" id="writeBtn">사업 등록</a>
 									<div id="searchWrap">
 										<form action="./apvSearch.jsp" method="get" id="boardSearchForm">							
 											<select name="searchType" id="searchType">
@@ -191,7 +191,7 @@
 			%>
 				<tr>
 					<td colspan="9">
-						<a href="${contextPath}/apvWrite.jsp" id="writeBtn">글쓰기</a>
+						<a href="${contextPath}/apvWrite.jsp" id="writeBtn">사업 등록</a>
 						<div id="searchWrap">
 								<form action="./apvSearch.jsp" method="get" id="boardSearchForm">							
 									<select name="searchType" id="searchType">

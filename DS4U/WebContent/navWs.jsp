@@ -150,7 +150,15 @@
             <li><a href="${contextPath}/reqWrite.jsp">검토 의뢰하기</a></li>
             <li><a href="${contextPath}/reqView.jsp">진행중인 보안성 검토 현황</a></li>
             <li><a href="${contextPath}/fin_reqView.jsp">완료된 보안성 검토</a></li>
+            <%if(STF_ID.equals("admin")){ %>
             <li><a href="${contextPath}/alertView.jsp">보안성 검토 알림</a></li>
+            
+            <% }else{
+            %>
+            <li><a href="${contextPath}/alertView2.jsp">보안성 검토 알림</a></li>
+          <%  }
+            	
+            %>
          </ul>
       </div>
       <div id="boardDiv" class="navListDiv">

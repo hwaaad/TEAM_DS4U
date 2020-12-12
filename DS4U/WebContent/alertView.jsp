@@ -39,6 +39,8 @@
 	ArrayList<ReqDTO> reqList = new ReqDAO().getList(pageNumber);
 	
 	StfDTO stf = new StfDAO().getUser(STF_ID);
+	ReqDAO reqDAO = new ReqDAO();
+
 %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -61,7 +63,7 @@
 	<div id="wsBody">
 	<input type="hidden" value="board" id="pageType">
 		<div id="wsBodyContainer">
-			<h3>보안성검토</h3>
+			<h3>보안성검토 알림</h3>
 			<div id="boardInner">
 				<div id="inputWrap">
 				<ul id="boardList">	
@@ -78,8 +80,12 @@
 					</thead>
 				<tbody>	
 			<%
+				
+				
 				for (int i=0; i<reqList.size(); i++) {
-					ReqDTO req = reqList.get(i);					
+					ReqDTO req = reqList.get(i);
+					if(req.getREQ_STATE() == 1){
+										
 			%>
 				<tr>
 				<td style="text-align: center;">
@@ -134,16 +140,54 @@
 						
 					</td>
 					
-					<td><%= req.getSTF_ID() %></td>
-					<td><%= req.getREQ_DATE() %></td>
-					<td> 보안성 검토 </td>	
+					<td>
+					<% 
+							
+								dataSource = (DataSource) envContext.lookup("jdbc/DS4U");
+						    	try{
+						    		
+						    		conn = dataSource.getConnection();
+						    		String SQL = "SELECT STF_NM FROM STF WHERE STF_ID = ?";
+					           		pstmt = conn.prepareStatement(SQL);
+					           		pstmt.setString(1, req.getSTF_ID());
+					           		rs = pstmt.executeQuery();
+					           		
+					           	 	while (rs.next()) {
+						            	
+					           	 		STF_NM = rs.getString("STF_NM").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
+						            	
+						            	
+						            	%>
+						           <%= STF_NM %>
+						            	<%
+						            } 									
+						    	}catch (Exception e) {
+						            e.printStackTrace();
+						        } finally {
+						        	try {
+						        		if (rs != null) rs.close();
+						        		if (pstmt != null) pstmt.close();
+						        		if (conn != null) conn.close();
+						        	} catch (Exception e) {
+						        		e.printStackTrace();
+						        	}       	
+					            
+						        }
+						 %>
+						
+					</td>
+					<td style="text-align: center;">
+					<a href="reqShow.jsp?REQ_SQ=<%= req.getREQ_SQ() %>">
+					<%= req.getREQ_DATE() %></td>
+					<td> 보안성 검토 의뢰 </td>	
 				</tr>
 			<%
 				}
+			}
 			%>
 							<tr>
 					<td colspan="9">
-						<a href="${contextPath}/reqWrite.jsp" id="writeBtn">글쓰기</a>
+					
 						<ul id="pagination" style="margin: 0 auto;">				
 					<% 
 						int startPage = (Integer.parseInt(pageNumber) / 10) * 10 + 1;
